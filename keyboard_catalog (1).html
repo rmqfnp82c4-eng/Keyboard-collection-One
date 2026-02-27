@@ -14,56 +14,40 @@
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
         body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
-
-        /* ── NAV ── */
-        nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(10,10,10,0.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+        nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(10,10,10,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
         .nav-logo{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--text)}
         .nav-tabs{display:flex;height:100%}
-        .nav-tab{
-            font-size:.8rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
-            color:var(--text-muted);padding:0 32px;height:100%;
-            display:flex;align-items:center;gap:10px;
-            cursor:pointer;border:none;background:none;
-            border-bottom:2px solid transparent;
-            transition:color .2s,border-color .2s,background .2s;
-            position:relative;
-        }
+        .nav-tab{font-size:.8rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);padding:0 32px;height:100%;display:flex;align-items:center;gap:10px;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
         .nav-tab:hover{color:var(--text-secondary);background:rgba(255,255,255,0.025)}
         .nav-tab.active{color:var(--text);border-bottom-color:var(--text);background:rgba(255,255,255,0.04)}
-        .nav-count{
-            font-family:'DM Mono',monospace;font-size:.6rem;font-weight:400;
-            color:var(--text-muted);background:rgba(255,255,255,0.07);
-            padding:2px 8px;border-radius:20px;border:1px solid var(--border2);
-            letter-spacing:0;
-        }
+        .nav-count{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:400;color:var(--text-muted);background:rgba(255,255,255,0.07);padding:2px 8px;border-radius:20px;border:1px solid var(--border2);letter-spacing:0}
         .nav-tab.active .nav-count{color:var(--text-secondary);background:rgba(255,255,255,0.1);border-color:#333}
-
-        /* ── HERO ── */
-        .hero{padding:148px 48px 72px;border-bottom:1px solid var(--border)}
-        .hero-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px}
+        .hero{position:relative;padding:148px 48px 80px;border-bottom:1px solid var(--border);overflow:hidden;min-height:520px}
+        .hero-slides{position:absolute;inset:0;z-index:0}
+        .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease}
+        .hero-slide.active{opacity:1}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.68) 60%,rgba(10,10,10,0.96) 100%);z-index:1}
+        .hero-content{position:relative;z-index:2}
+        .hero-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,240,240,0.5);margin-bottom:20px}
         .hero-title{font-size:clamp(2.6rem,5.5vw,5rem);font-weight:300;letter-spacing:-2px;line-height:.95;text-transform:uppercase;margin-bottom:40px}
         .hero-title em{font-style:italic;color:var(--text-secondary)}
-        .hero-stats{display:flex;border:1px solid var(--border);width:fit-content}
-        .hero-stat{padding:18px 32px;border-right:1px solid var(--border);text-align:center}
+        .hero-stats{display:flex;border:1px solid rgba(255,255,255,0.08);width:fit-content;background:rgba(10,10,10,0.5);backdrop-filter:blur(10px)}
+        .hero-stat{padding:18px 32px;border-right:1px solid rgba(255,255,255,0.08);text-align:center}
         .hero-stat:last-child{border-right:none}
         .hero-stat-num{font-family:'DM Mono',monospace;font-size:1.5rem;color:var(--text);display:block}
         .hero-stat-label{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);display:block;margin-top:4px}
-
-        /* ── TABS ── */
-        .tab-section{display:none}
-        .tab-section.active{display:block}
+        .hero-dots{position:absolute;bottom:24px;left:48px;z-index:2;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 96px)}
+        .hero-dot{width:20px;height:2px;background:rgba(255,255,255,0.2);cursor:pointer;transition:background .3s,width .3s;border:none;padding:0}
+        .hero-dot.active{background:rgba(255,255,255,0.85);width:32px}
+        .tab-section{display:none}.tab-section.active{display:block}
         .section-top{padding:40px 48px 28px;border-bottom:1px solid var(--border)}
         .section-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:6px}
         .section-heading{font-size:1.8rem;font-weight:300;letter-spacing:-.5px;text-transform:uppercase}
-
-        /* ── KEYBOARD CARDS ── */
         .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);border-left:1px solid var(--border);border-right:1px solid var(--border);margin:0 48px;padding-bottom:80px}
-        .card{background:var(--bg);display:flex;flex-direction:column;transition:background .18s;position:relative;overflow:hidden}
+        .card{background:var(--bg);display:flex;flex-direction:column;transition:background .18s;overflow:hidden}
         .card:hover{background:var(--surface2)}
         .card::before{content:'';display:block;height:2px;width:100%}
-        .card.has-photos::before{background:var(--purple)}
-        .card.is-gb::before{background:var(--amber)}
-        .card.no-status::before{background:var(--border2)}
+        .card.has-photos::before{background:var(--purple)}.card.is-gb::before{background:var(--amber)}.card.no-status::before{background:var(--border2)}
         .card-inner{padding:24px 24px 20px;flex:1;display:flex;flex-direction:column}
         .card-num{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted);margin-bottom:10px}
         .card-name{font-size:.95rem;font-weight:500;color:var(--text);line-height:1.3;margin-bottom:18px;flex:1}
@@ -75,13 +59,9 @@
         .card-footer{padding:12px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:flex-end}
         .status-pill{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:2px;display:inline-flex;align-items:center;gap:5px}
         .status-pill::before{content:'';width:4px;height:4px;border-radius:50%}
-        .status-shot{background:rgba(155,143,255,.1);color:var(--purple);border:1px solid rgba(155,143,255,.2)}
-        .status-shot::before{background:var(--purple)}
-        .status-gb{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.2)}
-        .status-gb::before{background:var(--amber)}
-        .status-none{background:rgba(255,255,255,.02);color:#3a3a3a;border:1px solid #1e1e1e}
-        .status-none::before{background:#2a2a2a}
-        /* color dots */
+        .status-shot{background:rgba(155,143,255,.1);color:var(--purple);border:1px solid rgba(155,143,255,.2)}.status-shot::before{background:var(--purple)}
+        .status-gb{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.2)}.status-gb::before{background:var(--amber)}
+        .status-none{background:rgba(255,255,255,.02);color:#3a3a3a;border:1px solid #1e1e1e}.status-none::before{background:#2a2a2a}
         .dot-gray{background:#6b7280}.dot-burgundy{background:#9b2335}.dot-navy{background:#1d3557}
         .dot-yellow{background:#f5c518}.dot-pink{background:#e879a0}.dot-purple{background:#7c3aed}
         .dot-blue{background:#2563eb}.dot-clear{background:#d1d5db;border:1px solid #555}
@@ -89,8 +69,6 @@
         .dot-nebula{background:conic-gradient(#4c1d95,#2563eb,#4c1d95)}.dot-red{background:#ef4444}
         .dot-azure{background:#0ea5e9}.dot-green{background:#16a34a}.dot-darkgray{background:#374151}
         .dot-white{background:#e2e8f0;border:1px solid #444}
-
-        /* ── KEYCAPS ── */
         .keycaps-container{padding:0 48px 80px}
         .kc-legend{display:flex;gap:28px;flex-wrap:wrap;padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
         .kc-legend-item{display:flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
@@ -98,36 +76,31 @@
         .kc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
         .kc-item{background:var(--bg);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-left:2px solid transparent;transition:background .15s}
         .kc-item:hover{background:var(--surface2)}
-        .kc-item.on-board{border-left-color:var(--purple)}
-        .kc-item.in-gb{border-left-color:var(--amber)}
-        .kc-item.boxed{border-left-color:var(--green)}
+        .kc-item.on-board{border-left-color:var(--purple)}.kc-item.in-gb{border-left-color:var(--amber)}.kc-item.boxed{border-left-color:var(--green)}
         .kc-name{font-size:.8rem;color:var(--text-secondary)}
         .kc-badge{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;flex-shrink:0}
         .kc-badge.on{color:var(--purple);background:rgba(155,143,255,.08);border:1px solid rgba(155,143,255,.15)}
         .kc-badge.gb{color:var(--amber);background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.15)}
         .kc-badge.box{color:var(--green);background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2)}
-
-        /* ── SWITCHES ── */
         .sw-container{padding:0 48px 80px}
         .sw-brand-legend{display:flex;gap:20px;flex-wrap:wrap;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
         .sw-bl-item{display:flex;align-items:center;gap:6px;font-size:.62rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
         .sw-bl-dot{width:6px;height:6px;border-radius:50%}
-        .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
-        .sw-item{background:var(--bg);padding:14px 20px;display:flex;align-items:center;gap:12px;transition:background .15s}
-        .sw-item:hover{background:var(--surface2)}
-        .sw-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
         .sw-gateron{background:#f59e0b}.sw-hmx{background:#9b8fff}.sw-cherry{background:#ff4d4d}
         .sw-invokeys{background:#2ecc71}.sw-keebfront{background:#60a5fa}.sw-siliworks{background:#f472b6}
         .sw-keygeek{background:#fb923c}.sw-owlab{background:#a3e635}.sw-moyu{background:#22d3ee}
         .sw-novelkeys{background:#818cf8}.sw-other{background:#2a2a2a;border:1px solid #333}
-        .sw-name{font-size:.78rem;color:var(--text-secondary)}
-        .sw-brand{font-size:.58rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-top:1px}
-
+        .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
+        .sw-item{background:var(--bg);padding:14px 20px;display:flex;align-items:center;gap:12px;transition:background .15s}
+        .sw-item:hover{background:var(--surface2)}
+        .sw-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+        .sw-name{font-size:.78rem;color:var(--text-secondary)}.sw-brand{font-size:.58rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-top:1px}
         footer{padding:36px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
         .footer-logo{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--text-muted)}
         .footer-note{font-size:.62rem;color:var(--text-muted);letter-spacing:1px}
         @media(max-width:768px){
-            nav,.hero,.section-top,.keycaps-container,.sw-container,footer{padding-left:20px;padding-right:20px}
+            nav,.section-top,.keycaps-container,.sw-container,footer{padding-left:20px;padding-right:20px}
+            .hero{padding:120px 20px 60px}.hero-dots{left:20px}
             .cards-grid{margin:0 20px;grid-template-columns:1fr}
             .nav-tab{padding:0 16px;font-size:.7rem}
         }
@@ -144,14 +117,19 @@
 </nav>
 
 <section class="hero">
-    <p class="hero-eyebrow">Personal catalog · February 2026</p>
-    <h1 class="hero-title">My<br><em>Collection</em></h1>
-    <div class="hero-stats">
-        <div class="hero-stat"><span class="hero-stat-num">29</span><span class="hero-stat-label">Keyboards</span></div>
-        <div class="hero-stat"><span class="hero-stat-num">46</span><span class="hero-stat-label">Photos</span></div>
-        <div class="hero-stat"><span class="hero-stat-num">44</span><span class="hero-stat-label">GMK Sets</span></div>
-        <div class="hero-stat"><span class="hero-stat-num">80</span><span class="hero-stat-label">Switches</span></div>
+    <div class="hero-slides" id="heroSlides"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Personal catalog · February 2026</p>
+        <h1 class="hero-title">My<br><em>Collection</em></h1>
+        <div class="hero-stats">
+            <div class="hero-stat"><span class="hero-stat-num">29</span><span class="hero-stat-label">Keyboards</span></div>
+            <div class="hero-stat"><span class="hero-stat-num">46</span><span class="hero-stat-label">Photos</span></div>
+            <div class="hero-stat"><span class="hero-stat-num">44</span><span class="hero-stat-label">GMK Sets</span></div>
+            <div class="hero-stat"><span class="hero-stat-num">80</span><span class="hero-stat-label">Switches</span></div>
+        </div>
     </div>
+    <div class="hero-dots" id="heroDots"></div>
 </section>
 
 <section id="tab-keyboards" class="tab-section active">
@@ -164,11 +142,11 @@
         <div class="card no-status"><div class="card-inner"><div class="card-num">05</div><div class="card-name">Tofu60 2.0</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-navy"></span>Navy</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Honor Light Base</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Gateron Type-R</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
         <div class="card no-status"><div class="card-inner"><div class="card-num">06</div><div class="card-name">Swagkeys Transition Lite</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-pink"></span>Pink</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK DMG 3</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">SW x Captain Sterling Ghost Dragon</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
         <div class="card no-status"><div class="card-inner"><div class="card-num">07</div><div class="card-name">KBD8X MKIII</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-purple"></span>Purple</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Royal Cadet</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">HMX Guava</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
-        <div class="card no-status"><div class="card-inner"><div class="card-num">08</div><div class="card-name">La-Versa.kbd Otsukimi</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-blue"></span>Midnight Blue</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Haku</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Techno Violet</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">08</div><div class="card-name">La-Versa.kbd Otsukimi</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-blue"></span>Midnight Blue</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Haku</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Techno Violet</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">5 Photos</span></div></div>
         <div class="card no-status"><div class="card-inner"><div class="card-num">09</div><div class="card-name">Rule60</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-clear"></span>PC / Clear</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Baltic</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Gateron Quinn</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
         <div class="card no-status"><div class="card-inner"><div class="card-num">10</div><div class="card-name">Felice Lab Curva 40 R2</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-metallic"></span>Metallic</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Nuclear Data R2</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Brown</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
-        <div class="card no-status"><div class="card-inner"><div class="card-num">11</div><div class="card-name">Geonworks F2-84</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-cream"></span>Cookie Cream</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Rubrehose</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Black</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
-        <div class="card no-status"><div class="card-inner"><div class="card-num">12</div><div class="card-name">Geonworks F2-8X V2</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-beige"></span>Hyperbeige</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Prussian Blue</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Purple</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">11</div><div class="card-name">Geonworks F2-84</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-cream"></span>Cookie Cream</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Rubrehose</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Black</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">8 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">12</div><div class="card-name">Geonworks F2-8X V2</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-beige"></span>Hyperbeige</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Prussian Blue</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Purple</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">4 Photos</span></div></div>
         <div class="card no-status"><div class="card-inner"><div class="card-num">13</div><div class="card-name">Neo Ergo</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-nebula"></span>Nebula</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Fright Club</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Outemu Unity</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
         <div class="card no-status"><div class="card-inner"><div class="card-num">14</div><div class="card-name">KBDFans Agar</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-burgundy"></span>Burgundy</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Higanbana</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Invokeys x ALAS Red Bean</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
         <div class="card no-status"><div class="card-inner"><div class="card-num">15</div><div class="card-name">Mode Sonnet</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-green"></span>Green</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK November Fog</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Akko Green Fog</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
@@ -351,13 +329,94 @@
     <span class="footer-logo">Keyboard Collection</span>
     <span class="footer-note">29 boards · 44 gmk sets · 80 switches · Feb 2026</span>
 </footer>
+
 <script>
-function showTab(name,btn){
-    document.querySelectorAll('.tab-section').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
-    document.getElementById('tab-'+name).classList.add('active');
-    btn.classList.add('active');
-}
+    const photos = [
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(1).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(2).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(3).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(4).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(5).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(6).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(7).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(8).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(9).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(10).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Frog%20Mini/Frog%20Mini%20(1).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Frog%20Mini/Frog%20Mini%20(3).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Frog%20Mini/Frog%20Mini%20(5).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Frog%20Mini/Frog%20Mini%20(7).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Frog%20Mini/Frog%20Mini%20(9).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Frog%20Mini/Frog%20Mini%20(11).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Frog%20Mini/Frog%20Mini%20(13).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Frog%20Mini/Frog%20Mini%20(15).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F2-84/Geon%20F2-84%20(1).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F2-84/Geon%20F2-84%20(3).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F2-84/Geon%20F2-84%20(5).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F2-84/Geon%20F2-84%20(7).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F2-84/Geon%20F2-84%20(9).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F2-84/Geon%20F2-84%20(11).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F2-84/Geon%20F2-84%20(13).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F2-84/Geon%20F2-84%20(17).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(1).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(2).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(3).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(4).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(5).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(6).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(7).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(8).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(9).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(10).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Class60/MMClass60%20(11).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Corsa65/Corsa65%20(1).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Corsa65/Corsa65%20(2).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Corsa65/Corsa65%20(3).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Otsukimi/Otsukimi%20(1).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Otsukimi/Otsukimi%20(3).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Otsukimi/Otsukimi%20(5).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Otsukimi/Otsukimi%20(7).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Otsukimi/Otsukimi%20(10).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(1).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(3).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(5).jpg",
+        "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(8).jpg"
+    ];
+    const slidesEl = document.getElementById('heroSlides');
+    const dotsEl   = document.getElementById('heroDots');
+    let current = 0, timer;
+
+    photos.forEach((url, i) => {
+        const s = document.createElement('div');
+        s.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        s.style.backgroundImage = `url(${url})`;
+        slidesEl.appendChild(s);
+        const d = document.createElement('button');
+        d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+    });
+
+    function goTo(n) {
+        const slides = slidesEl.querySelectorAll('.hero-slide');
+        const dots   = dotsEl.querySelectorAll('.hero-dot');
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + photos.length) % photos.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 6000);
+    }
+
+    timer = setInterval(() => goTo(current + 1), 6000);
+
+    function showTab(name, btn) {
+        document.querySelectorAll('.tab-section').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+        document.getElementById('tab-' + name).classList.add('active');
+        btn.classList.add('active');
+    }
 </script>
 </body>
 </html>
