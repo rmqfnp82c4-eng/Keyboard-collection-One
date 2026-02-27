@@ -115,7 +115,6 @@
         <button class="nav-tab" onclick="showTab('switches',this)">Switches <span class="nav-count">80</span></button>
     </div>
 </nav>
-
 <section class="hero">
     <div class="hero-slides" id="heroSlides"></div>
     <div class="hero-overlay"></div>
@@ -131,7 +130,6 @@
     </div>
     <div class="hero-dots" id="heroDots"></div>
 </section>
-
 <section id="tab-keyboards" class="tab-section active">
     <div class="section-top"><span class="section-label">Catalog</span><h2 class="section-heading">Keyboards</h2></div>
     <div class="cards-grid">
@@ -166,7 +164,6 @@
         <div class="card is-gb"><div class="card-inner"><div class="card-num">29</div><div class="card-name">Geonworks Frog TKL</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
     </div>
 </section>
-
 <section id="tab-keycaps" class="tab-section">
     <div class="section-top"><span class="section-label">GMK</span><h2 class="section-heading">Keycaps</h2></div>
     <div class="keycaps-container">
@@ -223,7 +220,6 @@
         </div>
     </div>
 </section>
-
 <section id="tab-switches" class="tab-section">
     <div class="section-top"><span class="section-label">Collection</span><h2 class="section-heading">Switches</h2></div>
     <div class="sw-container">
@@ -324,12 +320,10 @@
         </div>
     </div>
 </section>
-
 <footer>
     <span class="footer-logo">Keyboard Collection</span>
     <span class="footer-note">29 boards · 44 gmk sets · 80 switches · Feb 2026</span>
 </footer>
-
 <script>
     const photos = [
         "https://raw.githubusercontent.com/rmqfnp82c4-eng/Keyboard-collection-One/main/Photos/Navi70/Navi70%20(1).jpg",
@@ -385,7 +379,6 @@
     const slidesEl = document.getElementById('heroSlides');
     const dotsEl   = document.getElementById('heroDots');
     let current = 0, timer;
-
     photos.forEach((url, i) => {
         const s = document.createElement('div');
         s.className = 'hero-slide' + (i === 0 ? ' active' : '');
@@ -396,7 +389,6 @@
         d.addEventListener('click', () => goTo(i));
         dotsEl.appendChild(d);
     });
-
     function goTo(n) {
         const slides = slidesEl.querySelectorAll('.hero-slide');
         const dots   = dotsEl.querySelectorAll('.hero-dot');
@@ -408,9 +400,7 @@
         clearInterval(timer);
         timer = setInterval(() => goTo(current + 1), 6000);
     }
-
     timer = setInterval(() => goTo(current + 1), 6000);
-
     function showTab(name, btn) {
         document.querySelectorAll('.tab-section').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
