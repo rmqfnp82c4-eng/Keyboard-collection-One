@@ -382,7 +382,7 @@
     photos.forEach((url, i) => {
         const s = document.createElement('div');
         s.className = 'hero-slide' + (i === 0 ? ' active' : '');
-        s.style.backgroundImage = `url(${url})`;
+        s.style.backgroundImage = `url('${url}')`;
         slidesEl.appendChild(s);
         const d = document.createElement('button');
         d.className = 'hero-dot' + (i === 0 ? ' active' : '');
