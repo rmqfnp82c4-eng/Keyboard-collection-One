@@ -123,7 +123,26 @@
         .lightbox img{max-width:90vw;max-height:90vh;object-fit:contain}
         .lightbox-close{position:fixed;top:20px;right:44px;background:none;border:none;color:#f0f0f0;font-size:1.8rem;cursor:pointer;line-height:1}
 
-    </style>
+    
+        /* Scroll Button */
+        .scroll-btn{
+            position:fixed;bottom:32px;right:32px;z-index:998;
+            width:44px;height:44px;border-radius:50%;
+            background:rgba(255,255,255,0.08);
+            border:1px solid var(--border);
+            backdrop-filter:blur(12px);
+            color:var(--text);cursor:pointer;
+            display:flex;align-items:center;justify-content:center;
+            font-size:1.1rem;
+            opacity:0;pointer-events:none;
+            transition:opacity .3s,transform .3s,background .2s;
+            transform:translateY(10px);
+        }
+        .scroll-btn.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+        .scroll-btn:hover{background:rgba(255,255,255,0.15)}
+        @media(max-width:768px){.scroll-btn{bottom:20px;right:20px;width:40px;height:40px}}
+
+        </style>
 </head>
 <body>
 <nav>
@@ -455,6 +474,34 @@
     <button class="lightbox-close">✕</button>
     <img id="lightboxImg" src="" onclick="event.stopPropagation()"/>
 </div>
+
+
+    <button class="scroll-btn" id="scrollBtn" title="Вниз">&#8681;</button>
+
+    <script>
+        const scrollBtn = document.getElementById('scrollBtn');
+        const threshold = 300;
+        window.addEventListener('scroll', () => {
+            const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+            const scrolled = window.scrollY > threshold;
+            scrollBtn.classList.toggle('visible', scrolled || atBottom);
+            scrollBtn.innerHTML = atBottom ? '&#8679;' : (scrolled ? '&#8679;' : '&#8681;');
+            scrollBtn.title = atBottom || scrolled ? 'Наверх' : 'Вниз';
+            scrollBtn.onclick = () => {
+                if (atBottom || scrolled) window.scrollTo({top:0,behavior:'smooth'});
+                else window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+            };
+        });
+        // Show down arrow initially
+        setTimeout(()=>{
+            if(window.scrollY===0){
+                scrollBtn.innerHTML='&#8681;';
+                scrollBtn.title='Вниз';
+                scrollBtn.classList.add('visible');
+                scrollBtn.onclick=()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+            }
+        },500);
+    </script>
 
 </body>
 </html>
