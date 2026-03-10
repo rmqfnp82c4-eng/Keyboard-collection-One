@@ -185,10 +185,10 @@
         <p class="hero-eyebrow">Personal catalog · February 2026</p>
         <h1 class="hero-title">My<br><em>Collection</em></h1>
         <div class="hero-stats">
-            <div class="hero-stat"><span class="hero-stat-num">30</span><span class="hero-stat-label">Keyboards</span></div>
-            <div class="hero-stat"><span class="hero-stat-num">114</span><span class="hero-stat-label">Photos</span></div>
-            <div class="hero-stat"><span class="hero-stat-num">44</span><span class="hero-stat-label">GMK Sets</span></div>
-            <div class="hero-stat"><span class="hero-stat-num">80</span><span class="hero-stat-label">Switches</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" id="stat-keyboards">30</span><span class="hero-stat-label">Keyboards</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" id="stat-photos">114</span><span class="hero-stat-label">Photos</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" id="stat-keycaps">44</span><span class="hero-stat-label">GMK Sets</span></div>
+            <div class="hero-stat"><span class="hero-stat-num" id="stat-switches">80</span><span class="hero-stat-label">Switches</span></div>
         </div>
     </div>
     <div class="hero-dots" id="heroDots"></div>
@@ -526,6 +526,27 @@
                 scrollBtn.onclick=()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
             }
         },500);
+    </script>
+
+
+    <script>
+        // Auto-count stats from DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            const kbCount   = document.querySelectorAll('#keyboards .card').length;
+            const kcCount   = document.querySelectorAll('#keycaps .kc-item').length;
+            const swCount   = document.querySelectorAll('#switches .sw-item').length;
+            const photoCount = photos.length;
+
+            document.getElementById('stat-keyboards').textContent = kbCount;
+            document.getElementById('stat-keycaps').textContent   = kcCount;
+            document.getElementById('stat-switches').textContent  = swCount;
+            document.getElementById('stat-photos').textContent    = photoCount;
+
+            // Also update nav tab counters
+            document.querySelector('[onclick*="keyboards"] .nav-count').textContent = kbCount;
+            document.querySelector('[onclick*="keycaps"] .nav-count').textContent   = kcCount;
+            document.querySelector('[onclick*="switches"] .nav-count').textContent  = swCount;
+        });
     </script>
 
 </body>
