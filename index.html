@@ -31,11 +31,11 @@
         .hero-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,240,240,0.5);margin-bottom:20px}
         .hero-title{font-size:clamp(2.6rem,5.5vw,5rem);font-weight:300;letter-spacing:-2px;line-height:.95;text-transform:uppercase;margin-bottom:40px}
         .hero-title em{font-style:italic;color:var(--text-secondary)}
-        .hero-stats{display:flex;border:1px solid rgba(255,255,255,0.08);width:fit-content;background:rgba(10,10,10,0.5);backdrop-filter:blur(10px)}
-        .hero-stat{padding:18px 32px;border-right:1px solid rgba(255,255,255,0.08);text-align:center}
+        
+        
         .hero-stat:last-child{border-right:none}
-        .hero-stat-num{font-family:'DM Mono',monospace;font-size:1.5rem;color:var(--text);display:block}
-        .hero-stat-label{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);display:block;margin-top:4px}
+        
+        
         .hero-dots{position:absolute;bottom:24px;left:48px;z-index:2;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 96px)}
         .hero-dot{width:20px;height:2px;background:rgba(255,255,255,0.2);cursor:pointer;transition:background .3s,width .3s;border:none;padding:0}
         .hero-dot.active{background:rgba(255,255,255,0.85);width:32px}
@@ -106,10 +106,10 @@
             .nav-tab.active{border-bottom-color:transparent;border-left-color:var(--text)}
             .section-top,.keycaps-container,.sw-container,footer{padding-left:20px;padding-right:20px}
             .hero{padding:200px 20px 60px}.hero-dots{left:20px}
-            .hero-stats{width:100%;display:grid;grid-template-columns:1fr 1fr}
-            .hero-stat{padding:14px 16px;border-right:1px solid rgba(255,255,255,0.08)}
-            .hero-stat:nth-child(even){border-right:none}
-            .hero-stat:nth-child(3),.hero-stat:nth-child(4){border-top:1px solid rgba(255,255,255,0.08)}
+            
+            
+            
+            
             .cards-grid{margin:0 20px;grid-template-columns:1fr}
         }
     
@@ -158,6 +158,20 @@
             .nav-count{font-size:.5rem;padding:1px 5px;letter-spacing:0}
         }
 
+        
+        /* Hobby Timer */
+        .hobby-timer{display:inline-flex;flex-direction:column;align-items:flex-start;gap:8px;padding:20px 32px;background:rgba(10,10,10,0.5);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08)}
+        .hobby-main{display:flex;align-items:baseline;gap:8px}
+        .hobby-days{font-family:'DM Mono',monospace;font-size:3.5rem;font-weight:700;color:var(--text);line-height:1;letter-spacing:-2px}
+        .hobby-days-label{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-secondary)}
+        .hobby-time{display:flex;align-items:center;gap:4px}
+        .hobby-unit{display:flex;flex-direction:column;align-items:center;gap:2px}
+        .hobby-unit span:first-child{font-family:'DM Mono',monospace;font-size:1.4rem;font-weight:600;color:var(--text);line-height:1}
+        .hobby-unit-label{font-family:'DM Mono',monospace;font-size:.45rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
+        .hobby-sep{font-family:'DM Mono',monospace;font-size:1.2rem;color:var(--text-muted);margin-bottom:10px}
+        .hobby-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-secondary)}
+        @media(max-width:768px){.hobby-days{font-size:2.5rem}.hobby-timer{padding:16px 20px}.hobby-unit span:first-child{font-size:1.1rem}}
+
         </style>
 </head>
 <body>
@@ -184,11 +198,19 @@
     <div class="hero-content">
         <p class="hero-eyebrow">Personal catalog · February 2026</p>
         <h1 class="hero-title">My<br><em>Collection</em></h1>
-        <div class="hero-stats">
-            <div class="hero-stat"><span class="hero-stat-num" id="stat-keyboards">30</span><span class="hero-stat-label">Keyboards</span></div>
-            <div class="hero-stat"><span class="hero-stat-num" id="stat-photos">114</span><span class="hero-stat-label">Photos</span></div>
-            <div class="hero-stat"><span class="hero-stat-num" id="stat-keycaps">44</span><span class="hero-stat-label">GMK Sets</span></div>
-            <div class="hero-stat"><span class="hero-stat-num" id="stat-switches">80</span><span class="hero-stat-label">Switches</span></div>
+        <div class="hobby-timer">
+            <div class="hobby-main">
+                <span class="hobby-days" id="hobby-days">730</span>
+                <span class="hobby-days-label">days</span>
+            </div>
+            <div class="hobby-time">
+                <span class="hobby-unit"><span id="hobby-h">00</span><span class="hobby-unit-label">hrs</span></span>
+                <span class="hobby-sep">:</span>
+                <span class="hobby-unit"><span id="hobby-m">00</span><span class="hobby-unit-label">min</span></span>
+                <span class="hobby-sep">:</span>
+                <span class="hobby-unit"><span id="hobby-s">00</span><span class="hobby-unit-label">sec</span></span>
+            </div>
+            <span class="hobby-label">in the hobby</span>
         </div>
     </div>
     <div class="hero-dots" id="heroDots"></div>
@@ -547,6 +569,28 @@
             document.querySelector('[onclick*="keycaps"] .nav-count').textContent   = kcCount;
             document.querySelector('[onclick*="switches"] .nav-count').textContent  = swCount;
         });
+    </script>
+
+
+    <script>
+        // Hobby timer with seconds
+        (function() {
+            const start = new Date('2024-03-10T00:00:00');
+            const pad = n => String(n).padStart(2, '0');
+            function updateTimer() {
+                const diff = Date.now() - start.getTime();
+                const days  = Math.floor(diff / 86400000);
+                const hours = Math.floor((diff % 86400000) / 3600000);
+                const mins  = Math.floor((diff % 3600000) / 60000);
+                const secs  = Math.floor((diff % 60000) / 1000);
+                document.getElementById('hobby-days').textContent = days;
+                document.getElementById('hobby-h').textContent = pad(hours);
+                document.getElementById('hobby-m').textContent = pad(mins);
+                document.getElementById('hobby-s').textContent = pad(secs);
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
     </script>
 
 </body>
