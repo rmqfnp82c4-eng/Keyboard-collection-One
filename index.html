@@ -299,7 +299,7 @@
             <div class="kc-item boxed"><span class="kc-name">GMK SUSU</span><span class="kc-badge box">☑ In Box</span></div>
             <div class="kc-item on-board"><span class="kc-name">GMK Grand Prix</span><span class="kc-badge on">🖍 On Keyboard</span></div>
             <div class="kc-item in-gb"><span class="kc-name">GMK Divinapapaya</span><span class="kc-badge gb">⏰ GB</span></div>
-            <div class="kc-item boxed"><span class="kc-name">GMK Masterpiece</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Masterpiece</span><span class="kc-badge on">🖍 On Keyboard</span></div>
             <div class="kc-item on-board"><span class="kc-name">GMK Metropolis</span><span class="kc-badge on">🖍 On Keyboard</span></div>
             <div class="kc-item boxed"><span class="kc-name">GMK ONI</span><span class="kc-badge box">☑ In Box</span></div>
             <div class="kc-item boxed"><span class="kc-name">GMK Deep Navy</span><span class="kc-badge box">☑ In Box</span></div>
@@ -555,9 +555,9 @@
     <script>
         // Auto-count stats from DOM
         document.addEventListener('DOMContentLoaded', () => {
-            const kbCount   = document.querySelectorAll('#keyboards .card').length;
-            const kcCount   = document.querySelectorAll('#keycaps .kc-item').length;
-            const swCount   = document.querySelectorAll('#switches .sw-item').length;
+            const kbCount   = document.querySelectorAll('#tab-keyboards .card').length;
+            const kcCount   = document.querySelectorAll('#tab-keycaps .kc-item').length;
+            const swCount   = document.querySelectorAll('#tab-switches .sw-item').length;
             const photoCount = photos.length;
 
             document.getElementById('stat-keyboards').textContent = kbCount;
