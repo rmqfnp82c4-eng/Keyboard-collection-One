@@ -180,7 +180,7 @@
     <div class="nav-tabs">
         <button class="nav-tab active" onclick="showTab('keyboards',this)">
             <img class="tab-icon" src="images/nav-keyboard.jpg" alt="keyboard">
-            <span class="tab-label">Keyboards <span class="nav-count">30</span></span>
+            <span class="tab-label">Keyboards <span class="nav-count">31</span></span>
         </button>
         <button class="nav-tab" onclick="showTab('keycaps',this)">
             <img class="tab-icon" src="images/nav-keycap.jpg" alt="keycap">
@@ -248,6 +248,7 @@
         <div class="card is-gb"><div class="card-inner"><div class="card-num">28</div><div class="card-name">Ortho60 V2</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
         <div class="card has-photos"><div class="card-inner"><div class="card-num">29</div><div class="card-name">Geonworks Frog TKL</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-green"></span>Dark Green</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Metropolis R2</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Orange</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
         <div class="card is-gb"><div class="card-inner"><div class="card-num">30</div><div class="card-name">GDKLab NV70</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
+        <div class="card"><div class="card-inner"><div class="card-num">31</div><div class="card-name">Glare65</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val">RAW</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Masterpiece</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Clackbits Linear R2</span></div></div></div><div class="card-footer"></div></div>
     </div>
 </section>
 <section id="tab-keycaps" class="tab-section">
@@ -298,7 +299,7 @@
             <div class="kc-item boxed"><span class="kc-name">GMK SUSU</span><span class="kc-badge box">☑ In Box</span></div>
             <div class="kc-item on-board"><span class="kc-name">GMK Grand Prix</span><span class="kc-badge on">🖍 On Keyboard</span></div>
             <div class="kc-item in-gb"><span class="kc-name">GMK Divinapapaya</span><span class="kc-badge gb">⏰ GB</span></div>
-            <div class="kc-item boxed"><span class="kc-name">GMK Masterpiece</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Masterpiece</span><span class="kc-badge on">🖍 On Keyboard</span></div>
             <div class="kc-item on-board"><span class="kc-name">GMK Metropolis</span><span class="kc-badge on">🖍 On Keyboard</span></div>
             <div class="kc-item boxed"><span class="kc-name">GMK ONI</span><span class="kc-badge box">☑ In Box</span></div>
             <div class="kc-item boxed"><span class="kc-name">GMK Deep Navy</span><span class="kc-badge box">☑ In Box</span></div>
@@ -554,9 +555,9 @@
     <script>
         // Auto-count stats from DOM
         document.addEventListener('DOMContentLoaded', () => {
-            const kbCount   = document.querySelectorAll('#keyboards .card').length;
-            const kcCount   = document.querySelectorAll('#keycaps .kc-item').length;
-            const swCount   = document.querySelectorAll('#switches .sw-item').length;
+            const kbCount   = document.querySelectorAll('#tab-keyboards .card').length;
+            const kcCount   = document.querySelectorAll('#tab-keycaps .kc-item').length;
+            const swCount   = document.querySelectorAll('#tab-switches .sw-item').length;
             const photoCount = photos.length;
 
             document.getElementById('stat-keyboards').textContent = kbCount;
