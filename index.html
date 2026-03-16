@@ -1,0 +1,601 @@
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEYBOARD COLLECTION</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap');
+        :root {
+            --bg:#0a0a0a;--surface:#111;--surface2:#181818;--border:#1e1e1e;
+            --border2:#2a2a2a;--text:#f0f0f0;--text-secondary:#999;--text-muted:#444;
+            --amber:#f5a623;--purple:#7c6fff;--green:#2ecc71;
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(10,10,10,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+        .nav-logo{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--text)}
+        .nav-tabs{display:flex;height:100%}
+        .nav-tab{font-size:.8rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);padding:0 32px;height:100%;display:flex;align-items:center;gap:10px;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
+        .nav-tab:hover{color:var(--text-secondary);background:rgba(255,255,255,0.025)}
+        .nav-tab.active{color:var(--text);border-bottom-color:var(--text);background:rgba(255,255,255,0.04)}
+        .nav-count{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:400;color:var(--text-muted);background:rgba(255,255,255,0.07);padding:2px 8px;border-radius:20px;border:1px solid var(--border2);letter-spacing:0}
+        .nav-tab.active .nav-count{color:var(--text-secondary);background:rgba(255,255,255,0.1);border-color:#333}
+        .hero{position:relative;padding:148px 48px 80px;border-bottom:1px solid var(--border);overflow:hidden;min-height:520px}
+        .hero-slides{position:absolute;inset:0;z-index:0}
+        .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.6s ease}
+        .hero-slide.active{opacity:1}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0.68) 60%,rgba(10,10,10,0.96) 100%);z-index:1}
+        .hero-content{position:relative;z-index:2}
+        .hero-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,240,240,0.5);margin-bottom:20px}
+        .hero-title{font-size:clamp(2.6rem,5.5vw,5rem);font-weight:300;letter-spacing:-2px;line-height:.95;text-transform:uppercase;margin-bottom:40px}
+        .hero-title em{font-style:italic;color:var(--text-secondary)}
+        
+        
+        .hero-stat:last-child{border-right:none}
+        
+        
+        .hero-dots{position:absolute;bottom:24px;left:48px;z-index:2;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 96px)}
+        .hero-dot{width:20px;height:2px;background:rgba(255,255,255,0.2);cursor:pointer;transition:background .3s,width .3s;border:none;padding:0}
+        .hero-dot.active{background:rgba(255,255,255,0.85);width:32px}
+        .tab-section{display:none}.tab-section.active{display:block}
+        .section-top{padding:40px 48px 28px;border-bottom:1px solid var(--border)}
+        .section-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:6px}
+        .section-heading{font-size:1.8rem;font-weight:300;letter-spacing:-.5px;text-transform:uppercase}
+        .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);border-left:1px solid var(--border);border-right:1px solid var(--border);margin:0 48px;padding-bottom:80px}
+        .card{background:var(--bg);display:flex;flex-direction:column;transition:background .18s;overflow:hidden}
+        .card:hover{background:var(--surface2)}
+        .card::before{content:'';display:block;height:2px;width:100%}
+        .card.has-photos::before{background:var(--purple)}.card.is-gb::before{background:var(--amber)}.card.no-status::before{background:var(--border2)}
+        .card-inner{padding:24px 24px 20px;flex:1;display:flex;flex-direction:column}
+        .card-num{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted);margin-bottom:10px}
+        .card-name{font-size:.95rem;font-weight:500;color:var(--text);line-height:1.3;margin-bottom:18px;flex:1}
+        .card-meta{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border);padding-top:16px;margin-top:auto}
+        .card-meta-row{display:flex;align-items:flex-start;gap:10px}
+        .card-meta-key{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);min-width:52px;padding-top:1px;flex-shrink:0}
+        .card-meta-val{font-size:.75rem;color:var(--text-secondary);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+        .color-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;box-shadow:0 0 0 1px rgba(255,255,255,0.12)}
+        .card-footer{padding:12px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:flex-end}
+        .status-pill{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:2px;display:inline-flex;align-items:center;gap:5px}
+        .status-pill::before{content:'';width:4px;height:4px;border-radius:50%}
+        .status-shot{background:rgba(155,143,255,.1);color:var(--purple);border:1px solid rgba(155,143,255,.2)}.status-shot::before{background:var(--purple)}
+        .status-gb{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.2)}.status-gb::before{background:var(--amber)}
+        .status-none{background:rgba(255,255,255,.02);color:#3a3a3a;border:1px solid #1e1e1e}.status-none::before{background:#2a2a2a}
+        .dot-gray{background:#6b7280}.dot-burgundy{background:#9b2335}.dot-navy{background:#1d3557}
+        .dot-yellow{background:#f5c518}.dot-pink{background:#e879a0}.dot-purple{background:#7c3aed}
+        .dot-blue{background:#2563eb}.dot-clear{background:#d1d5db;border:1px solid #555}
+        .dot-metallic{background:#94a3b8}.dot-cream{background:#d4a843}.dot-beige{background:#c9a96e}
+        .dot-nebula{background:conic-gradient(#4c1d95,#2563eb,#4c1d95)}
+  .dot-raw{background:conic-gradient(from 0deg,#c0c0c0,#e8e8e8,#a0a0a0,#d4d4d4,#888,#e0e0e0,#c0c0c0);box-shadow:0 0 0 1px rgba(255,255,255,0.3)}.dot-red{background:#ef4444}
+        .dot-azure{background:#0ea5e9}.dot-green{background:#16a34a}.dot-darkgray{background:#374151}
+        .dot-white{background:#e2e8f0;border:1px solid #444}
+        .keycaps-container{padding:0 48px 80px}
+        .kc-legend{display:flex;gap:28px;flex-wrap:wrap;padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
+        .kc-legend-item{display:flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+        .kc-legend-stripe{width:20px;height:2px}
+        .kc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
+        .kc-item{background:var(--bg);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-left:2px solid transparent;transition:background .15s}
+        .kc-item:hover{background:var(--surface2)}
+        .kc-item.on-board{border-left-color:var(--purple)}.kc-item.in-gb{border-left-color:var(--amber)}.kc-item.boxed{border-left-color:var(--green)}
+        .kc-name{font-size:.8rem;color:var(--text-secondary)}
+        .kc-badge{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;flex-shrink:0}
+        .kc-badge.on{color:var(--purple);background:rgba(155,143,255,.08);border:1px solid rgba(155,143,255,.15)}
+        .kc-badge.gb{color:var(--amber);background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.15)}
+        .kc-badge.box{color:var(--green);background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2)}
+        .sw-container{padding:0 48px 80px}
+        .sw-brand-legend{display:flex;gap:20px;flex-wrap:wrap;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:32px}
+        .sw-bl-item{display:flex;align-items:center;gap:6px;font-size:.62rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
+        .sw-bl-dot{width:6px;height:6px;border-radius:50%}
+        .sw-gateron{background:#f59e0b}.sw-hmx{background:#9b8fff}.sw-cherry{background:#ff4d4d}
+        .sw-invokeys{background:#2ecc71}.sw-keebfront{background:#60a5fa}.sw-siliworks{background:#f472b6}
+        .sw-keygeek{background:#fb923c}.sw-owlab{background:#a3e635}.sw-moyu{background:#22d3ee}
+        .sw-novelkeys{background:#818cf8}.sw-other{background:#2a2a2a;border:1px solid #333}
+        .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
+        .sw-item{background:var(--bg);padding:14px 20px;display:flex;align-items:center;gap:12px;transition:background .15s}
+        .sw-item:hover{background:var(--surface2)}
+        .sw-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+        .sw-name{font-size:.78rem;color:var(--text-secondary)}.sw-brand{font-size:.58rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);margin-top:1px}
+        footer{padding:36px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+        .footer-logo{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--text-muted)}
+        .footer-note{font-size:.62rem;color:var(--text-muted);letter-spacing:1px}
+        @media(max-width:768px){
+            nav{padding:0 20px;height:auto;flex-direction:column;align-items:flex-start;padding-top:12px;padding-bottom:0}
+            .nav-logo{font-size:.65rem;letter-spacing:3px;padding:8px 0 10px}
+            .nav-tabs{width:100%;flex-direction:column;height:auto}
+            .nav-tab{width:100%;height:44px;padding:0 12px;font-size:.72rem;letter-spacing:2px;border-bottom:none;border-left:2px solid transparent;justify-content:flex-start}
+            .nav-tab.active{border-bottom-color:transparent;border-left-color:var(--text)}
+            .section-top,.keycaps-container,.sw-container,footer{padding-left:20px;padding-right:20px}
+            .hero{padding:200px 20px 60px}.hero-dots{left:20px}
+            
+            
+            
+            
+            .cards-grid{margin:0 20px;grid-template-columns:1fr}
+        }
+    
+        /* ── Gallery Modal ── */
+        .gallery-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:9999;overflow-y:auto;padding:80px 48px 48px}
+        .gallery-modal.active{display:block}
+        .gallery-close{position:fixed;top:24px;right:48px;background:none;border:1px solid #333;color:#f0f0f0;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:8px 18px;cursor:pointer;transition:border-color .2s}
+        .gallery-close:hover{border-color:#999}
+        .gallery-title{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(240,240,240,.45);margin-bottom:28px}
+        .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:4px}
+        .gallery-grid img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:pointer;transition:opacity .2s}
+        .gallery-grid img:hover{opacity:.8}
+        .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.98);z-index:99999;align-items:center;justify-content:center}
+        .lightbox.active{display:flex}
+        .lightbox img{max-width:90vw;max-height:90vh;object-fit:contain}
+        .lightbox-close{position:fixed;top:20px;right:44px;background:none;border:none;color:#f0f0f0;font-size:1.8rem;cursor:pointer;line-height:1}
+
+    
+        /* Scroll Button */
+        .scroll-btn{
+            position:fixed;bottom:32px;right:32px;z-index:998;
+            width:44px;height:44px;border-radius:50%;
+            background:rgba(255,255,255,0.08);
+            border:1px solid var(--border);
+            backdrop-filter:blur(12px);
+            color:var(--text);cursor:pointer;
+            display:flex;align-items:center;justify-content:center;
+            font-size:1.1rem;
+            opacity:0;pointer-events:none;
+            transition:opacity .3s,transform .3s,background .2s;
+            transform:translateY(10px);
+        }
+        .scroll-btn.visible{opacity:1;pointer-events:all;transform:translateY(0)}
+        .scroll-btn:hover{background:rgba(255,255,255,0.15)}
+        @media(max-width:768px){.scroll-btn{bottom:20px;right:20px;width:40px;height:40px}}
+
+        
+        /* Tab Icons */
+        .nav-tab{flex-direction:column;gap:5px;padding-top:10px;padding-bottom:10px;height:auto;min-height:72px}
+        .tab-icon{width:32px;height:32px;object-fit:cover;border-radius:50%;opacity:.5;transition:opacity .3s,transform .3s;border:1px solid rgba(255,255,255,0.15)}
+        .nav-tab:hover .tab-icon,.nav-tab.active .tab-icon{opacity:1;transform:scale(1.1)}
+        .tab-label{display:flex;align-items:center;gap:10px}
+        @media(max-width:768px){
+            .nav-tab{min-height:44px;flex-direction:row;gap:8px;padding-top:0;padding-bottom:0;font-size:.62rem;letter-spacing:1px}
+            .tab-icon{width:20px;height:20px}
+            .nav-count{font-size:.5rem;padding:1px 5px;letter-spacing:0}
+        }
+
+        
+        /* Hobby Timer */
+        .hobby-timer{display:inline-flex;flex-direction:column;align-items:flex-start;gap:8px;padding:20px 32px;background:rgba(10,10,10,0.5);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08)}
+        .hobby-main{display:flex;align-items:baseline;gap:8px}
+        .hobby-days{font-family:'DM Mono',monospace;font-size:3.5rem;font-weight:700;color:var(--text);line-height:1;letter-spacing:-2px}
+        .hobby-days-label{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-secondary)}
+        .hobby-time{display:flex;align-items:center;gap:4px}
+        .hobby-unit{display:flex;flex-direction:column;align-items:center;gap:2px}
+        .hobby-unit span:first-child{font-family:'DM Mono',monospace;font-size:1.4rem;font-weight:600;color:var(--text);line-height:1}
+        .hobby-unit-label{font-family:'DM Mono',monospace;font-size:.45rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted)}
+        .hobby-sep{font-family:'DM Mono',monospace;font-size:1.2rem;color:var(--text-muted);margin-bottom:10px}
+        .hobby-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--text-secondary)}
+        @media(max-width:768px){.hobby-days{font-size:2.5rem}.hobby-timer{padding:16px 20px}.hobby-unit span:first-child{font-size:1.1rem}}
+
+        </style>
+</head>
+<body>
+<nav>
+    <span class="nav-logo">Keyboard Collection</span>
+    <div class="nav-tabs">
+        <button class="nav-tab active" onclick="showTab('keyboards',this)">
+            <img class="tab-icon" src="images/nav-keyboard.jpg" alt="keyboard">
+            <span class="tab-label">Keyboards <span class="nav-count">31</span></span>
+        </button>
+        <button class="nav-tab" onclick="showTab('keycaps',this)">
+            <img class="tab-icon" src="images/nav-keycap.jpg" alt="keycap">
+            <span class="tab-label">Keycaps <span class="nav-count">45</span></span>
+        </button>
+        <button class="nav-tab" onclick="showTab('switches',this)">
+            <img class="tab-icon" src="images/nav-switch.jpg" alt="switch">
+            <span class="tab-label">Switches <span class="nav-count">80</span></span>
+        </button>
+    </div>
+</nav>
+<section class="hero">
+    <div class="hero-slides" id="heroSlides"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Personal catalog · February 2026</p>
+        <h1 class="hero-title">My<br><em>Collection</em></h1>
+        <div class="hobby-timer">
+            <div class="hobby-main">
+                <span class="hobby-days" id="hobby-days">730</span>
+                <span class="hobby-days-label">days</span>
+            </div>
+            <div class="hobby-time">
+                <span class="hobby-unit"><span id="hobby-h">00</span><span class="hobby-unit-label">hrs</span></span>
+                <span class="hobby-sep">:</span>
+                <span class="hobby-unit"><span id="hobby-m">00</span><span class="hobby-unit-label">min</span></span>
+                <span class="hobby-sep">:</span>
+                <span class="hobby-unit"><span id="hobby-s">00</span><span class="hobby-unit-label">sec</span></span>
+            </div>
+            <span class="hobby-label">in the hobby</span>
+        </div>
+    </div>
+    <div class="hero-dots" id="heroDots"></div>
+</section>
+<section id="tab-keyboards" class="tab-section active">
+    <div class="section-top"><span class="section-label">Catalog</span><h2 class="section-heading">Keyboards</h2></div>
+    <div class="cards-grid">
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">01</div><div class="card-name">MatrixLab Navi 70</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-gray"></span>Meteorite Gray</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Dracula V2.0 GIT CORE</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Gateron Type-R</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">13 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">02</div><div class="card-name">Geonworks Frog Mini</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-burgundy"></span>Burgundy</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Panels</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Black</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">11 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">03</div><div class="card-name">MMStudio Class60</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-navy"></span>Navy</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Dualshot R2</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Owlab London Fog</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">11 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">04</div><div class="card-name">MatrixLab Corsa65</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-yellow"></span>Sunflower Yellow</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Laser</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Keebfront DOOM</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">17 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">05</div><div class="card-name">Tofu60 2.0</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-navy"></span>Navy</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Honor Light Base</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Gateron Type-R</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">10 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">06</div><div class="card-name">Swagkeys Transition Lite</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-pink"></span>Pink</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK DMG 3</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">SW x Captain Sterling Ghost Dragon</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">07</div><div class="card-name">KBD8X MKIII</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-purple"></span>Purple</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Royal Cadet</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">HMX Guava</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">08</div><div class="card-name">La-Versa.kbd Otsukimi</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-blue"></span>Midnight Blue</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Haku</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Techno Violet</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">15 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">09</div><div class="card-name">Rule60</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-clear"></span>PC / Clear</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Baltic</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Gateron Quinn</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">10</div><div class="card-name">Felice Lab Curva 40 R2</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-metallic"></span>Metallic</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Nuclear Data R2</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Brown</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">11</div><div class="card-name">Geonworks F2-84</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-cream"></span>Cookie Cream</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Rubrehose</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Black</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">8 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">12</div><div class="card-name">Geonworks F2-8X V2</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-beige"></span>Hyperbeige</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Prussian Blue</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Purple</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">9 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">13</div><div class="card-name">Neo Ergo</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-nebula"></span>Nebula</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Fright Club</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Outemu Unity</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">14</div><div class="card-name">KBDFans Agar</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-burgundy"></span>Burgundy</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Higanbana</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Invokeys x ALAS Red Bean</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">7 Photos</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">15</div><div class="card-name">Mode Sonnet</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-green"></span>Green</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK November Fog</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Akko Green Fog</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">16</div><div class="card-name">Monokei & TGR Tomo</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-navy"></span>Navy</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Grand Prix</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">SWK V Black</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">17</div><div class="card-name">Linworks & TGR Dolice</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-darkgray"></span>Dark Gray</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Terror Below</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Black</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">18</div><div class="card-name">Ramaworks Kara</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-azure"></span>Azure</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Analog Dreams R2 Digital Nightmares</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Raptor MX Extreme Gaming Switch</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">19</div><div class="card-name">Swagkeys Eave65</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-clear"></span>PC / Clear</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Pulse (Mitolet)</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Gateron Azure Dragon V4</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">20</div><div class="card-name">Holy60</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-red"></span>Red</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Honor Light Base</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Invokeys x ALAS Nightshade</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">21</div><div class="card-name">Tofu60 2.0</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-white"></span>White</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Cubed</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Gateron Weightlessness</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card no-status"><div class="card-inner"><div class="card-num">22</div><div class="card-name">Neo Ergo</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-navy"></span>Navy</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Parcel</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Invokeys x ALAS Daydreamer</span></div></div></div><div class="card-footer"><span class="status-pill status-none">—</span></div></div>
+        <div class="card is-gb"><div class="card-inner"><div class="card-num">23</div><div class="card-name">+84</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
+        <div class="card is-gb"><div class="card-inner"><div class="card-num">24</div><div class="card-name">Gehirn60</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
+        <div class="card is-gb"><div class="card-inner"><div class="card-num">25</div><div class="card-name">Altair-X R2</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
+        <div class="card is-gb"><div class="card-inner"><div class="card-num">26</div><div class="card-name">Machina Tiga</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
+        <div class="card is-gb"><div class="card-inner"><div class="card-num">27</div><div class="card-name">El Chibre</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">28</div><div class="card-name">Ortho60 V2</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-black"></span>Black</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Oblivion 40s</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Gateron Harmonic</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">29</div><div class="card-name">Geonworks Frog TKL</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-green"></span>Dark Green</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Metropolis R2</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Cherry MX2A Orange</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">1 Photo</span></div></div>
+        <div class="card is-gb"><div class="card-inner"><div class="card-num">30</div><div class="card-name">GDKLab NV70</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val" style="color:#2a2a2a">—</span></div></div></div><div class="card-footer"><span class="status-pill status-gb">GB</span></div></div>
+        <div class="card has-photos"><div class="card-inner"><div class="card-num">31</div><div class="card-name">Glare65</div><div class="card-meta"><div class="card-meta-row"><span class="card-meta-key">Color</span><span class="card-meta-val"><span class="color-dot dot-raw"></span>RAW</span></div><div class="card-meta-row"><span class="card-meta-key">Keycaps</span><span class="card-meta-val">GMK Masterpiece</span></div><div class="card-meta-row"><span class="card-meta-key">Switch</span><span class="card-meta-val">Clackbits Linear R2</span></div></div></div><div class="card-footer"><span class="status-pill status-shot">3 Photos</span></div></div>
+    </div>
+</section>
+<section id="tab-keycaps" class="tab-section">
+    <div class="section-top"><span class="section-label">GMK</span><h2 class="section-heading">Keycaps</h2></div>
+    <div class="keycaps-container">
+        <div class="kc-legend">
+            <div class="kc-legend-item"><div class="kc-legend-stripe" style="background:#9b8fff"></div>🖍 On Keyboard</div>
+            <div class="kc-legend-item"><div class="kc-legend-stripe" style="background:#2ecc71"></div>☑ In Box</div>
+            <div class="kc-legend-item"><div class="kc-legend-stripe" style="background:#f5a623"></div>⏰ Group Buy</div>
+        </div>
+        <div class="kc-grid">
+            <div class="kc-item on-board"><span class="kc-name">GMK Dracula V2</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Analog Dreams R2</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Parcel</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Cubed</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Kitsune</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Honor Light Base</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Striker R2 (×2)</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Dualshot R2</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK WOB Katakana</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Panels</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Terror Below</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Royal Cadet</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Analog Dreams R2 Digital Nightmare</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Laser (Kobe, Bars, Blocknet, Novelty)</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Pulse</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Nuclear Data R2</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Haku</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Dots R2 (Dark)</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Fright Club</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Skeletor</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK November Fog</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Dots R2 (Light)</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Baltic</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item in-gb"><span class="kc-name">GMK Gurokawa</span><span class="kc-badge gb">⏰ GB</span></div>
+            <div class="kc-item in-gb"><span class="kc-name">GMK Kaiju R3</span><span class="kc-badge gb">⏰ GB</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Blue Alert</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Prussian Blue</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Higanbana</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Evil Dolch</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Black Snail</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Rubrehose</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Pulse (Mitolet)</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Serenity</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK DMG 3</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Mon.Material V1</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Chaos Theory</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK SUSU</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Grand Prix</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item in-gb"><span class="kc-name">GMK Divinapapaya</span><span class="kc-badge gb">⏰ GB</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Masterpiece</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item on-board"><span class="kc-name">GMK Metropolis</span><span class="kc-badge on">🖍 On Keyboard</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK ONI</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Deep Navy</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item boxed"><span class="kc-name">GMK Oblivion 40s</span><span class="kc-badge box">☑ In Box</span></div>
+            <div class="kc-item in-gb"><span class="kc-name">GMK Taiga R2</span><span class="kc-badge gb">⏰ GB</span></div>
+        </div>
+    </div>
+</section>
+<section id="tab-switches" class="tab-section">
+    <div class="section-top"><span class="section-label">Collection</span><h2 class="section-heading">Switches</h2></div>
+    <div class="sw-container">
+        <div class="sw-brand-legend">
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-gateron"></div>Gateron</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-hmx"></div>HMX</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-cherry"></div>Cherry</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-invokeys"></div>Invokeys</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-keebfront"></div>Keebfront</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-siliworks"></div>Siliworks</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-keygeek"></div>Keygeek</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-owlab"></div>Owlab</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-moyu"></div>MOYU</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-novelkeys"></div>NovelKeys</div>
+            <div class="sw-bl-item"><div class="sw-bl-dot sw-other"></div>Other</div>
+        </div>
+        <div class="sw-grid">
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">PH Studio Poki Zaku</div><div class="sw-brand">PH Studio</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-hmx"></div><div><div class="sw-name">HMX FJ 400</div><div class="sw-brand">HMX</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-hmx"></div><div><div class="sw-name">HMX Joker</div><div class="sw-brand">HMX</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-hmx"></div><div><div class="sw-name">HMX x BCKeys Martini</div><div class="sw-brand">HMX × BCKeys</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-hmx"></div><div><div class="sw-name">HMX Guava</div><div class="sw-brand">HMX</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-siliworks"></div><div><div class="sw-name">Siliworks × Napworks Nap</div><div class="sw-brand">Siliworks × Napworks</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">HEX Studio & Diamond Brother Lycoris</div><div class="sw-brand">HEX Studio</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keygeek"></div><div><div class="sw-name">Keygeek Purple Dawn</div><div class="sw-brand">Keygeek</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Wuque Studio WS Stellar Bluerose</div><div class="sw-brand">Wuque Studio</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Oil King</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Ink V2</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Mini-I</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Weightlessness</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Dark One</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Melodic</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Robin</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Smoothie</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron INK V2 Black Baltic Edition</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-siliworks"></div><div><div class="sw-name">Siliworks × HMX SONJA</div><div class="sw-brand">Siliworks × HMX</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-siliworks"></div><div><div class="sw-name">Siliworks × HMX SONJA HC</div><div class="sw-brand">Siliworks × HMX</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-cherry"></div><div><div class="sw-name">Cherry MX2A Black</div><div class="sw-brand">Cherry</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-cherry"></div><div><div class="sw-name">Cherry MX2A Brown</div><div class="sw-brand">Cherry</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-cherry"></div><div><div class="sw-name">Cherry MX2A Purple</div><div class="sw-brand">Cherry</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-cherry"></div><div><div class="sw-name">Cherry MX Black Hyperglide</div><div class="sw-brand">Cherry</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Prevail Nebula</div><div class="sw-brand">Prevail</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">"Ice and Snow" Baikal</div><div class="sw-brand">Ice and Snow</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-moyu"></div><div><div class="sw-name">MOYU Melody Redux</div><div class="sw-brand">MOYU</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">LICHICX XCJZ Green Tea Tactile</div><div class="sw-brand">LICHICX</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">JWK Semi-silent</div><div class="sw-brand">JWK</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">EPOMAKER Bluebird</div><div class="sw-brand">EPOMAKER</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">LEOBOG Kayking V2</div><div class="sw-brand">LEOBOG</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-novelkeys"></div><div><div class="sw-name">NovelKeys × Kailh NK Blueberry</div><div class="sw-brand">NovelKeys × Kailh</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-moyu"></div><div><div class="sw-name">MOYU Poseidon</div><div class="sw-brand">MOYU</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">CK × Haimu Clipper Sea Serpent</div><div class="sw-brand">CK × Haimu</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">HC Studio Roselle</div><div class="sw-brand">HC Studio</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">BSUN Snow Diane</div><div class="sw-brand">BSUN</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-novelkeys"></div><div><div class="sw-name">NovelKeys × Kailh NK Cream Clickie</div><div class="sw-brand">NovelKeys × Kailh</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">KNC Keys Green Jacket</div><div class="sw-brand">KNC Keys</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-invokeys"></div><div><div class="sw-name">Invokeys × ALAS Daydreamer</div><div class="sw-brand">Invokeys × ALAS</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-invokeys"></div><div><div class="sw-name">Invokeys × ALAS Nightshade</div><div class="sw-brand">Invokeys × ALAS</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-invokeys"></div><div><div class="sw-name">Invokeys × ALAS Red Bean</div><div class="sw-brand">Invokeys × ALAS</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-moyu"></div><div><div class="sw-name">Moyu × XCJZ Snow Grape</div><div class="sw-brand">Moyu × XCJZ</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Sarokeys Strawberry Wine</div><div class="sw-brand">Sarokeys</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">KeyByeLab Switch</div><div class="sw-brand">KeyByeLab</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">KTT Matcha</div><div class="sw-brand">KTT</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">MMD Vivian V2</div><div class="sw-brand">MMD</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">SWK Neon Switch</div><div class="sw-brand">SWK</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Swagkeys × CaptainSterling SWK Ghost Dragon</div><div class="sw-brand">Swagkeys × CaptainSterling</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-owlab"></div><div><div class="sw-name">Owlab London Fog</div><div class="sw-brand">Owlab</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keygeek"></div><div><div class="sw-name">Keygeek Mirror Lake Linear</div><div class="sw-brand">Keygeek</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keygeek"></div><div><div class="sw-name">Keygeek × Brian Workshop B1</div><div class="sw-brand">Keygeek × Brian Workshop</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Type-R</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Quinn</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Azure Dragon V4</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Green Apple</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Wingtree Linear</div><div class="sw-brand">Wingtree</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-cherry"></div><div><div class="sw-name">Cherry MX2A Speed Silver</div><div class="sw-brand">Cherry</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keygeek"></div><div><div class="sw-name">Keygeek Sunflower</div><div class="sw-brand">Keygeek</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">LEOBOG Immortality</div><div class="sw-brand">LEOBOG</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">LEOBOG Lavender</div><div class="sw-brand">LEOBOG</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">GOAT.WORKS × Wingtree WINGBlack</div><div class="sw-brand">GOAT.WORKS × Wingtree</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">ZEALPC Clickiez</div><div class="sw-brand">ZEALPC</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Everglide Dark Jade</div><div class="sw-brand">Everglide</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-hmx"></div><div><div class="sw-name">HMX Sand Storm</div><div class="sw-brand">HMX</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Outemu Unity</div><div class="sw-brand">Outemu</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keygeek"></div><div><div class="sw-name">Keygeek Orange Boi</div><div class="sw-brand">Keygeek</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keygeek"></div><div><div class="sw-name">Keygeek M1</div><div class="sw-brand">Keygeek</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-cherry"></div><div><div class="sw-name">Cherry MX Blossom</div><div class="sw-brand">Cherry</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-gateron"></div><div><div class="sw-name">Gateron Lanes</div><div class="sw-brand">Gateron</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keebfront"></div><div><div class="sw-name">Keebfront Sinister</div><div class="sw-brand">Keebfront</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keebfront"></div><div><div class="sw-name">Keebfront Coley</div><div class="sw-brand">Keebfront</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-keebfront"></div><div><div class="sw-name">Keebfront DOOM</div><div class="sw-brand">Keebfront</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Clackbits Linear</div><div class="sw-brand">Clackbits</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">KNC Keys Black Jacket (Tactile)</div><div class="sw-brand">KNC Keys</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">KNC Keys Red Jacket V1 Redux (Linear)</div><div class="sw-brand">KNC Keys</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">Tofutypes × KNC Keys Tempeh (Linear)</div><div class="sw-brand">Tofutypes × KNC Keys</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">BSUN Golden Apple</div><div class="sw-brand">BSUN</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">SWK V Black</div><div class="sw-brand">SWK</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-other"></div><div><div class="sw-name">KBDfans Roller V2</div><div class="sw-brand">KBDfans</div></div></div>
+            <div class="sw-item"><div class="sw-dot sw-hmx"></div><div><div class="sw-name">HMX Firecracker (Tactile)</div><div class="sw-brand">HMX</div></div></div>
+        </div>
+    </div>
+</section>
+<footer>
+    <span class="footer-logo">Keyboard Collection</span>
+</footer>
+<script>
+    const photos = [
+        "Photos/Navi70/Navi70%20(1).jpg",
+        "Photos/Navi70/Navi70%20(5).jpg",
+        "Photos/Frog%20Mini/Frog%20Mini%20(9).jpg",
+        "Photos/Frog%20Mini/Frog%20Mini%20(17).jpg",
+        "Photos/Otsukimi/Otsukimi%20(10).jpg",
+        "Photos/Otsukimi/Otsukimi%20(11).jpg",
+        "Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(7).jpg",
+        "Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(1).jpg",
+        "Photos/F2-84/Geon%20F2-84%20(17).jpg",
+        "Photos/F2-84/Geon%20F2-84%20(15).jpg",
+        "Photos/Class60/MMClass60%20(1).jpg",
+        "Photos/Class60/MMClass60%20(9).jpg",
+        "Photos/Agar/Agar%20(7).jpg",
+        "Photos/Tofu60%202.0/Tofu60%20(7).jpg"
+    ];
+    const slidesEl = document.getElementById('heroSlides');
+    const dotsEl   = document.getElementById('heroDots');
+    let current = 0, timer;
+    photos.forEach((url, i) => {
+        const s = document.createElement('div');
+        s.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        s.style.backgroundImage = `url('${url}')`;
+        slidesEl.appendChild(s);
+        const d = document.createElement('button');
+        d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+    });
+    function goTo(n) {
+        const slides = slidesEl.querySelectorAll('.hero-slide');
+        const dots   = dotsEl.querySelectorAll('.hero-dot');
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (n + photos.length) % photos.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        clearInterval(timer);
+        timer = setInterval(() => goTo(current + 1), 6000);
+    }
+    timer = setInterval(() => goTo(current + 1), 6000);
+    function showTab(name, btn) {
+        document.querySelectorAll('.tab-section').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+        document.getElementById('tab-' + name).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    // ── Gallery ──
+    const cardPhotoData = {
+        1:  { name:'MatrixLab Navi 70', photos: ["Photos/Navi70/Navi70.jpg","Photos/Navi70/Navi70%20(1).jpg","Photos/Navi70/Navi70%20(2).jpg","Photos/Navi70/Navi70%20(3).jpg","Photos/Navi70/Navi70%20(4).jpg","Photos/Navi70/Navi70%20(5).jpg","Photos/Navi70/Navi70%20(6).jpg","Photos/Navi70/Navi70%20(7).jpg","Photos/Navi70/Navi70%20(8).jpg","Photos/Navi70/Navi70%20(9).jpg","Photos/Navi70/Navi70%20(10).jpg","Photos/Navi70/Navi70%20(11).jpg","Photos/Navi70/Navi70%20(12).jpg"] },
+        2:  { name:'Geonworks Frog Mini', photos: ["Photos/Frog%20Mini/Frog%20Mini%20(1).jpg","Photos/Frog%20Mini/Frog%20Mini%20(2).jpg","Photos/Frog%20Mini/Frog%20Mini%20(3).jpg","Photos/Frog%20Mini/Frog%20Mini%20(4).jpg","Photos/Frog%20Mini/Frog%20Mini%20(7).jpg","Photos/Frog%20Mini/Frog%20Mini%20(9).jpg","Photos/Frog%20Mini/Frog%20Mini%20(10).jpg","Photos/Frog%20Mini/Frog%20Mini%20(11).jpg","Photos/Frog%20Mini/Frog%20Mini%20(14).jpg","Photos/Frog%20Mini/Frog%20Mini%20(15).jpg","Photos/Frog%20Mini/Frog%20Mini%20(17).jpg"] },
+        3:  { name:'MMStudio Class60', photos: ["Photos/Class60/MMClass60%20(1).jpg","Photos/Class60/MMClass60%20(2).jpg","Photos/Class60/MMClass60%20(3).jpg","Photos/Class60/MMClass60%20(4).jpg","Photos/Class60/MMClass60%20(5).jpg","Photos/Class60/MMClass60%20(6).jpg","Photos/Class60/MMClass60%20(7).jpg","Photos/Class60/MMClass60%20(8).jpg","Photos/Class60/MMClass60%20(9).jpg","Photos/Class60/MMClass60%20(10).jpg","Photos/Class60/MMClass60%20(11).jpg"] },
+        4:  { name:'MatrixLab Corsa65', photos: ["Photos/Corsa65/Corsa65%20(2).jpg","Photos/Corsa65/Corsa65%20(3).jpg","Photos/Corsa65/Corsa65%20(4).jpg","Photos/Corsa65/Corsa65%20(5).jpg","Photos/Corsa65/Corsa65%20(6).jpg","Photos/Corsa65/Corsa65%20(7).jpg","Photos/Corsa65/Corsa65%20(8).jpg","Photos/Corsa65/Corsa65%20(9).jpg","Photos/Corsa65/Corsa65%20(10).jpg","Photos/Corsa65/Corsa65%20(11).jpg","Photos/Corsa65/Corsa65%20(12).jpg","Photos/Corsa65/Corsa65%20(13).jpg","Photos/Corsa65/Corsa65%20(14).jpg","Photos/Corsa65/Corsa65%20(15).jpg","Photos/Corsa65/Corsa65%20(16).jpg","Photos/Corsa65/Corsa65%20(17).jpg","Photos/Corsa65/Corsa65%20(18).jpg"] },
+        5:  { name:'KBDFans Tofu60 2.0', photos: ["Photos/Tofu60%202.0/Tofu60%20(1).jpg","Photos/Tofu60%202.0/Tofu60%20(2).jpg","Photos/Tofu60%202.0/Tofu60%20(3).jpg","Photos/Tofu60%202.0/Tofu60%20(4).jpg","Photos/Tofu60%202.0/Tofu60%20(5).jpg","Photos/Tofu60%202.0/Tofu60%20(6).jpg","Photos/Tofu60%202.0/Tofu60%20(7).jpg","Photos/Tofu60%202.0/Tofu60%20(8).jpg","Photos/Tofu60%202.0/Tofu60%20(9).jpg","Photos/Tofu60%202.0/Tofu60%20(10).jpg"] },
+        6:  { name:'Swagkeys Transition Lite', photos: ["Photos/Transition%20Lite/Transition%20Lite.jpg"] },
+        7:  { name:'KBD8X MKIII', photos: ["Photos/KBD%20mkIII/KBD%20mkIII.jpg"] },
+        8:  { name:'La-Versa Otsukimi', photos: ["Photos/Otsukimi/Otsukimi.jpg","Photos/Otsukimi/Otsukimi%20(1).jpg","Photos/Otsukimi/Otsukimi%20(2).jpg","Photos/Otsukimi/Otsukimi%20(3).jpg","Photos/Otsukimi/Otsukimi%20(4).jpg","Photos/Otsukimi/Otsukimi%20(5).jpg","Photos/Otsukimi/Otsukimi%20(6).jpg","Photos/Otsukimi/Otsukimi%20(7).jpg","Photos/Otsukimi/Otsukimi%20(8).jpg","Photos/Otsukimi/Otsukimi%20(9).jpg","Photos/Otsukimi/Otsukimi%20(10).jpg","Photos/Otsukimi/Otsukimi%20(11).jpg","Photos/Otsukimi/Otsukimi%20(12).jpg","Photos/Otsukimi/Otsukimi%20(13).jpg","Photos/Otsukimi/Otsukimi%20(14).jpg"] },
+        9:  { name:'Rule60 V3', photos: ["Photos/Rule60%20V3/Rule60%20V3.jpg"] },
+        10:  { name:'Felice Lab Curva 40', photos: ["Photos/Curva40/Curva40.jpg"] },
+        11:  { name:'Geonworks F2-84', photos: ["Photos/F2-84/Geon%20F2-84%20(1).jpg","Photos/F2-84/Geon%20F2-84%20(3).jpg","Photos/F2-84/Geon%20F2-84%20(5).jpg","Photos/F2-84/Geon%20F2-84%20(7).jpg","Photos/F2-84/Geon%20F2-84%20(9).jpg","Photos/F2-84/Geon%20F2-84%20(11).jpg","Photos/F2-84/Geon%20F2-84%20(13).jpg","Photos/F2-84/Geon%20F2-84%20(17).jpg"] },
+        12:  { name:'Geonworks F1-8X V2', photos: ["Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(1).jpg","Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(2).jpg","Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(3).jpg","Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(4).jpg","Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(5).jpg","Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(6).jpg","Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(7).jpg","Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(8).jpg","Photos/F1-8X%20V2/Geon%20F1-8X%20V2%20(9).jpg"] },
+        13:  { name:'Neo Ergo Nebula', photos: ["Photos/Neo%20Ergo%20Nebula/Nebula.jpg"] },
+        14:  { name:'KBDFans Agar', photos: ["Photos/Agar/Agar%20(1).jpg","Photos/Agar/Agar%20(2).jpg","Photos/Agar/Agar%20(3).jpg","Photos/Agar/Agar%20(4).jpg","Photos/Agar/Agar%20(5).jpg","Photos/Agar/Agar%20(6).jpg","Photos/Agar/Agar%20(7).jpg"] },
+        15:  { name:'Mode Sonnet', photos: ["Photos/Mode%20Sonnet/Mode%20Sonnet.jpg"] },
+        16:  { name:'Monokei & TGR Tomo', photos: ["Photos/Monokei%20%26%20TGR%20TOMO/TOMO.jpg"] },
+        17:  { name:'Linworks & TGR Dolice', photos: ["Photos/Linworks%20%26%20TGR%20Dolice/Linworks%20%26%20TGR%20Dolice.jpg"] },
+        18:  { name:'Ramaworks Kara', photos: ["Photos/Ramaworks%20KARA/KARA.jpg"] },
+        19:  { name:'Swagkeys Eave65', photos: ["Photos/Eave65/Eave65.jpg"] },
+        20:  { name:'Holy60', photos: ["Photos/Holy60/Holy60.jpg"] },
+        21:  { name:'Tofu60 2.0 White', photos: ["Photos/Tofu60%202.0%20White/Tofu60%202.0%20White.jpg"] },
+        28: { name:'Ortho60 V2', photos: ["Photos/Ortho60%20V2/Ortho60%20V2.jpg"] },
+        29:  { name:'Geonworks Frog TKL', photos: ["Photos/Frog%20TKL/Frog%20TKL.jpg"] },
+        31: { name:'Glare65', photos: ["Photos/Glare65/Glare65%201.jpg","Photos/Glare65/Glare65%202.jpg","Photos/Glare65/Glare65%203.jpg"] }
+    };
+    document.querySelectorAll('.card.has-photos').forEach(card => {
+        const num = parseInt(card.querySelector('.card-num').textContent);
+        if (cardPhotoData[num]) {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => openGallery(num));
+        }
+    });
+    function openGallery(num) {
+        const data = cardPhotoData[num];
+        document.getElementById('galleryTitle').textContent = data.name;
+        const grid = document.getElementById('galleryGrid');
+        grid.innerHTML = '';
+        data.photos.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.addEventListener('click', () => openLightbox(src));
+            grid.appendChild(img);
+        });
+        document.getElementById('galleryModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeGallery() { document.getElementById('galleryModal').classList.remove('active'); document.body.style.overflow = ''; }
+    function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('active'); }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeGallery(); } });
+
+</script>
+
+<div class="gallery-modal" id="galleryModal">
+    <button class="gallery-close" onclick="closeGallery()">✕ Close</button>
+    <div class="gallery-title" id="galleryTitle"></div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close">✕</button>
+    <img id="lightboxImg" src="" onclick="event.stopPropagation()"/>
+</div>
+
+
+    <button class="scroll-btn" id="scrollBtn" title="Вниз">&#8681;</button>
+
+    <script>
+        const scrollBtn = document.getElementById('scrollBtn');
+        const threshold = 300;
+        window.addEventListener('scroll', () => {
+            const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+            const scrolled = window.scrollY > threshold;
+            scrollBtn.classList.toggle('visible', scrolled || atBottom);
+            scrollBtn.innerHTML = atBottom ? '&#8679;' : (scrolled ? '&#8679;' : '&#8681;');
+            scrollBtn.title = atBottom || scrolled ? 'Наверх' : 'Вниз';
+            scrollBtn.onclick = () => {
+                if (atBottom || scrolled) window.scrollTo({top:0,behavior:'smooth'});
+                else window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+            };
+        });
+        // Show down arrow initially
+        setTimeout(()=>{
+            if(window.scrollY===0){
+                scrollBtn.innerHTML='&#8681;';
+                scrollBtn.title='Вниз';
+                scrollBtn.classList.add('visible');
+                scrollBtn.onclick=()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+            }
+        },500);
+    </script>
+
+
+    <script>
+        // Auto-count stats from DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            const kbCount   = document.querySelectorAll('#tab-keyboards .card').length;
+            const kcCount   = document.querySelectorAll('#tab-keycaps .kc-item').length;
+            const swCount   = document.querySelectorAll('#tab-switches .sw-item').length;
+            const photoCount = photos.length;
+
+            document.getElementById('stat-keyboards').textContent = kbCount;
+            document.getElementById('stat-keycaps').textContent   = kcCount;
+            document.getElementById('stat-switches').textContent  = swCount;
+            document.getElementById('stat-photos').textContent    = photoCount;
+
+            // Also update nav tab counters
+            document.querySelector('[onclick*="keyboards"] .nav-count').textContent = kbCount;
+            document.querySelector('[onclick*="keycaps"] .nav-count').textContent   = kcCount;
+            document.querySelector('[onclick*="switches"] .nav-count').textContent  = swCount;
+        });
+    </script>
+
+
+    <script>
+        // Hobby timer with seconds
+        (function() {
+            const start = new Date('2024-03-10T00:00:00');
+            const pad = n => String(n).padStart(2, '0');
+            function updateTimer() {
+                const diff = Date.now() - start.getTime();
+                const days  = Math.floor(diff / 86400000);
+                const hours = Math.floor((diff % 86400000) / 3600000);
+                const mins  = Math.floor((diff % 3600000) / 60000);
+                const secs  = Math.floor((diff % 60000) / 1000);
+                document.getElementById('hobby-days').textContent = days;
+                document.getElementById('hobby-h').textContent = pad(hours);
+                document.getElementById('hobby-m').textContent = pad(mins);
+                document.getElementById('hobby-s').textContent = pad(secs);
+            }
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        })();
+    </script>
+
+</body>
+</html>
