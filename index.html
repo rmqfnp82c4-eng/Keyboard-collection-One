@@ -75,9 +75,13 @@
         .kc-legend-item{display:flex;align-items:center;gap:10px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
         .kc-legend-stripe{width:20px;height:2px}
         .kc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0;background:var(--bg);border:1px solid var(--border)}
-        .kc-item{background:var(--bg);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-left:3px solid transparent;border-right:1px solid var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .15s}
+        .kc-item{background:var(--bg);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--border);position:relative;transition:background .15s}
         .kc-item:hover{background:var(--surface2)}
-        .kc-item.on-board{border-left-color:var(--purple)}.kc-item.in-gb{border-left-color:var(--amber)}.kc-item.boxed{border-left-color:var(--green)}
+        .kc-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent}
+        .kc-item.boxed::before{background:var(--green)}
+        .kc-item.on-board::before{background:var(--purple)}
+        .kc-item.in-gb::before{background:var(--amber)}
+        
         .kc-name{font-size:.8rem;color:var(--text-secondary)}
         .kc-badge{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;flex-shrink:0}
         .kc-badge.on{color:var(--purple);background:rgba(155,143,255,.08);border:1px solid rgba(155,143,255,.15)}
