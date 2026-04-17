@@ -12,10 +12,13 @@ import {
   AlertTriangle,
   Dices,
   ArrowRight,
+  Check,
 } from "lucide-react";
 import { Link } from "wouter";
 import { getPhotoUrl } from "@/lib/photos";
 import { useI18n } from "@/lib/i18n";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 
 
@@ -43,7 +46,9 @@ interface Stats {
 }
 
 export default function Dashboard() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const { toast } = useToast();
+  const [usedIds, setUsedIds] = useState<Set<number>>(new Set());
   const { data: stats, isLoading } = useQuery<Stats>({
     queryKey: ["/api/stats"],
   });
@@ -52,9 +57,16 @@ export default function Dashboard() {
     mutationFn: async (id: number) => {
       await apiRequest("POST", `/api/keyboards/${id}/use`);
     },
-    onSuccess: () => {
+    onSuccess: (_data, id) => {
       queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/keyboards"] });
+      setUsedIds((prev) => new Set(prev).add(id));
+      toast({
+        title: locale === "ru" ? "✅ Отмечено!" : "✅ Marked!",
+        description: locale === "ru"
+          ? "Клавиатура используется сегодня"
+          : "Keyboard is your board today",
+      });
     },
   });
 
@@ -185,14 +197,26 @@ export default function Dashboard() {
                 )}
               </div>
               <div className="flex gap-2 mt-4">
-                <Button
-                  size="sm"
-                  onClick={() => markUsed.mutate(stats.keyboardOfDay.id)}
-                  disabled={markUsed.isPending}
-                  data-testid="button-use-today"
-                >
-                  {t("dash.useToday")}
-                </Button>
+                {usedIds.has(stats.keyboardOfDay.id) ? (
+                  <Button
+                    size="sm"
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                    disabled
+                    data-testid="button-use-today"
+                  >
+                    <Check className="w-3.5 h-3.5 mr-1" />
+                    {locale === "ru" ? "Отмечено" : "Used"}
+                  </Button>
+                ) : (
+                  <Button
+                    size="sm"
+                    onClick={() => markUsed.mutate(stats.keyboardOfDay.id)}
+                    disabled={markUsed.isPending}
+                    data-testid="button-use-today"
+                  >
+                    {t("dash.useToday")}
+                  </Button>
+                )}
                 <Link href="/keyboard-of-day">
                   <Button size="sm" variant="outline" data-testid="button-reroll">
                     <Dices className="w-3.5 h-3.5 mr-1" />

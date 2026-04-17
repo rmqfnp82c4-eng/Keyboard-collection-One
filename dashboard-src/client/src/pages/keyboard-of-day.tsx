@@ -32,6 +32,7 @@ export default function KeyboardOfDay() {
   const [randomKb, setRandomKb] = useState<KB | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
+  const [usedIds, setUsedIds] = useState<Set<number>>(new Set());
   const { toast } = useToast();
 
   const { data: dailyKb, isLoading } = useQuery<KB>({
@@ -55,6 +56,7 @@ export default function KeyboardOfDay() {
       queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/keyboards"] });
       queryClient.invalidateQueries({ queryKey: ["/api/keyboard-of-day"] });
+      if (activeKb) setUsedIds((prev) => new Set(prev).add(activeKb.id));
       toast({
         title: locale === "ru" ? "✅ Отмечено!" : "✅ Marked!",
         description: locale === "ru"
@@ -176,15 +178,26 @@ export default function KeyboardOfDay() {
               </div>
 
               <div className="flex items-center gap-3 pt-2">
-                <Button
-                  onClick={() => markUsed.mutate(activeKb.id)}
-                  disabled={markUsed.isPending}
-                  className="flex-1"
-                  data-testid="button-use-keyboard"
-                >
-                  <Check className="w-4 h-4 mr-1.5" />
-                  {t("kotd.useThisBoard")}
-                </Button>
+                {usedIds.has(activeKb.id) ? (
+                  <Button
+                    className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
+                    disabled
+                    data-testid="button-use-keyboard"
+                  >
+                    <Check className="w-4 h-4 mr-1.5" />
+                    {locale === "ru" ? "Используется сегодня" : "Used Today"}
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => markUsed.mutate(activeKb.id)}
+                    disabled={markUsed.isPending}
+                    className="flex-1"
+                    data-testid="button-use-keyboard"
+                  >
+                    <Check className="w-4 h-4 mr-1.5" />
+                    {t("kotd.useThisBoard")}
+                  </Button>
+                )}
                 {mode === "random" && (
                   <Button
                     variant="outline"
