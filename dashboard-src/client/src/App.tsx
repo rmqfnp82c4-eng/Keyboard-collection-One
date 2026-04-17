@@ -11,7 +11,6 @@ import {
   BarChart3,
   Sun,
   Moon,
-  Languages,
 } from "lucide-react";
 import { I18nProvider, useI18n } from "./lib/i18n";
 import Dashboard from "./pages/dashboard";
@@ -47,12 +46,13 @@ function LocaleToggle() {
   return (
     <button
       onClick={() => setLocale(locale === "en" ? "ru" : "en")}
-      className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg hover:bg-accent transition-colors text-xs font-medium"
+      className="flex items-center gap-1 px-2 py-1.5 rounded-lg hover:bg-accent transition-colors text-xs font-semibold text-sidebar-foreground"
       data-testid="locale-toggle"
       aria-label="Toggle language"
     >
-      <Languages className="w-3.5 h-3.5" />
-      <span className="uppercase">{locale === "en" ? "RU" : "EN"}</span>
+      <span className="text-[10px] leading-none opacity-60">{locale === "en" ? "EN" : "RU"}</span>
+      <span className="text-sidebar-foreground/60">→</span>
+      <span className="leading-none text-primary">{locale === "en" ? "RU" : "EN"}</span>
     </button>
   );
 }
