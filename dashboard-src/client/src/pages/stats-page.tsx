@@ -15,6 +15,7 @@ import {
   Legend,
 } from "recharts";
 import { Keyboard, Box, ToggleLeft, Calendar } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 const CHART_COLORS = [
   "hsl(38, 92%, 50%)",   // amber
@@ -74,6 +75,7 @@ function CustomTooltip({ active, payload, label }: any) {
 }
 
 export default function StatsPage() {
+  const { t } = useI18n();
   const { data: stats, isLoading: statsLoading } = useQuery<Stats>({
     queryKey: ["/api/stats"],
   });
@@ -113,12 +115,12 @@ export default function StatsPage() {
     .sort((a, b) => b.value - a.value);
 
   const keycapStatusData = [
-    { name: "On Keyboard", value: stats.keycapsOnKeyboard },
-    { name: "In Box", value: stats.keycapsInBox },
-    { name: "Group Buy", value: stats.keycapsInGb },
+    { name: t("stats.onKeyboard"), value: stats.keycapsOnKeyboard },
+    { name: t("stats.inBox"), value: stats.keycapsInBox },
+    { name: t("stats.groupBuy"), value: stats.keycapsInGb },
   ];
 
-  // Days in hobby calc (from Feb 2024 based on the site "730 days")
+  // Days in hobby calc (from April 2024)
   const hobbyStart = new Date("2024-04-17");
   const now = new Date();
   const daysInHobby = Math.floor(
@@ -129,10 +131,10 @@ export default function StatsPage() {
     <div className="p-6 space-y-6 max-w-[1400px]">
       <div>
         <h1 className="text-xl font-bold tracking-tight" data-testid="text-page-title">
-          Collection Stats
+          {t("stats.title")}
         </h1>
         <p className="text-sm text-muted-foreground mt-0.5">
-          Your keyboard journey in numbers
+          {t("stats.subtitle")}
         </p>
       </div>
 
@@ -142,7 +144,7 @@ export default function StatsPage() {
           <CardContent className="p-4 text-center">
             <Calendar className="w-5 h-5 mx-auto text-primary mb-2" />
             <p className="text-3xl font-bold tabular-nums">{daysInHobby}</p>
-            <p className="text-xs text-muted-foreground mt-1">Days in Hobby</p>
+            <p className="text-xs text-muted-foreground mt-1">{t("stats.daysInHobby")}</p>
           </CardContent>
         </Card>
         <Card data-testid="card-stat-keyboards">
@@ -151,7 +153,7 @@ export default function StatsPage() {
             <p className="text-3xl font-bold tabular-nums">
               {stats.totalKeyboards}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">Keyboards</p>
+            <p className="text-xs text-muted-foreground mt-1">{t("stats.keyboards")}</p>
           </CardContent>
         </Card>
         <Card data-testid="card-stat-keycaps">
@@ -160,7 +162,7 @@ export default function StatsPage() {
             <p className="text-3xl font-bold tabular-nums">
               {stats.totalKeycapSets}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">GMK Sets</p>
+            <p className="text-xs text-muted-foreground mt-1">{t("stats.gmkSets")}</p>
           </CardContent>
         </Card>
         <Card data-testid="card-stat-switches">
@@ -169,7 +171,7 @@ export default function StatsPage() {
             <p className="text-3xl font-bold tabular-nums">
               {stats.totalSwitches}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">Switches</p>
+            <p className="text-xs text-muted-foreground mt-1">{t("stats.switches")}</p>
           </CardContent>
         </Card>
       </div>
@@ -180,7 +182,7 @@ export default function StatsPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold">
-              Layout Distribution
+              {t("stats.layoutDist")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -211,7 +213,7 @@ export default function StatsPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold">
-              Keycap Status
+              {t("stats.keycapStatus")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -253,7 +255,7 @@ export default function StatsPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold">
-              Top Switch Brands
+              {t("stats.topSwitchBrands")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -284,7 +286,7 @@ export default function StatsPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold">
-              Keyboard Colors
+              {t("stats.keyboardColors")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -317,7 +319,7 @@ export default function StatsPage() {
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold">
-              All GMK Sets ({keycaps.length})
+              {t("stats.allGmkSets")} ({keycaps.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -340,10 +342,10 @@ export default function StatsPage() {
                     className="text-[10px] shrink-0"
                   >
                     {kc.status === "on_keyboard"
-                      ? "Active"
+                      ? t("stats.active")
                       : kc.status === "in_box"
-                        ? "In Box"
-                        : "GB"}
+                        ? t("stats.inBoxBadge")
+                        : t("stats.gbBadge")}
                   </Badge>
                 </div>
               ))}
@@ -357,7 +359,7 @@ export default function StatsPage() {
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold">
-              Switch Inventory ({switches.length})
+              {t("stats.switchInventory")} ({switches.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -378,7 +380,7 @@ export default function StatsPage() {
                   </div>
                   {sw.inUse ? (
                     <Badge variant="default" className="text-[10px] shrink-0">
-                      In Use
+                      {t("stats.inUseBadge")}
                     </Badge>
                   ) : null}
                 </div>

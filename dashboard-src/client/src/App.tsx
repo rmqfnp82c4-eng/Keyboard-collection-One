@@ -11,7 +11,9 @@ import {
   BarChart3,
   Sun,
   Moon,
+  Languages,
 } from "lucide-react";
+import { I18nProvider, useI18n } from "./lib/i18n";
 import Dashboard from "./pages/dashboard";
 import Collection from "./pages/collection";
 import KeyboardOfDay from "./pages/keyboard-of-day";
@@ -39,14 +41,31 @@ function ThemeToggle() {
   );
 }
 
+function LocaleToggle() {
+  const { locale, setLocale } = useI18n();
+
+  return (
+    <button
+      onClick={() => setLocale(locale === "en" ? "ru" : "en")}
+      className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg hover:bg-accent transition-colors text-xs font-medium"
+      data-testid="locale-toggle"
+      aria-label="Toggle language"
+    >
+      <Languages className="w-3.5 h-3.5" />
+      <span className="uppercase">{locale === "en" ? "RU" : "EN"}</span>
+    </button>
+  );
+}
+
 function AppSidebar() {
   const [location] = useLocation();
+  const { t } = useI18n();
 
   const links = [
-    { href: "/", icon: LayoutDashboard, label: "Dashboard" },
-    { href: "/collection", icon: Keyboard, label: "Collection" },
-    { href: "/keyboard-of-day", icon: Dices, label: "Keeb of the Day" },
-    { href: "/stats", icon: BarChart3, label: "Stats" },
+    { href: "/", icon: LayoutDashboard, label: t("nav.dashboard") },
+    { href: "/collection", icon: Keyboard, label: t("nav.collection") },
+    { href: "/keyboard-of-day", icon: Dices, label: t("nav.keebOfDay") },
+    { href: "/stats", icon: BarChart3, label: t("nav.stats") },
   ];
 
   return (
@@ -89,7 +108,7 @@ function AppSidebar() {
                   ? "bg-sidebar-accent text-sidebar-primary"
                   : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
               }`}
-              data-testid={`nav-${link.label.toLowerCase().replace(/\s/g, "-")}`}
+              data-testid={`nav-${link.href === "/" ? "dashboard" : link.href.slice(1)}`}
             >
               <link.icon className="w-4 h-4" />
               {link.label}
@@ -100,7 +119,10 @@ function AppSidebar() {
 
       <div className="p-3 border-t border-sidebar-border flex items-center justify-between">
         <span className="text-xs text-sidebar-foreground/50">v1.0</span>
-        <ThemeToggle />
+        <div className="flex items-center gap-1">
+          <LocaleToggle />
+          <ThemeToggle />
+        </div>
       </div>
     </aside>
   );
@@ -108,23 +130,25 @@ function AppSidebar() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router hook={useHashLocation}>
-        <div className="flex h-screen overflow-hidden">
-          <AppSidebar />
-          <main className="flex-1 overflow-y-auto">
-            <Switch>
-              <Route path="/" component={Dashboard} />
-              <Route path="/collection" component={Collection} />
-              <Route path="/keyboard-of-day" component={KeyboardOfDay} />
-              <Route path="/stats" component={StatsPage} />
-              <Route component={NotFound} />
-            </Switch>
-          </main>
-        </div>
-      </Router>
-      <Toaster />
-    </QueryClientProvider>
+    <I18nProvider>
+      <QueryClientProvider client={queryClient}>
+        <Router hook={useHashLocation}>
+          <div className="flex h-screen overflow-hidden">
+            <AppSidebar />
+            <main className="flex-1 overflow-y-auto">
+              <Switch>
+                <Route path="/" component={Dashboard} />
+                <Route path="/collection" component={Collection} />
+                <Route path="/keyboard-of-day" component={KeyboardOfDay} />
+                <Route path="/stats" component={StatsPage} />
+                <Route component={NotFound} />
+              </Switch>
+            </main>
+          </div>
+        </Router>
+        <Toaster />
+      </QueryClientProvider>
+    </I18nProvider>
   );
 }
 

@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Dices, Check, RefreshCw, Sparkles } from "lucide-react";
 import { getPhotoUrl } from "@/lib/photos";
 import { getRandomKeyboard } from "@/lib/staticData";
+import { useI18n } from "@/lib/i18n";
 import { useState, useCallback } from "react";
 
 
@@ -24,6 +25,7 @@ interface KB {
 }
 
 export default function KeyboardOfDay() {
+  const { t } = useI18n();
   const [mode, setMode] = useState<"daily" | "random">("daily");
   const [randomKb, setRandomKb] = useState<KB | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -66,10 +68,10 @@ export default function KeyboardOfDay() {
     <div className="p-6 max-w-2xl mx-auto space-y-6">
       <div className="text-center space-y-2">
         <h1 className="text-xl font-bold tracking-tight" data-testid="text-page-title">
-          Keyboard of the Day
+          {t("kotd.title")}
         </h1>
         <p className="text-sm text-muted-foreground">
-          Let fate choose your daily driver
+          {t("kotd.subtitle")}
         </p>
       </div>
 
@@ -82,7 +84,7 @@ export default function KeyboardOfDay() {
           data-testid="button-mode-daily"
         >
           <Sparkles className="w-3.5 h-3.5 mr-1" />
-          Daily Pick
+          {t("kotd.dailyPick")}
         </Button>
         <Button
           variant={mode === "random" ? "default" : "outline"}
@@ -94,7 +96,7 @@ export default function KeyboardOfDay() {
           data-testid="button-mode-random"
         >
           <Dices className="w-3.5 h-3.5 mr-1" />
-          Random
+          {t("kotd.random")}
         </Button>
       </div>
 
@@ -138,7 +140,7 @@ export default function KeyboardOfDay() {
                 {activeKb.keycaps && (
                   <div>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
-                      Keycaps
+                      {t("kotd.keycaps")}
                     </p>
                     <p className="text-sm font-medium">{activeKb.keycaps}</p>
                   </div>
@@ -146,7 +148,7 @@ export default function KeyboardOfDay() {
                 {activeKb.switchType && (
                   <div>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">
-                      Switches
+                      {t("kotd.switches")}
                     </p>
                     <p className="text-sm font-medium">{activeKb.switchType}</p>
                   </div>
@@ -161,7 +163,7 @@ export default function KeyboardOfDay() {
                   data-testid="button-use-keyboard"
                 >
                   <Check className="w-4 h-4 mr-1.5" />
-                  Use This Board Today
+                  {t("kotd.useThisBoard")}
                 </Button>
                 {mode === "random" && (
                   <Button
@@ -180,7 +182,7 @@ export default function KeyboardOfDay() {
           ) : (
             <div className="text-center py-8 text-muted-foreground">
               <Dices className="w-8 h-8 mx-auto mb-2 opacity-50" />
-              <p className="text-sm">Hit Random to pick a board</p>
+              <p className="text-sm">{t("kotd.hitRandom")}</p>
             </div>
           )}
         </CardContent>
@@ -188,7 +190,7 @@ export default function KeyboardOfDay() {
 
       {mode === "daily" && (
         <p className="text-center text-xs text-muted-foreground">
-          Changes daily at midnight. Same pick for everyone today.
+          {t("kotd.changesDaily")}
         </p>
       )}
     </div>

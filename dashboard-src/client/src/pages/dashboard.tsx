@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { getPhotoUrl } from "@/lib/photos";
+import { useI18n } from "@/lib/i18n";
 
 
 
@@ -42,6 +43,7 @@ interface Stats {
 }
 
 export default function Dashboard() {
+  const { t } = useI18n();
   const { data: stats, isLoading } = useQuery<Stats>({
     queryKey: ["/api/stats"],
   });
@@ -71,30 +73,30 @@ export default function Dashboard() {
 
   const kpiCards = [
     {
-      label: "Keyboards",
+      label: t("dash.keyboards"),
       value: stats.totalKeyboards,
-      sub: `${stats.builtKeyboards} built · ${stats.groupBuys} GB`,
+      sub: `${stats.builtKeyboards} ${t("dash.built")} · ${stats.groupBuys} ${t("dash.gb")}`,
       icon: Keyboard,
       color: "text-primary",
     },
     {
-      label: "GMK Sets",
+      label: t("dash.gmkSets"),
       value: stats.totalKeycapSets,
-      sub: `${stats.keycapsOnKeyboard} on board · ${stats.keycapsInBox} in box`,
+      sub: `${stats.keycapsOnKeyboard} ${t("dash.onBoard")} · ${stats.keycapsInBox} ${t("dash.inBox")}`,
       icon: Box,
       color: "text-chart-3",
     },
     {
-      label: "Switches",
+      label: t("dash.switches"),
       value: stats.totalSwitches,
-      sub: `${Object.keys(stats.switchBrands).length} brands`,
+      sub: `${Object.keys(stats.switchBrands).length} ${t("dash.brands")}`,
       icon: ToggleLeft,
       color: "text-chart-2",
     },
     {
-      label: "Need Rotation",
+      label: t("dash.needRotation"),
       value: stats.neverUsed.length,
-      sub: "never been tracked",
+      sub: t("dash.neverTracked"),
       icon: AlertTriangle,
       color: "text-chart-5",
     },
@@ -109,17 +111,20 @@ export default function Dashboard() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5);
 
+  function boardWord(count: number) {
+    return count > 1 ? t("dash.boards") : t("dash.board");
+  }
+
   return (
     <div className="p-6 space-y-6 max-w-[1400px]">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold tracking-tight" data-testid="text-page-title">
-            Dashboard
+            {t("dash.title")}
           </h1>
           <p className="text-sm text-muted-foreground mt-0.5">
-            {stats.totalKeyboards} keyboards · {stats.totalKeycapSets} keycap
-            sets · {stats.totalSwitches} switches
+            {t("dash.subtitle", { kb: stats.totalKeyboards, kc: stats.totalKeycapSets, sw: stats.totalSwitches })}
           </p>
         </div>
       </div>
@@ -162,7 +167,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-2 mb-1">
                 <Dices className="w-4 h-4 text-primary" />
                 <span className="text-xs font-medium text-primary uppercase tracking-wide">
-                  Keyboard of the Day
+                  {t("dash.keyboardOfDay")}
                 </span>
               </div>
               <h2 className="text-lg font-bold">{stats.keyboardOfDay.name}</h2>
@@ -186,12 +191,12 @@ export default function Dashboard() {
                   disabled={markUsed.isPending}
                   data-testid="button-use-today"
                 >
-                  Use Today
+                  {t("dash.useToday")}
                 </Button>
                 <Link href="/keyboard-of-day">
                   <Button size="sm" variant="outline" data-testid="button-reroll">
                     <Dices className="w-3.5 h-3.5 mr-1" />
-                    Reroll
+                    {t("dash.reroll")}
                   </Button>
                 </Link>
               </div>
@@ -206,7 +211,7 @@ export default function Dashboard() {
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold">
-              Most Used Keycaps
+              {t("dash.mostUsedKeycaps")}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -223,7 +228,7 @@ export default function Dashboard() {
                   <span className="text-sm">{name}</span>
                 </div>
                 <Badge variant="secondary" className="tabular-nums text-xs">
-                  {count} board{count > 1 ? "s" : ""}
+                  {count} {boardWord(count)}
                 </Badge>
               </div>
             ))}
@@ -234,7 +239,7 @@ export default function Dashboard() {
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold">
-              Most Used Switches
+              {t("dash.mostUsedSwitches")}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -251,7 +256,7 @@ export default function Dashboard() {
                   <span className="text-sm">{name}</span>
                 </div>
                 <Badge variant="secondary" className="tabular-nums text-xs">
-                  {count} board{count > 1 ? "s" : ""}
+                  {count} {boardWord(count)}
                 </Badge>
               </div>
             ))}
@@ -264,11 +269,11 @@ export default function Dashboard() {
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-semibold">
                 <AlertTriangle className="w-4 h-4 inline mr-1 text-chart-5" />
-                Needs Rotation — Never Tracked
+                {t("dash.needsRotation")}
               </CardTitle>
               <Link href="/collection">
                 <Button variant="ghost" size="sm" className="text-xs" data-testid="button-view-all">
-                  View All <ArrowRight className="w-3 h-3 ml-1" />
+                  {t("dash.viewAll")} <ArrowRight className="w-3 h-3 ml-1" />
                 </Button>
               </Link>
             </div>
@@ -299,7 +304,7 @@ export default function Dashboard() {
                     disabled={markUsed.isPending}
                     data-testid={`button-use-${kb.id}`}
                   >
-                    Use
+                    {t("coll.use")}
                   </Button>
                 </div>
               ))}

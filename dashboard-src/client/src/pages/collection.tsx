@@ -9,6 +9,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { Search, Check, Clock, Package } from "lucide-react";
 import { getPhotoUrl } from "@/lib/photos";
+import { useI18n } from "@/lib/i18n";
 
 
 
@@ -27,6 +28,7 @@ interface Keyboard {
 }
 
 export default function Collection() {
+  const { t } = useI18n();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
 
@@ -78,10 +80,10 @@ export default function Collection() {
     <div className="p-6 space-y-5 max-w-[1400px]">
       <div>
         <h1 className="text-xl font-bold tracking-tight" data-testid="text-page-title">
-          Collection
+          {t("coll.title")}
         </h1>
         <p className="text-sm text-muted-foreground mt-0.5">
-          {keyboards?.length || 0} keyboards
+          {keyboards?.length || 0} {t("coll.keyboards")}
         </p>
       </div>
 
@@ -90,7 +92,7 @@ export default function Collection() {
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            placeholder="Search by name, keycaps, switch..."
+            placeholder={t("coll.searchPlaceholder")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9"
@@ -99,10 +101,10 @@ export default function Collection() {
         </div>
         <Tabs value={filter} onValueChange={setFilter}>
           <TabsList>
-            <TabsTrigger value="all" data-testid="tab-all">All</TabsTrigger>
-            <TabsTrigger value="built" data-testid="tab-built">Built</TabsTrigger>
-            <TabsTrigger value="gb" data-testid="tab-gb">Group Buy</TabsTrigger>
-            <TabsTrigger value="unused" data-testid="tab-unused">Unused</TabsTrigger>
+            <TabsTrigger value="all" data-testid="tab-all">{t("coll.all")}</TabsTrigger>
+            <TabsTrigger value="built" data-testid="tab-built">{t("coll.built")}</TabsTrigger>
+            <TabsTrigger value="gb" data-testid="tab-gb">{t("coll.groupBuy")}</TabsTrigger>
+            <TabsTrigger value="unused" data-testid="tab-unused">{t("coll.unused")}</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
@@ -148,10 +150,10 @@ export default function Collection() {
                   {kb.status === "gb" ? (
                     <>
                       <Package className="w-3 h-3 mr-1" />
-                      GB
+                      {t("coll.groupBuy")}
                     </>
                   ) : (
-                    kb.format || "Built"
+                    kb.format || t("coll.built")
                   )}
                 </Badge>
               </div>
@@ -162,7 +164,7 @@ export default function Collection() {
                     {kb.keycaps && (
                       <div className="flex items-center gap-1.5">
                         <span className="text-[10px] text-muted-foreground uppercase tracking-wider w-12 shrink-0">
-                          Caps
+                          {t("coll.caps")}
                         </span>
                         <span className="text-xs truncate">{kb.keycaps}</span>
                       </div>
@@ -170,7 +172,7 @@ export default function Collection() {
                     {kb.switchType && (
                       <div className="flex items-center gap-1.5">
                         <span className="text-[10px] text-muted-foreground uppercase tracking-wider w-12 shrink-0">
-                          Switch
+                          {t("coll.switch")}
                         </span>
                         <span className="text-xs truncate">
                           {kb.switchType}
@@ -183,8 +185,8 @@ export default function Collection() {
                     <div className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Clock className="w-3 h-3" />
                       {kb.lastUsedAt
-                        ? `Used ${kb.lastUsedAt}`
-                        : "Never tracked"}
+                        ? `${t("coll.used")} ${kb.lastUsedAt}`
+                        : t("coll.neverTracked")}
                     </div>
                     <Button
                       variant="ghost"
@@ -195,7 +197,7 @@ export default function Collection() {
                       data-testid={`button-use-${kb.id}`}
                     >
                       <Check className="w-3 h-3 mr-1" />
-                      Use
+                      {t("coll.use")}
                     </Button>
                   </div>
                 </>
@@ -207,7 +209,7 @@ export default function Collection() {
 
       {filtered.length === 0 && (
         <div className="text-center py-12 text-muted-foreground">
-          <p className="text-sm">No keyboards found</p>
+          <p className="text-sm">{t("coll.noKeyboards")}</p>
         </div>
       )}
     </div>
