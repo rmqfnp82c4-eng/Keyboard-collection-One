@@ -1,8 +1,11 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 import { getStaticData } from "./staticData";
 
-// Static mode: no backend needed — all data is embedded in the bundle
-const STATIC_MODE = true;
+// Static mode: no backend needed — all data is embedded in the bundle.
+// When served by Vite dev server or Express, the backend is available.
+// When served as a static file (GitHub Pages), there's no backend.
+const STATIC_MODE = typeof window !== "undefined" && window.location.protocol === "file:"
+  || (typeof window !== "undefined" && !window.location.port && window.location.hostname.includes("github.io"));
 
 const API_BASE = "__PORT_5000__".startsWith("__") ? "" : "__PORT_5000__";
 
