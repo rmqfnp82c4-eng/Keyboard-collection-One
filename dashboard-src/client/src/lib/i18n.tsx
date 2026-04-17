@@ -81,6 +81,13 @@ const translations = {
   "stats.inBoxBadge": { en: "In Box", ru: "В коробке" },
   "stats.gbBadge": { en: "GB", ru: "ГБ" },
   "stats.inUseBadge": { en: "In Use", ru: "На борде" },
+
+  // ── Gallery ──
+  "gallery.close": { en: "Close", ru: "Закрыть" },
+  "gallery.prev": { en: "Previous photo", ru: "Предыдущее фото" },
+  "gallery.next": { en: "Next photo", ru: "Следующее фото" },
+  "gallery.photo": { en: "photo", ru: "фото" },
+  "gallery.photos": { en: "photos", ru: "фото" },
 } as const;
 
 type TranslationKey = keyof typeof translations;

@@ -7,9 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
-import { Search, Check, Clock, Package } from "lucide-react";
-import { getPhotoUrl } from "@/lib/photos";
+import { Search, Check, Clock, Package, Camera } from "lucide-react";
+import { getPhotoUrl, getAllPhotoUrls, getPhotoCount } from "@/lib/photos";
 import { useI18n } from "@/lib/i18n";
+import { PhotoGallery } from "@/components/photo-gallery";
 
 
 
@@ -31,6 +32,7 @@ export default function Collection() {
   const { t } = useI18n();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
+  const [galleryKeyboard, setGalleryKeyboard] = useState<Keyboard | null>(null);
 
   const { data: keyboards, isLoading } = useQuery<Keyboard[]>({
     queryKey: ["/api/keyboards"],
@@ -119,7 +121,10 @@ export default function Collection() {
           >
             {/* Photo */}
             {kb.photoFolder && (
-              <div className="h-40 bg-muted overflow-hidden">
+              <div
+                className="h-40 bg-muted overflow-hidden relative cursor-pointer"
+                onClick={() => getPhotoCount(kb.photoFolder) > 0 && setGalleryKeyboard(kb)}
+              >
                 <img
                   src={getPhotoUrl(kb.photoFolder) || ""}
                   alt={kb.name}
@@ -129,6 +134,12 @@ export default function Collection() {
                     (e.target as HTMLImageElement).parentElement!.style.display = "none";
                   }}
                 />
+                {getPhotoCount(kb.photoFolder) > 1 && (
+                  <div className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-md bg-black/60 text-white text-xs">
+                    <Camera className="w-3 h-3" />
+                    {getPhotoCount(kb.photoFolder)}
+                  </div>
+                )}
               </div>
             )}
             <CardContent className="p-4">
@@ -212,6 +223,14 @@ export default function Collection() {
           <p className="text-sm">{t("coll.noKeyboards")}</p>
         </div>
       )}
+
+      {/* Photo Gallery Modal */}
+      <PhotoGallery
+        isOpen={!!galleryKeyboard}
+        onClose={() => setGalleryKeyboard(null)}
+        photos={galleryKeyboard ? getAllPhotoUrls(galleryKeyboard.photoFolder) : []}
+        keyboardName={galleryKeyboard?.name || ""}
+      />
     </div>
   );
 }
