@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dices, Check, RefreshCw, Sparkles } from "lucide-react";
 import { getPhotoUrl } from "@/lib/photos";
+import { getRandomKeyboard } from "@/lib/staticData";
 import { useState, useCallback } from "react";
 
 
@@ -35,9 +36,8 @@ export default function KeyboardOfDay() {
     setIsSpinning(true);
     // Animate for a moment
     await new Promise((r) => setTimeout(r, 600));
-    const res = await apiRequest("GET", "/api/keyboards/random/pick");
-    const data = await res.json();
-    setRandomKb(data);
+    const data = getRandomKeyboard();
+    setRandomKb(data as KB);
     setIsSpinning(false);
   }, []);
 

@@ -1,4 +1,8 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import { getStaticData } from "./staticData";
+
+// Static mode: no backend needed — all data is embedded in the bundle
+const STATIC_MODE = true;
 
 const API_BASE = "__PORT_5000__".startsWith("__") ? "" : "__PORT_5000__";
 
@@ -14,6 +18,24 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
+  if (STATIC_MODE) {
+    // In static mode, return the data as a fake Response
+    const staticResult = getStaticData(url);
+    if (staticResult !== undefined) {
+      return new Response(JSON.stringify(staticResult), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    // For POST mutations (like marking used), just return success
+    if (method === "POST") {
+      return new Response(JSON.stringify({ ok: true }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+  }
+
   const res = await fetch(`${API_BASE}${url}`, {
     method,
     headers: data ? { "Content-Type": "application/json" } : {},
@@ -30,7 +52,15 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(`${API_BASE}${queryKey.join("/")}`);
+    const key = queryKey.join("/");
+
+    // In static mode, return embedded data directly
+    if (STATIC_MODE) {
+      const data = getStaticData(key);
+      if (data !== undefined) return data as T;
+    }
+
+    const res = await fetch(`${API_BASE}${key}`);
 
     if (unauthorizedBehavior === "returnNull" && res.status === 401) {
       return null;
