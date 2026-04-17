@@ -4,11 +4,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Dices, Check, RefreshCw, Sparkles } from "lucide-react";
-import { getPhotoUrl } from "@/lib/photos";
+import { Dices, Check, RefreshCw, Sparkles, Camera } from "lucide-react";
+import { getPhotoUrl, getAllPhotoUrls, getPhotoCount } from "@/lib/photos";
 import { getRandomKeyboard } from "@/lib/staticData";
 import { useI18n } from "@/lib/i18n";
-import { useState, useCallback } from "react";
+import { PhotoGallery } from "@/components/photo-gallery";
+import { useToast } from "@/hooks/use-toast";
+import { useState, useCallback }from "react";
 
 
 
@@ -25,10 +27,12 @@ interface KB {
 }
 
 export default function KeyboardOfDay() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [mode, setMode] = useState<"daily" | "random">("daily");
   const [randomKb, setRandomKb] = useState<KB | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const { toast } = useToast();
 
   const { data: dailyKb, isLoading } = useQuery<KB>({
     queryKey: ["/api/keyboard-of-day"],
@@ -50,6 +54,13 @@ export default function KeyboardOfDay() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/keyboards"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/keyboard-of-day"] });
+      toast({
+        title: locale === "ru" ? "✅ Отмечено!" : "✅ Marked!",
+        description: locale === "ru"
+          ? `${activeKb?.name} используется сегодня`
+          : `${activeKb?.name} is your board today`,
+      });
     },
   });
 
@@ -108,7 +119,10 @@ export default function KeyboardOfDay() {
         data-testid="card-selected-keyboard"
       >
         {activeKb?.photoFolder && (
-          <div className="h-64 bg-muted overflow-hidden">
+          <div
+            className="h-64 bg-muted overflow-hidden relative cursor-pointer"
+            onClick={() => getPhotoCount(activeKb.photoFolder) > 0 && setGalleryOpen(true)}
+          >
             <img
               src={getPhotoUrl(activeKb.photoFolder) || ""}
               alt={activeKb.name}
@@ -117,6 +131,12 @@ export default function KeyboardOfDay() {
                 (e.target as HTMLImageElement).parentElement!.style.display = "none";
               }}
             />
+            {getPhotoCount(activeKb.photoFolder) > 1 && (
+              <div className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 rounded-md bg-black/60 text-white text-xs">
+                <Camera className="w-3 h-3" />
+                {getPhotoCount(activeKb.photoFolder)}
+              </div>
+            )}
           </div>
         )}
         <CardContent className="p-6">
@@ -193,6 +213,14 @@ export default function KeyboardOfDay() {
           {t("kotd.changesDaily")}
         </p>
       )}
+
+      {/* Photo Gallery */}
+      <PhotoGallery
+        isOpen={galleryOpen}
+        onClose={() => setGalleryOpen(false)}
+        photos={activeKb ? getAllPhotoUrls(activeKb.photoFolder) : []}
+        keyboardName={activeKb?.name || ""}
+      />
     </div>
   );
 }

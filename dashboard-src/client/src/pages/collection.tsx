@@ -11,6 +11,7 @@ import { Search, Check, Clock, Package, Camera } from "lucide-react";
 import { getPhotoUrl, getAllPhotoUrls, getPhotoCount } from "@/lib/photos";
 import { useI18n } from "@/lib/i18n";
 import { PhotoGallery } from "@/components/photo-gallery";
+import { useToast } from "@/hooks/use-toast";
 
 
 
@@ -29,10 +30,11 @@ interface Keyboard {
 }
 
 export default function Collection() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
   const [galleryKeyboard, setGalleryKeyboard] = useState<Keyboard | null>(null);
+  const { toast } = useToast();
 
   const { data: keyboards, isLoading } = useQuery<Keyboard[]>({
     queryKey: ["/api/keyboards"],
@@ -42,9 +44,16 @@ export default function Collection() {
     mutationFn: async (id: number) => {
       await apiRequest("POST", `/api/keyboards/${id}/use`);
     },
-    onSuccess: () => {
+    onSuccess: (_data, id) => {
       queryClient.invalidateQueries({ queryKey: ["/api/keyboards"] });
       queryClient.invalidateQueries({ queryKey: ["/api/stats"] });
+      const kb = keyboards?.find((k) => k.id === id);
+      toast({
+        title: locale === "ru" ? "✅ Отмечено!" : "✅ Marked!",
+        description: locale === "ru"
+          ? `${kb?.name || ""} используется сегодня`
+          : `${kb?.name || ""} is your board today`,
+      });
     },
   });
 
