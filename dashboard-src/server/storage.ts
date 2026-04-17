@@ -1,192 +1,177 @@
-import { keyboards, usageLog, keycapSets, switches, type Keyboard, type InsertKeyboard, type UsageLog, type InsertUsageLog, type KeycapSet, type InsertKeycapSet, type Switch as SwitchType, type InsertSwitch } from "@shared/schema";
-import { drizzle } from "drizzle-orm/better-sqlite3";
-import Database from "better-sqlite3";
-import { eq, desc, asc, sql } from "drizzle-orm";
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import { join } from "path";
+import type { Keyboard, UsageLog, KeycapSet, Switch } from "../shared/schema";
 
-const sqlite = new Database("sqlite.db");
-sqlite.pragma("journal_mode = WAL");
-export const db = drizzle(sqlite);
+const DATA_FILE = join(process.cwd(), "data.json");
 
-export interface IStorage {
-  // Keyboards
-  getKeyboards(): Keyboard[];
-  getKeyboard(id: number): Keyboard | undefined;
-  createKeyboard(data: InsertKeyboard): Keyboard;
-  updateKeyboard(id: number, data: Partial<InsertKeyboard>): Keyboard | undefined;
-  markUsed(id: number): Keyboard | undefined;
-  getRandomKeyboard(): Keyboard | undefined;
-  getKeyboardOfDay(): Keyboard | undefined;
-  
-  // Usage log
-  getUsageLog(keyboardId?: number): UsageLog[];
-  logUsage(data: InsertUsageLog): UsageLog;
-  
-  // Keycap sets
-  getKeycapSets(): KeycapSet[];
-  createKeycapSet(data: InsertKeycapSet): KeycapSet;
-  
-  // Switches
-  getSwitches(): SwitchType[];
-  createSwitch(data: InsertSwitch): SwitchType;
-  
-  // Stats
-  getStats(): any;
+interface DataStore {
+  keyboards: Keyboard[];
+  usageLog: UsageLog[];
+  keycapSets: KeycapSet[];
+  switches: Switch[];
 }
 
-export class DatabaseStorage implements IStorage {
+function loadData(): DataStore {
+  if (existsSync(DATA_FILE)) {
+    return JSON.parse(readFileSync(DATA_FILE, "utf-8"));
+  }
+  return { keyboards: [], usageLog: [], keycapSets: [], switches: [] };
+}
+
+function saveData(data: DataStore) {
+  writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+}
+
+export class JsonStorage {
+  private data: DataStore;
+
+  constructor() {
+    this.data = loadData();
+  }
+
+  private save() {
+    saveData(this.data);
+  }
+
+  // --- Keyboards ---
   getKeyboards(): Keyboard[] {
-    return db.select().from(keyboards).all();
+    return this.data.keyboards;
   }
 
   getKeyboard(id: number): Keyboard | undefined {
-    return db.select().from(keyboards).where(eq(keyboards.id, id)).get();
-  }
-
-  createKeyboard(data: InsertKeyboard): Keyboard {
-    return db.insert(keyboards).values(data).returning().get();
-  }
-
-  updateKeyboard(id: number, data: Partial<InsertKeyboard>): Keyboard | undefined {
-    return db.update(keyboards).set(data).where(eq(keyboards.id, id)).returning().get();
+    return this.data.keyboards.find((k) => k.id === id);
   }
 
   markUsed(id: number): Keyboard | undefined {
-    const now = new Date().toISOString().split("T")[0];
-    const kb = this.getKeyboard(id);
+    const kb = this.data.keyboards.find((k) => k.id === id);
     if (!kb) return undefined;
-    
-    db.insert(usageLog).values({ keyboardId: id, usedAt: now }).run();
-    
-    return db.update(keyboards).set({
-      lastUsedAt: now,
-      useCount: (kb.useCount || 0) + 1,
-    }).where(eq(keyboards.id, id)).returning().get();
+
+    const now = new Date().toISOString().split("T")[0];
+    kb.lastUsedAt = now;
+    kb.useCount = (kb.useCount || 0) + 1;
+
+    // Add to usage log
+    const logId =
+      this.data.usageLog.length > 0
+        ? Math.max(...this.data.usageLog.map((l) => l.id)) + 1
+        : 1;
+    this.data.usageLog.push({ id: logId, keyboardId: id, usedAt: now });
+
+    this.save();
+    return kb;
   }
 
   getRandomKeyboard(): Keyboard | undefined {
-    const built = db.select().from(keyboards)
-      .where(eq(keyboards.status, "built"))
-      .all();
+    const built = this.data.keyboards.filter((k) => k.status === "built");
     if (built.length === 0) return undefined;
     return built[Math.floor(Math.random() * built.length)];
   }
 
   getKeyboardOfDay(): Keyboard | undefined {
-    const built = db.select().from(keyboards)
-      .where(eq(keyboards.status, "built"))
-      .all();
+    const built = this.data.keyboards.filter((k) => k.status === "built");
     if (built.length === 0) return undefined;
-    
-    // Deterministic daily pick based on date seed
+
     const today = new Date().toISOString().split("T")[0];
     let hash = 0;
     for (let i = 0; i < today.length; i++) {
-      hash = ((hash << 5) - hash) + today.charCodeAt(i);
-      hash |= 0;
+      hash = ((hash << 5) - hash + today.charCodeAt(i)) | 0;
     }
-    const index = Math.abs(hash) % built.length;
-    return built[index];
+    return built[Math.abs(hash) % built.length];
   }
 
+  // --- Usage Log ---
   getUsageLog(keyboardId?: number): UsageLog[] {
-    if (keyboardId) {
-      return db.select().from(usageLog)
-        .where(eq(usageLog.keyboardId, keyboardId))
-        .orderBy(desc(usageLog.usedAt))
-        .all();
-    }
-    return db.select().from(usageLog).orderBy(desc(usageLog.usedAt)).all();
+    const logs = keyboardId
+      ? this.data.usageLog.filter((l) => l.keyboardId === keyboardId)
+      : this.data.usageLog;
+    return logs.sort((a, b) => (a.usedAt > b.usedAt ? -1 : 1));
   }
 
-  logUsage(data: InsertUsageLog): UsageLog {
-    return db.insert(usageLog).values(data).returning().get();
-  }
-
+  // --- Keycap Sets ---
   getKeycapSets(): KeycapSet[] {
-    return db.select().from(keycapSets).all();
+    return this.data.keycapSets;
   }
 
-  createKeycapSet(data: InsertKeycapSet): KeycapSet {
-    return db.insert(keycapSets).values(data).returning().get();
+  // --- Switches ---
+  getSwitches(): Switch[] {
+    return this.data.switches;
   }
 
-  getSwitches(): SwitchType[] {
-    return db.select().from(switches).all();
-  }
-
-  createSwitch(data: InsertSwitch): SwitchType {
-    return db.insert(switches).values(data).returning().get();
-  }
-
+  // --- Stats ---
   getStats() {
-    const allKbs = this.getKeyboards();
-    const builtKbs = allKbs.filter(k => k.status === "built");
-    const gbKbs = allKbs.filter(k => k.status === "gb");
-    const allKeycaps = this.getKeycapSets();
-    const allSwitches = this.getSwitches();
-    
-    // Keycap usage frequency (from keyboards)
+    const allKbs = this.data.keyboards;
+    const builtKbs = allKbs.filter((k) => k.status === "built");
+    const gbKbs = allKbs.filter((k) => k.status === "gb");
+    const allKeycaps = this.data.keycapSets;
+    const allSwitches = this.data.switches;
+
     const keycapUsage: Record<string, number> = {};
-    builtKbs.forEach(k => {
-      if (k.keycaps) {
-        keycapUsage[k.keycaps] = (keycapUsage[k.keycaps] || 0) + 1;
-      }
+    builtKbs.forEach((k) => {
+      if (k.keycaps) keycapUsage[k.keycaps] = (keycapUsage[k.keycaps] || 0) + 1;
     });
-    
-    // Switch usage frequency (from keyboards)
+
     const switchUsage: Record<string, number> = {};
-    builtKbs.forEach(k => {
-      if (k.switchType) {
+    builtKbs.forEach((k) => {
+      if (k.switchType)
         switchUsage[k.switchType] = (switchUsage[k.switchType] || 0) + 1;
-      }
     });
-    
-    // Format distribution
+
     const formatDist: Record<string, number> = {};
-    builtKbs.forEach(k => {
+    builtKbs.forEach((k) => {
       const fmt = k.format || "Unknown";
       formatDist[fmt] = (formatDist[fmt] || 0) + 1;
     });
-    
-    // Color distribution
+
     const colorDist: Record<string, number> = {};
-    builtKbs.forEach(k => {
-      if (k.color) {
-        colorDist[k.color] = (colorDist[k.color] || 0) + 1;
-      }
+    builtKbs.forEach((k) => {
+      if (k.color) colorDist[k.color] = (colorDist[k.color] || 0) + 1;
     });
-    
-    // Never used / longest unused
-    const neverUsed = builtKbs.filter(k => !k.lastUsedAt);
-    const usedKbs = builtKbs.filter(k => k.lastUsedAt)
+
+    const neverUsed = builtKbs.filter((k) => !k.lastUsedAt);
+    const usedKbs = builtKbs
+      .filter((k) => k.lastUsedAt)
       .sort((a, b) => (a.lastUsedAt! > b.lastUsedAt! ? 1 : -1));
-    
-    // Brands from switch names
+
     const switchBrands: Record<string, number> = {};
-    allSwitches.forEach(s => {
+    allSwitches.forEach((s) => {
       const brand = s.brand || "Other";
       switchBrands[brand] = (switchBrands[brand] || 0) + 1;
     });
-    
+
     return {
       totalKeyboards: allKbs.length,
       builtKeyboards: builtKbs.length,
       groupBuys: gbKbs.length,
       totalKeycapSets: allKeycaps.length,
-      keycapsOnKeyboard: allKeycaps.filter(k => k.status === "on_keyboard").length,
-      keycapsInBox: allKeycaps.filter(k => k.status === "in_box").length,
-      keycapsInGb: allKeycaps.filter(k => k.status === "gb").length,
+      keycapsOnKeyboard: allKeycaps.filter((k) => k.status === "on_keyboard").length,
+      keycapsInBox: allKeycaps.filter((k) => k.status === "in_box").length,
+      keycapsInGb: allKeycaps.filter((k) => k.status === "gb").length,
       totalSwitches: allSwitches.length,
       keycapUsage,
       switchUsage,
       formatDistribution: formatDist,
       colorDistribution: colorDist,
-      neverUsed: neverUsed.map(k => ({ id: k.id, name: k.name, color: k.color })),
-      longestUnused: usedKbs.slice(0, 5).map(k => ({ id: k.id, name: k.name, lastUsedAt: k.lastUsedAt })),
+      neverUsed: neverUsed.map((k) => ({ id: k.id, name: k.name, color: k.color })),
+      longestUnused: usedKbs
+        .slice(0, 5)
+        .map((k) => ({ id: k.id, name: k.name, lastUsedAt: k.lastUsedAt })),
       switchBrands,
       keyboardOfDay: this.getKeyboardOfDay(),
     };
   }
+
+  // --- Seed ---
+  needsSeed(): boolean {
+    return this.data.keyboards.length === 0;
+  }
+
+  seedData(keyboards: Keyboard[], keycapSets: KeycapSet[], switches: Switch[]) {
+    this.data.keyboards = keyboards;
+    this.data.keycapSets = keycapSets;
+    this.data.switches = switches;
+    this.data.usageLog = [];
+    this.save();
+  }
 }
 
-export const storage = new DatabaseStorage();
+export const storage = new JsonStorage();
