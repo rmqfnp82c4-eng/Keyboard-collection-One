@@ -172,6 +172,49 @@ export class JsonStorage {
     this.data.usageLog = [];
     this.save();
   }
+
+  // --- Migration ---
+  // Apply updates to existing data without wiping user changes (lastUsedAt, useCount).
+  // Used to add new fields/photos to existing keyboards.
+  applyMigration(
+    keyboardUpdates: Partial<Keyboard>[],
+    keycapUpdates: Partial<KeycapSet>[] = [],
+    switchUpdates: Partial<Switch>[] = [],
+  ) {
+    if (this.data.keyboards.length === 0) return;
+    let changed = false;
+
+    for (const upd of keyboardUpdates) {
+      const existing = this.data.keyboards.find((k) => k.id === upd.id);
+      if (existing) {
+        // Only overwrite metadata fields, preserve lastUsedAt and useCount
+        const { lastUsedAt: _l, useCount: _u, ...metadata } = upd as any;
+        Object.assign(existing, metadata);
+        changed = true;
+      } else if (upd.id) {
+        this.data.keyboards.push(upd as Keyboard);
+        changed = true;
+      }
+    }
+
+    for (const upd of keycapUpdates) {
+      const existing = this.data.keycapSets.find((k) => k.id === upd.id);
+      if (existing) {
+        Object.assign(existing, upd);
+        changed = true;
+      }
+    }
+
+    for (const upd of switchUpdates) {
+      const existing = this.data.switches.find((s) => s.id === upd.id);
+      if (existing) {
+        Object.assign(existing, upd);
+        changed = true;
+      }
+    }
+
+    if (changed) this.save();
+  }
 }
 
 export const storage = new JsonStorage();

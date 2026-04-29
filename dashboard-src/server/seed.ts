@@ -2,7 +2,21 @@ import { storage } from "./storage";
 import type { Keyboard, KeycapSet, Switch } from "../shared/schema";
 
 export function seed() {
-  if (!storage.needsSeed()) return;
+  if (!storage.needsSeed()) {
+    // Existing data — apply incremental updates only.
+    storage.applyMigration(
+      [
+        { id: 26, name: "Machina Tiga", color: "Taiga", keycaps: "GMK Deep Navy", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Machina Tiga", status: "built", format: "65%" },
+      ],
+      [
+        { id: 43, name: "GMK Deep Navy", status: "on_keyboard" },
+      ],
+      [
+        { id: 69, name: "Gateron Lanes", brand: "Gateron", inUse: 1 },
+      ],
+    );
+    return;
+  }
 
   const keyboards: Keyboard[] = [
     { id: 1, name: "MatrixLab Navi 70", color: "Meteorite Gray", keycaps: "GMK Dracula V2.0 GIT CORE", switchType: "Gateron Type-R", photoCount: 13, photoFolder: "Navi70", status: "built", lastUsedAt: null, useCount: 0, format: "70%" },
@@ -30,7 +44,7 @@ export function seed() {
     { id: 23, name: "+84", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "75%" },
     { id: 24, name: "Gehirn60", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 25, name: "Altair-X R2", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
-    { id: 26, name: "Machina Tiga", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
+    { id: 26, name: "Machina Tiga", color: "Taiga", keycaps: "GMK Deep Navy", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Machina Tiga", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 27, name: "El Chibre", color: "Blue", keycaps: "GMK Pulse", switchType: "Cherry MX2A Purple", photoCount: 1, photoFolder: "El Chibre", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 28, name: "Ortho60 V2", color: "Black", keycaps: "GMK Oblivion 40s", switchType: "Gateron Harmonic", photoCount: 1, photoFolder: "Ortho60 V2", status: "built", lastUsedAt: null, useCount: 0, format: "Ortho" },
     { id: 29, name: "Geonworks Frog TKL", color: "Dark Green", keycaps: "GMK Metropolis R2", switchType: "Cherry MX2A Orange", photoCount: 1, photoFolder: "Frog TKL", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
@@ -86,7 +100,7 @@ export function seed() {
     { id: 40, name: "GMK Masterpiece", status: "on_keyboard" },
     { id: 41, name: "GMK Metropolis", status: "on_keyboard" },
     { id: 42, name: "GMK ONI", status: "on_keyboard" },
-    { id: 43, name: "GMK Deep Navy", status: "in_box" },
+    { id: 43, name: "GMK Deep Navy", status: "on_keyboard" },
     { id: 44, name: "GMK Oblivion 40s", status: "on_keyboard" },
     { id: 45, name: "GMK Taiga R2", status: "gb" },
     { id: 46, name: "GMK Dracula V2 (2nd)", status: "in_box" },
@@ -168,7 +182,7 @@ export function seed() {
     { id: 66, name: "Keygeek Orange Boi", brand: "Keygeek", inUse: 0 },
     { id: 67, name: "Keygeek M1", brand: "Keygeek", inUse: 0 },
     { id: 68, name: "Cherry MX Blossom", brand: "Cherry", inUse: 0 },
-    { id: 69, name: "Gateron Lanes", brand: "Gateron", inUse: 0 },
+    { id: 69, name: "Gateron Lanes", brand: "Gateron", inUse: 1 },
     { id: 70, name: "Keebfront Sinister", brand: "Keebfront", inUse: 0 },
     { id: 71, name: "Keebfront Coley", brand: "Keebfront", inUse: 0 },
     { id: 72, name: "Keebfront DOOM", brand: "Keebfront", inUse: 1 },
