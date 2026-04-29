@@ -1,0 +1,300 @@
+// Static data embedded for GitHub Pages (no backend required)
+// All data from seed.ts is reproduced here so the dashboard works purely client-side.
+
+export interface KeyboardData {
+  id: number;
+  name: string;
+  color: string | null;
+  keycaps: string | null;
+  switchType: string | null;
+  photoCount: number | null;
+  photoFolder: string | null;
+  status: string | null;
+  lastUsedAt: string | null;
+  useCount: number | null;
+  format: string | null;
+}
+
+export interface KeycapSetData {
+  id: number;
+  name: string;
+  status: string;
+}
+
+export interface SwitchData {
+  id: number;
+  name: string;
+  brand: string | null;
+  inUse: number | null;
+}
+
+const keyboardsData: KeyboardData[] = [
+  { id: 1, name: "MatrixLab Navi 70", color: "Meteorite Gray", keycaps: "GMK Dracula V2.0 GIT CORE", switchType: "Gateron Type-R", photoCount: 13, photoFolder: "Navi70", status: "built", lastUsedAt: null, useCount: 0, format: "70%" },
+  { id: 2, name: "Geonworks Frog Mini", color: "Burgundy", keycaps: "GMK Panels", switchType: "Cherry MX2A Black", photoCount: 11, photoFolder: "Frog Mini", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 3, name: "MMStudio Class60", color: "Navy", keycaps: "GMK Dualshot R2", switchType: "Owlab London Fog", photoCount: 11, photoFolder: "Class60", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 4, name: "MatrixLab Corsa65", color: "Sunflower Yellow", keycaps: "GMK Laser", switchType: "Keebfront DOOM", photoCount: 17, photoFolder: "Corsa65", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 5, name: "Tofu60 2.0 (Navy)", color: "Navy", keycaps: "GMK Honor Light Base", switchType: "Gateron Type-R", photoCount: 10, photoFolder: "Tofu60 2.0", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 6, name: "Swagkeys Transition Lite", color: "Pink", keycaps: "GMK DMG 3", switchType: "SW x Captain Sterling Ghost Dragon", photoCount: 1, photoFolder: "Transition Lite", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 7, name: "KBD8X MKIII", color: "Purple", keycaps: "GMK Royal Cadet", switchType: "HMX Guava", photoCount: 1, photoFolder: "KBD mkIII", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 8, name: "La-Versa.kbd Otsukimi", color: "Midnight Blue", keycaps: "GMK Haku", switchType: "Techno Violet", photoCount: 15, photoFolder: "Otsukimi", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 9, name: "Rule60", color: "PC / Clear", keycaps: "GMK Baltic", switchType: "Gateron Quinn", photoCount: 1, photoFolder: "Rule60 V3", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 10, name: "Felice Lab Curva 40 R2", color: "Metallic", keycaps: "GMK Nuclear Data R2", switchType: "Cherry MX2A Brown", photoCount: 1, photoFolder: "Curva40", status: "built", lastUsedAt: null, useCount: 0, format: "40%" },
+  { id: 11, name: "Geonworks F2-84", color: "Cookie Cream", keycaps: "GMK Rubrehose", switchType: "Cherry MX2A Black", photoCount: 8, photoFolder: "F2-84", status: "built", lastUsedAt: null, useCount: 0, format: "75%" },
+  { id: 12, name: "Geonworks F2-8X V2", color: "Hyperbeige", keycaps: "GMK Prussian Blue", switchType: "Cherry MX2A Purple", photoCount: 9, photoFolder: "F1-8X V2", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 13, name: "Neo Ergo (Nebula)", color: "Nebula", keycaps: "GMK Fright Club", switchType: "Outemu Unity", photoCount: 1, photoFolder: "Neo Ergo Nebula", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
+  { id: 14, name: "KBDFans Agar", color: "Burgundy", keycaps: "GMK Higanbana", switchType: "Invokeys x ALAS Red Bean", photoCount: 7, photoFolder: "Agar", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 15, name: "Mode Sonnet", color: "Green", keycaps: "GMK November Fog", switchType: "Akko Green Fog", photoCount: 1, photoFolder: "Mode Sonnet", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 16, name: "Monokei & TGR Tomo", color: "Navy", keycaps: "GMK Grand Prix", switchType: "SWK V Black", photoCount: 1, photoFolder: "Monokei & TGR TOMO", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 17, name: "Linworks & TGR Dolice", color: "Dark Gray", keycaps: "GMK Terror Below", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "Linworks & TGR Dolice", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 18, name: "Ramaworks Kara", color: "Azure", keycaps: "GMK Analog Dreams R2 Digital Nightmares", switchType: "Raptor MX Extreme Gaming Switch", photoCount: 1, photoFolder: "Ramaworks KARA", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 19, name: "Swagkeys Eave65", color: "PC / Clear", keycaps: "GMK Pulse (Mitolet)", switchType: "Gateron Azure Dragon V4", photoCount: 1, photoFolder: "Eave65", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 20, name: "Holy60", color: "Red", keycaps: "GMK Honor Light Base", switchType: "Invokeys x ALAS Nightshade", photoCount: 1, photoFolder: "Holy60", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 21, name: "Tofu60 2.0 (White)", color: "White", keycaps: "GMK Cubed", switchType: "Gateron Weightlessness", photoCount: 1, photoFolder: "Tofu60 2.0 White", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 22, name: "Neo Ergo (Navy)", color: "Navy", keycaps: "GMK Parcel", switchType: "Invokeys x ALAS Daydreamer", photoCount: 1, photoFolder: "Neo Ergo", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
+  { id: 23, name: "+84", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "75%" },
+  { id: 24, name: "Gehirn60", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 25, name: "Altair-X R2", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 26, name: "Machina Tiga", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 27, name: "El Chibre", color: "Blue", keycaps: "GMK Pulse", switchType: "Cherry MX2A Purple", photoCount: 1, photoFolder: "El Chibre", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 28, name: "Ortho60 V2", color: "Black", keycaps: "GMK Oblivion 40s", switchType: "Gateron Harmonic", photoCount: 1, photoFolder: "Ortho60 V2", status: "built", lastUsedAt: null, useCount: 0, format: "Ortho" },
+  { id: 29, name: "Geonworks Frog TKL", color: "Dark Green", keycaps: "GMK Metropolis R2", switchType: "Cherry MX2A Orange", photoCount: 1, photoFolder: "Frog TKL", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 30, name: "Neson Studio 810E", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 31, name: "Glare65", color: "RAW", keycaps: "GMK Masterpiece", switchType: "Clackbits Linear R2", photoCount: 3, photoFolder: "Glare65", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 32, name: "Geonworks F2-8X V2 (2nd)", color: "HyperBeige", keycaps: "GMK Black Snail (Red Cyrillic)", switchType: "Gateron Type-R", photoCount: 1, photoFolder: "Geonworks F2-8X V2", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 33, name: "Antipode Studio Logos Mk.1", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 34, name: "Sonic170 V2", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 35, name: "Keyboy40", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "40%" },
+  { id: 36, name: "TGR & SM Lin Shi Alice", color: "Silver", keycaps: "GMK ONI", switchType: "KNC Keys Red Jacket V1 Redux", photoCount: 1, photoFolder: "TGR & SM Lin Shi Alice", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
+];
+
+const keycapSetsData: KeycapSetData[] = [
+  { id: 1, name: "GMK Dracula V2", status: "on_keyboard" },
+  { id: 2, name: "GMK Analog Dreams R2", status: "in_box" },
+  { id: 3, name: "GMK Parcel", status: "on_keyboard" },
+  { id: 4, name: "GMK Cubed", status: "on_keyboard" },
+  { id: 5, name: "GMK Kitsune", status: "in_box" },
+  { id: 6, name: "GMK Honor Light Base", status: "on_keyboard" },
+  { id: 7, name: "GMK Striker R2 (×2)", status: "in_box" },
+  { id: 8, name: "GMK Dualshot R2", status: "on_keyboard" },
+  { id: 9, name: "GMK WOB Katakana", status: "in_box" },
+  { id: 10, name: "GMK Panels", status: "on_keyboard" },
+  { id: 11, name: "GMK Terror Below", status: "on_keyboard" },
+  { id: 12, name: "GMK Royal Cadet", status: "on_keyboard" },
+  { id: 13, name: "GMK Analog Dreams R2 Digital Nightmare", status: "on_keyboard" },
+  { id: 14, name: "GMK Laser", status: "on_keyboard" },
+  { id: 15, name: "GMK Pulse", status: "on_keyboard" },
+  { id: 16, name: "GMK Nuclear Data R2", status: "on_keyboard" },
+  { id: 17, name: "GMK Haku", status: "on_keyboard" },
+  { id: 18, name: "GMK Dots R2 (Dark)", status: "on_keyboard" },
+  { id: 19, name: "GMK Fright Club", status: "on_keyboard" },
+  { id: 20, name: "GMK Skeletor", status: "in_box" },
+  { id: 21, name: "GMK November Fog", status: "on_keyboard" },
+  { id: 22, name: "GMK Dots R2 (Light)", status: "in_box" },
+  { id: 23, name: "GMK Baltic", status: "on_keyboard" },
+  { id: 24, name: "GMK Gurokawa", status: "gb" },
+  { id: 25, name: "GMK Kaiju R3", status: "in_box" },
+  { id: 26, name: "GMK Blue Alert", status: "in_box" },
+  { id: 27, name: "GMK Prussian Blue", status: "on_keyboard" },
+  { id: 28, name: "GMK Higanbana", status: "on_keyboard" },
+  { id: 29, name: "GMK Evil Dolch", status: "in_box" },
+  { id: 30, name: "GMK Black Snail", status: "in_box" },
+  { id: 31, name: "GMK Rubrehose", status: "on_keyboard" },
+  { id: 32, name: "GMK Pulse (Mitolet)", status: "on_keyboard" },
+  { id: 33, name: "GMK Serenity", status: "in_box" },
+  { id: 34, name: "GMK DMG 3", status: "on_keyboard" },
+  { id: 35, name: "GMK Mon.Material V1", status: "on_keyboard" },
+  { id: 36, name: "GMK Chaos Theory", status: "in_box" },
+  { id: 37, name: "GMK SUSU", status: "in_box" },
+  { id: 38, name: "GMK Grand Prix", status: "on_keyboard" },
+  { id: 39, name: "GMK Divinapapaya", status: "gb" },
+  { id: 40, name: "GMK Masterpiece", status: "on_keyboard" },
+  { id: 41, name: "GMK Metropolis", status: "on_keyboard" },
+  { id: 42, name: "GMK ONI", status: "on_keyboard" },
+  { id: 43, name: "GMK Deep Navy", status: "in_box" },
+  { id: 44, name: "GMK Oblivion 40s", status: "on_keyboard" },
+  { id: 45, name: "GMK Taiga R2", status: "gb" },
+  { id: 46, name: "GMK Dracula V2 (2nd)", status: "in_box" },
+  { id: 47, name: "GMK Nightlight", status: "in_box" },
+  { id: 48, name: "GMK Fuji", status: "in_box" },
+  { id: 49, name: "GMK Windbreaker", status: "in_box" },
+  { id: 50, name: "GMK Fleuriste", status: "in_box" },
+  { id: 51, name: "GMK Nervewrecker", status: "in_box" },
+  { id: 52, name: "GMK Redacted®", status: "in_box" },
+  { id: 53, name: "GMK Combobreaker", status: "gb" },
+];
+
+const switchesData: SwitchData[] = [
+  { id: 1, name: "PH Studio Poki Zaku", brand: "PH Studio", inUse: 0 },
+  { id: 2, name: "HMX FJ 400", brand: "HMX", inUse: 0 },
+  { id: 3, name: "HMX Joker", brand: "HMX", inUse: 0 },
+  { id: 4, name: "HMX x BCKeys Martini", brand: "HMX", inUse: 0 },
+  { id: 5, name: "HMX Guava", brand: "HMX", inUse: 1 },
+  { id: 6, name: "Siliworks × Napworks Nap", brand: "Siliworks", inUse: 0 },
+  { id: 7, name: "HEX Studio & Diamond Brother Lycoris", brand: "HEX Studio", inUse: 0 },
+  { id: 8, name: "Keygeek Purple Dawn", brand: "Keygeek", inUse: 0 },
+  { id: 9, name: "Wuque Studio WS Stellar Bluerose", brand: "Wuque Studio", inUse: 0 },
+  { id: 10, name: "Gateron Oil King", brand: "Gateron", inUse: 0 },
+  { id: 11, name: "Gateron Ink V2", brand: "Gateron", inUse: 0 },
+  { id: 12, name: "Gateron Mini-I", brand: "Gateron", inUse: 0 },
+  { id: 13, name: "Gateron Weightlessness", brand: "Gateron", inUse: 1 },
+  { id: 14, name: "Gateron Dark One", brand: "Gateron", inUse: 0 },
+  { id: 15, name: "Gateron Melodic", brand: "Gateron", inUse: 0 },
+  { id: 16, name: "Gateron Robin", brand: "Gateron", inUse: 0 },
+  { id: 17, name: "Gateron Smoothie", brand: "Gateron", inUse: 0 },
+  { id: 18, name: "Gateron INK V2 Black Baltic Edition", brand: "Gateron", inUse: 0 },
+  { id: 19, name: "Siliworks × HMX SONJA", brand: "Siliworks", inUse: 0 },
+  { id: 20, name: "Siliworks × HMX SONJA HC", brand: "Siliworks", inUse: 0 },
+  { id: 21, name: "Cherry MX2A Black", brand: "Cherry", inUse: 1 },
+  { id: 22, name: "Cherry MX2A Brown", brand: "Cherry", inUse: 1 },
+  { id: 23, name: "Cherry MX2A Purple", brand: "Cherry", inUse: 1 },
+  { id: 24, name: "Cherry MX Black Hyperglide", brand: "Cherry", inUse: 0 },
+  { id: 25, name: "Prevail Nebula", brand: "Prevail", inUse: 0 },
+  { id: 26, name: "Ice and Snow Baikal", brand: "Ice and Snow", inUse: 0 },
+  { id: 27, name: "MOYU Melody Redux", brand: "MOYU", inUse: 0 },
+  { id: 28, name: "LICHICX XCJZ Green Tea Tactile", brand: "LICHICX", inUse: 0 },
+  { id: 29, name: "JWK Semi-silent", brand: "JWK", inUse: 0 },
+  { id: 30, name: "EPOMAKER Bluebird", brand: "EPOMAKER", inUse: 0 },
+  { id: 31, name: "LEOBOG Kayking V2", brand: "LEOBOG", inUse: 0 },
+  { id: 32, name: "NovelKeys × Kailh NK Blueberry", brand: "NovelKeys", inUse: 0 },
+  { id: 33, name: "MOYU Poseidon", brand: "MOYU", inUse: 0 },
+  { id: 34, name: "CK × Haimu Clipper Sea Serpent", brand: "CK × Haimu", inUse: 0 },
+  { id: 35, name: "HC Studio Roselle", brand: "HC Studio", inUse: 0 },
+  { id: 36, name: "BSUN Snow Diane", brand: "BSUN", inUse: 0 },
+  { id: 37, name: "NovelKeys × Kailh NK Cream Clickie", brand: "NovelKeys", inUse: 0 },
+  { id: 38, name: "KNC Keys Green Jacket", brand: "KNC Keys", inUse: 0 },
+  { id: 39, name: "Invokeys × ALAS Daydreamer", brand: "Invokeys", inUse: 1 },
+  { id: 40, name: "Invokeys × ALAS Nightshade", brand: "Invokeys", inUse: 1 },
+  { id: 41, name: "Invokeys × ALAS Red Bean", brand: "Invokeys", inUse: 1 },
+  { id: 42, name: "Moyu × XCJZ Snow Grape", brand: "Moyu", inUse: 0 },
+  { id: 43, name: "Sarokeys Strawberry Wine", brand: "Sarokeys", inUse: 0 },
+  { id: 44, name: "KeyByeLab Switch", brand: "KeyByeLab", inUse: 0 },
+  { id: 45, name: "KTT Matcha", brand: "KTT", inUse: 0 },
+  { id: 46, name: "MMD Vivian V2", brand: "MMD", inUse: 0 },
+  { id: 47, name: "SWK Neon Switch", brand: "SWK", inUse: 0 },
+  { id: 48, name: "SW x CaptainSterling Ghost Dragon", brand: "Swagkeys", inUse: 1 },
+  { id: 49, name: "Owlab London Fog", brand: "Owlab", inUse: 1 },
+  { id: 50, name: "Keygeek Mirror Lake Linear", brand: "Keygeek", inUse: 0 },
+  { id: 51, name: "Keygeek × Brian Workshop B1", brand: "Keygeek", inUse: 0 },
+  { id: 52, name: "Gateron Type-R", brand: "Gateron", inUse: 1 },
+  { id: 53, name: "Gateron Quinn", brand: "Gateron", inUse: 1 },
+  { id: 54, name: "Gateron Azure Dragon V4", brand: "Gateron", inUse: 1 },
+  { id: 55, name: "Gateron Green Apple", brand: "Gateron", inUse: 0 },
+  { id: 56, name: "Wingtree Linear", brand: "Wingtree", inUse: 0 },
+  { id: 57, name: "Cherry MX2A Speed Silver", brand: "Cherry", inUse: 0 },
+  { id: 58, name: "Keygeek Sunflower", brand: "Keygeek", inUse: 0 },
+  { id: 59, name: "LEOBOG Immortality", brand: "LEOBOG", inUse: 0 },
+  { id: 60, name: "LEOBOG Lavender", brand: "LEOBOG", inUse: 0 },
+  { id: 61, name: "GOAT.WORKS × Wingtree WINGBlack", brand: "GOAT.WORKS", inUse: 0 },
+  { id: 62, name: "ZEALPC Clickiez", brand: "ZEALPC", inUse: 0 },
+  { id: 63, name: "Everglide Dark Jade", brand: "Everglide", inUse: 0 },
+  { id: 64, name: "HMX Sand Storm", brand: "HMX", inUse: 0 },
+  { id: 65, name: "Outemu Unity", brand: "Outemu", inUse: 1 },
+  { id: 66, name: "Keygeek Orange Boi", brand: "Keygeek", inUse: 0 },
+  { id: 67, name: "Keygeek M1", brand: "Keygeek", inUse: 0 },
+  { id: 68, name: "Cherry MX Blossom", brand: "Cherry", inUse: 0 },
+  { id: 69, name: "Gateron Lanes", brand: "Gateron", inUse: 0 },
+  { id: 70, name: "Keebfront Sinister", brand: "Keebfront", inUse: 0 },
+  { id: 71, name: "Keebfront Coley", brand: "Keebfront", inUse: 0 },
+  { id: 72, name: "Keebfront DOOM", brand: "Keebfront", inUse: 1 },
+  { id: 73, name: "Clackbits Linear", brand: "Clackbits", inUse: 0 },
+  { id: 74, name: "KNC Keys Black Jacket (Tactile)", brand: "KNC Keys", inUse: 0 },
+  { id: 75, name: "KNC Keys Red Jacket V1 Redux", brand: "KNC Keys", inUse: 1 },
+  { id: 76, name: "Tofutypes × KNC Keys Tempeh", brand: "KNC Keys", inUse: 0 },
+  { id: 77, name: "BSUN Golden Apple", brand: "BSUN", inUse: 0 },
+  { id: 78, name: "SWK V Black", brand: "SWK", inUse: 1 },
+  { id: 79, name: "KBDfans Roller V2", brand: "KBDfans", inUse: 0 },
+  { id: 80, name: "HMX Firecracker (Tactile)", brand: "HMX", inUse: 0 },
+];
+
+// Keyboard of the day — deterministic by date (same logic as server)
+function getKeyboardOfDay(): KeyboardData {
+  const built = keyboardsData.filter(k => k.status === "built");
+  const today = new Date().toISOString().split("T")[0];
+  let hash = 0;
+  for (let i = 0; i < today.length; i++) {
+    hash = ((hash << 5) - hash) + today.charCodeAt(i);
+    hash |= 0;
+  }
+  const index = Math.abs(hash) % built.length;
+  return built[index];
+}
+
+function getRandomKeyboard(): KeyboardData {
+  const built = keyboardsData.filter(k => k.status === "built");
+  return built[Math.floor(Math.random() * built.length)];
+}
+
+function computeStats() {
+  const allKbs = keyboardsData;
+  const builtKbs = allKbs.filter(k => k.status === "built");
+  const gbKbs = allKbs.filter(k => k.status === "gb");
+
+  const keycapUsage: Record<string, number> = {};
+  builtKbs.forEach(k => {
+    if (k.keycaps) keycapUsage[k.keycaps] = (keycapUsage[k.keycaps] || 0) + 1;
+  });
+
+  const switchUsage: Record<string, number> = {};
+  builtKbs.forEach(k => {
+    if (k.switchType) switchUsage[k.switchType] = (switchUsage[k.switchType] || 0) + 1;
+  });
+
+  const formatDistribution: Record<string, number> = {};
+  builtKbs.forEach(k => {
+    const fmt = k.format || "Unknown";
+    formatDistribution[fmt] = (formatDistribution[fmt] || 0) + 1;
+  });
+
+  const colorDistribution: Record<string, number> = {};
+  builtKbs.forEach(k => {
+    if (k.color) colorDistribution[k.color] = (colorDistribution[k.color] || 0) + 1;
+  });
+
+  const neverUsed = builtKbs.filter(k => !k.lastUsedAt);
+  const usedKbs = builtKbs.filter(k => k.lastUsedAt)
+    .sort((a, b) => (a.lastUsedAt! > b.lastUsedAt! ? 1 : -1));
+
+  const switchBrands: Record<string, number> = {};
+  switchesData.forEach(s => {
+    const brand = s.brand || "Other";
+    switchBrands[brand] = (switchBrands[brand] || 0) + 1;
+  });
+
+  return {
+    totalKeyboards: allKbs.length,
+    builtKeyboards: builtKbs.length,
+    groupBuys: gbKbs.length,
+    totalKeycapSets: keycapSetsData.length,
+    keycapsOnKeyboard: keycapSetsData.filter(k => k.status === "on_keyboard").length,
+    keycapsInBox: keycapSetsData.filter(k => k.status === "in_box").length,
+    keycapsInGb: keycapSetsData.filter(k => k.status === "gb").length,
+    totalSwitches: switchesData.length,
+    keycapUsage,
+    switchUsage,
+    formatDistribution,
+    colorDistribution,
+    neverUsed: neverUsed.map(k => ({ id: k.id, name: k.name, color: k.color })),
+    longestUnused: usedKbs.slice(0, 5).map(k => ({ id: k.id, name: k.name, lastUsedAt: k.lastUsedAt })),
+    switchBrands,
+    keyboardOfDay: getKeyboardOfDay(),
+  };
+}
+
+// Map of API endpoints to static data
+// Used by queryClient to intercept requests
+const staticRoutes: Record<string, () => unknown> = {
+  "/api/keyboards": () => keyboardsData,
+  "/api/stats": () => computeStats(),
+  "/api/keyboard-of-day": () => getKeyboardOfDay(),
+  "/api/keyboards/random/pick": () => getRandomKeyboard(),
+  "/api/keycaps": () => keycapSetsData,
+  "/api/switches": () => switchesData,
+};
+
+export function getStaticData(key: string): unknown | undefined {
+  const handler = staticRoutes[key];
+  if (handler) return handler();
+  return undefined;
+}
+
+export { keyboardsData, keycapSetsData, switchesData, getRandomKeyboard };
