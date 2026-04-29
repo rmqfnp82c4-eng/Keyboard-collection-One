@@ -31,7 +31,7 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "Glare65": ["Glare65 1", "Glare65 2", "Glare65 3"],
   "Geonworks F2-8X V2": ["Geonworks F2-8X V2"],
   "TGR & SM Lin Shi Alice": ["TGR & SN Lin Shi Alice"],
-  "Machina Tiga": ["Machina Tiga (1)", "Machina Tiga (2)", "Machina Tiga (3)", "Machina Tiga (4)"],
+  "Machina Tiga": ["Machina Tiga (2)", "Machina Tiga (3)", "Machina Tiga (4)", "Machina Tiga (1)"],
 };
 
 function buildUrl(folder: string, filename: string): string {
