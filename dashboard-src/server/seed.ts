@@ -6,7 +6,7 @@ export function seed() {
     // Existing data — apply incremental updates only.
     storage.applyMigration(
       [
-        { id: 26, name: "Machina Tiga", color: "Taiga", keycaps: "GMK Deep Navy", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Machina Tiga", status: "built", format: "65%" },
+        { id: 26, name: "Machina Tiga", color: "Horizon", keycaps: "GMK Deep Navy", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Machina Tiga", status: "built", format: "65%" },
       ],
       [
         { id: 43, name: "GMK Deep Navy", status: "on_keyboard" },
@@ -44,7 +44,7 @@ export function seed() {
     { id: 23, name: "+84", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "75%" },
     { id: 24, name: "Gehirn60", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 25, name: "Altair-X R2", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
-    { id: 26, name: "Machina Tiga", color: "Taiga", keycaps: "GMK Deep Navy", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Machina Tiga", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
+    { id: 26, name: "Machina Tiga", color: "Horizon", keycaps: "GMK Deep Navy", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Machina Tiga", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 27, name: "El Chibre", color: "Blue", keycaps: "GMK Pulse", switchType: "Cherry MX2A Purple", photoCount: 1, photoFolder: "El Chibre", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 28, name: "Ortho60 V2", color: "Black", keycaps: "GMK Oblivion 40s", switchType: "Gateron Harmonic", photoCount: 1, photoFolder: "Ortho60 V2", status: "built", lastUsedAt: null, useCount: 0, format: "Ortho" },
     { id: 29, name: "Geonworks Frog TKL", color: "Dark Green", keycaps: "GMK Metropolis R2", switchType: "Cherry MX2A Orange", photoCount: 1, photoFolder: "Frog TKL", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
