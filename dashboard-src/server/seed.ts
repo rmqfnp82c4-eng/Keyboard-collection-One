@@ -7,12 +7,17 @@ export function seed() {
     storage.applyMigration(
       [
         { id: 26, name: "Machina Tiga", color: "Horizon", keycaps: "GMK Deep Navy", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Machina Tiga", status: "built", format: "65%" },
+        { id: 30, name: "Neson Studio 810E", color: "Metallic", keycaps: "GMK Fuji", switchType: "HMX Firecracker (Tactile)", photoCount: 1, photoFolder: "Neson 810E", status: "built", format: "TKL" },
       ],
       [
         { id: 43, name: "GMK Deep Navy", status: "on_keyboard" },
+        { id: 48, name: "GMK Fuji", status: "on_keyboard" },
+        { id: 54, name: "GMK Hyperbeige", status: "in_box" },
+        { id: 55, name: "GMK King of the Seas", status: "gb" },
       ],
       [
         { id: 69, name: "Gateron Lanes", brand: "Gateron", inUse: 1 },
+        { id: 80, name: "HMX Firecracker (Tactile)", brand: "HMX", inUse: 1 },
       ],
     );
     return;
@@ -48,7 +53,7 @@ export function seed() {
     { id: 27, name: "El Chibre", color: "Blue", keycaps: "GMK Pulse", switchType: "Cherry MX2A Purple", photoCount: 1, photoFolder: "El Chibre", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 28, name: "Ortho60 V2", color: "Black", keycaps: "GMK Oblivion 40s", switchType: "Gateron Harmonic", photoCount: 1, photoFolder: "Ortho60 V2", status: "built", lastUsedAt: null, useCount: 0, format: "Ortho" },
     { id: 29, name: "Geonworks Frog TKL", color: "Dark Green", keycaps: "GMK Metropolis R2", switchType: "Cherry MX2A Orange", photoCount: 1, photoFolder: "Frog TKL", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
-    { id: 30, name: "Neson Studio 810E", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
+    { id: 30, name: "Neson Studio 810E", color: "Metallic", keycaps: "GMK Fuji", switchType: "HMX Firecracker (Tactile)", photoCount: 1, photoFolder: "Neson 810E", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
     { id: 31, name: "Glare65", color: "RAW", keycaps: "GMK Masterpiece", switchType: "Clackbits Linear R2", photoCount: 3, photoFolder: "Glare65", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 32, name: "Geonworks F2-8X V2 (2nd)", color: "HyperBeige", keycaps: "GMK Black Snail (Red Cyrillic)", switchType: "Gateron Type-R", photoCount: 1, photoFolder: "Geonworks F2-8X V2", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
     { id: 33, name: "Antipode Studio Logos Mk.1", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
@@ -105,12 +110,14 @@ export function seed() {
     { id: 45, name: "GMK Taiga R2", status: "gb" },
     { id: 46, name: "GMK Dracula V2 (2nd)", status: "in_box" },
     { id: 47, name: "GMK Nightlight", status: "in_box" },
-    { id: 48, name: "GMK Fuji", status: "in_box" },
+    { id: 48, name: "GMK Fuji", status: "on_keyboard" },
     { id: 49, name: "GMK Windbreaker", status: "in_box" },
     { id: 50, name: "GMK Fleuriste", status: "in_box" },
     { id: 51, name: "GMK Nervewrecker", status: "in_box" },
     { id: 52, name: "GMK Redacted®", status: "in_box" },
     { id: 53, name: "GMK Combobreaker", status: "gb" },
+    { id: 54, name: "GMK Hyperbeige", status: "in_box" },
+    { id: 55, name: "GMK King of the Seas", status: "gb" },
   ];
 
   const switches: Switch[] = [
@@ -193,7 +200,7 @@ export function seed() {
     { id: 77, name: "BSUN Golden Apple", brand: "BSUN", inUse: 0 },
     { id: 78, name: "SWK V Black", brand: "SWK", inUse: 1 },
     { id: 79, name: "KBDfans Roller V2", brand: "KBDfans", inUse: 0 },
-    { id: 80, name: "HMX Firecracker (Tactile)", brand: "HMX", inUse: 0 },
+    { id: 80, name: "HMX Firecracker (Tactile)", brand: "HMX", inUse: 1 },
   ];
 
   storage.seedData(keyboards, keycapSets, switches);
