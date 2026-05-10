@@ -88,9 +88,9 @@ export default function StatsPage() {
 
   if (statsLoading || !stats) {
     return (
-      <div className="p-6 space-y-6">
+      <div className="p-4 md:p-6 space-y-6">
         <Skeleton className="h-8 w-48" />
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[...Array(3)].map((_, i) => (
             <Skeleton key={i} className="h-28" />
           ))}
@@ -128,7 +128,7 @@ export default function StatsPage() {
   );
 
   return (
-    <div className="p-6 space-y-6 max-w-[1400px]">
+    <div className="p-4 md:p-6 space-y-6 max-w-[1400px]">
       <div>
         <h1 className="text-xl font-bold tracking-tight" data-testid="text-page-title">
           {t("stats.title")}
