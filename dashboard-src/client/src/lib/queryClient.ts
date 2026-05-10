@@ -2,10 +2,21 @@ import { QueryClient, QueryFunction } from "@tanstack/react-query";
 import { getStaticData } from "./staticData";
 
 // Static mode: no backend needed — all data is embedded in the bundle.
-// When served by Vite dev server or Express, the backend is available.
-// When served as a static file (GitHub Pages), there's no backend.
-const STATIC_MODE = typeof window !== "undefined" && window.location.protocol === "file:"
-  || (typeof window !== "undefined" && !window.location.port && window.location.hostname.includes("github.io"));
+// We have a backend ONLY when running locally on Express (port 5000 or localhost).
+// On any hosted static deployment (GitHub Pages, Netlify, Vercel, etc.) there's no backend.
+function detectStaticMode(): boolean {
+  if (typeof window === "undefined") return true;
+  const { protocol, hostname, port } = window.location;
+  if (protocol === "file:") return true;
+  // Local dev with Express on port 5000 — backend is available.
+  if ((hostname === "localhost" || hostname === "127.0.0.1") && port === "5000") return false;
+  // Any other local dev port — also assume backend (Vite proxy).
+  if (hostname === "localhost" || hostname === "127.0.0.1") return false;
+  // Anywhere else (production hosting) — static.
+  return true;
+}
+
+const STATIC_MODE = detectStaticMode();
 
 const API_BASE = "__PORT_5000__".startsWith("__") ? "" : "__PORT_5000__";
 
