@@ -8,11 +8,13 @@ export function seed() {
       [
         { id: 26, name: "Machina Tiga", color: "Horizon", keycaps: "GMK Deep Navy", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Machina Tiga", status: "built", format: "65%" },
         { id: 30, name: "Neson Studio 810E", color: "Metallic", keycaps: "GMK Fuji", switchType: "HMX Firecracker (Tactile)", photoCount: 1, photoFolder: "Neson 810E", status: "built", format: "TKL" },
+        { id: 16, name: "Monokei & TGR Tomo", color: "Navy", keycaps: "GMK Hyperbeige", switchType: "SWK V Black", photoCount: 3, photoFolder: "Monokei & TGR TOMO", status: "built", format: "75%" },
       ],
       [
         { id: 43, name: "GMK Deep Navy", status: "on_keyboard" },
         { id: 48, name: "GMK Fuji", status: "on_keyboard" },
-        { id: 54, name: "GMK Hyperbeige", status: "in_box" },
+        { id: 38, name: "GMK Grand Prix", status: "in_box" },
+        { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
         { id: 55, name: "GMK King of the Seas", status: "gb" },
       ],
       [
@@ -39,7 +41,7 @@ export function seed() {
     { id: 13, name: "Neo Ergo (Nebula)", color: "Nebula", keycaps: "GMK Fright Club", switchType: "Outemu Unity", photoCount: 1, photoFolder: "Neo Ergo Nebula", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
     { id: 14, name: "KBDFans Agar", color: "Burgundy", keycaps: "GMK Higanbana", switchType: "Invokeys x ALAS Red Bean", photoCount: 7, photoFolder: "Agar", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 15, name: "Mode Sonnet", color: "Green", keycaps: "GMK November Fog", switchType: "Akko Green Fog", photoCount: 1, photoFolder: "Mode Sonnet", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
-    { id: 16, name: "Monokei & TGR Tomo", color: "Navy", keycaps: "GMK Grand Prix", switchType: "SWK V Black", photoCount: 1, photoFolder: "Monokei & TGR TOMO", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
+    { id: 16, name: "Monokei & TGR Tomo", color: "Navy", keycaps: "GMK Hyperbeige", switchType: "SWK V Black", photoCount: 3, photoFolder: "Monokei & TGR TOMO", status: "built", lastUsedAt: null, useCount: 0, format: "75%" },
     { id: 17, name: "Linworks & TGR Dolice", color: "Dark Gray", keycaps: "GMK Terror Below", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "Linworks & TGR Dolice", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
     { id: 18, name: "Ramaworks Kara", color: "Azure", keycaps: "GMK Analog Dreams R2 Digital Nightmares", switchType: "Raptor MX Extreme Gaming Switch", photoCount: 1, photoFolder: "Ramaworks KARA", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 19, name: "Swagkeys Eave65", color: "PC / Clear", keycaps: "GMK Pulse (Mitolet)", switchType: "Gateron Azure Dragon V4", photoCount: 1, photoFolder: "Eave65", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
@@ -100,7 +102,7 @@ export function seed() {
     { id: 35, name: "GMK Mon.Material V1", status: "on_keyboard" },
     { id: 36, name: "GMK Chaos Theory", status: "in_box" },
     { id: 37, name: "GMK SUSU", status: "in_box" },
-    { id: 38, name: "GMK Grand Prix", status: "on_keyboard" },
+    { id: 38, name: "GMK Grand Prix", status: "in_box" },
     { id: 39, name: "GMK Divinapapaya", status: "gb" },
     { id: 40, name: "GMK Masterpiece", status: "on_keyboard" },
     { id: 41, name: "GMK Metropolis", status: "on_keyboard" },
@@ -116,7 +118,7 @@ export function seed() {
     { id: 51, name: "GMK Nervewrecker", status: "in_box" },
     { id: 52, name: "GMK Redacted®", status: "in_box" },
     { id: 53, name: "GMK Combobreaker", status: "gb" },
-    { id: 54, name: "GMK Hyperbeige", status: "in_box" },
+    { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
     { id: 55, name: "GMK King of the Seas", status: "gb" },
   ];
 

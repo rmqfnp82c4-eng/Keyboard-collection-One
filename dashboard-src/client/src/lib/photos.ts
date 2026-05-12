@@ -18,7 +18,7 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "Neo Ergo Nebula": ["Nebula"],
   "Agar": ["Agar (1)", "Agar (2)", "Agar (3)", "Agar (4)", "Agar (5)", "Agar (6)", "Agar (7)"],
   "Mode Sonnet": ["Mode Sonnet"],
-  "Monokei & TGR TOMO": ["TOMO"],
+  "Monokei & TGR TOMO": ["Monokei & TGR TOMO", "Monokei & TGR TOMO (2)", "Monokei & TGR TOMO (3)"],
   "Linworks & TGR Dolice": ["Linworks & TGR Dolice"],
   "Ramaworks KARA": ["KARA"],
   "Eave65": ["Eave65"],
