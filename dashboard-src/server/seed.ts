@@ -16,6 +16,7 @@ export function seed() {
         { id: 38, name: "GMK Grand Prix", status: "in_box" },
         { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
         { id: 55, name: "GMK King of the Seas", status: "gb" },
+        { id: 56, name: "GMK Handarbeige R2", status: "in_box" },
       ],
       [
         { id: 69, name: "Gateron Lanes", brand: "Gateron", inUse: 1 },
@@ -120,6 +121,7 @@ export function seed() {
     { id: 53, name: "GMK Combobreaker", status: "gb" },
     { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
     { id: 55, name: "GMK King of the Seas", status: "gb" },
+    { id: 56, name: "GMK Handarbeige R2", status: "in_box" },
   ];
 
   const switches: Switch[] = [

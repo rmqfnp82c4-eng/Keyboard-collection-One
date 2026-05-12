@@ -123,6 +123,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 53, name: "GMK Combobreaker", status: "gb" },
   { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
   { id: 55, name: "GMK King of the Seas", status: "gb" },
+  { id: 56, name: "GMK Handarbeige R2", status: "in_box" },
 ];
 
 const switchesData: SwitchData[] = [
