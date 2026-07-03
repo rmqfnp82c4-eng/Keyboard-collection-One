@@ -33,6 +33,10 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "TGR & SM Lin Shi Alice": ["TGR & SN Lin Shi Alice"],
   "Machina Tiga": ["Machina Tiga (2)", "Machina Tiga (3)", "Machina Tiga (4)", "Machina Tiga (1)"],
   "Neson 810E": ["Neson 810E"],
+  "Owlab Jelly Evolv": ["Owlab-Jelly"],
+  "Bowl Pangea Mini": ["Bowl-Pangea-Mini-3"],
+  "Pratoganist": ["Pratoganist-2"],
+  "Lucky65 v2": ["Lucky65-V2-4"],
 };
 
 function buildUrl(folder: string, filename: string): string {
