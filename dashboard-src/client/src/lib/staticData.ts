@@ -112,7 +112,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 36, name: "GMK Chaos Theory", status: "on_keyboard" },
   { id: 37, name: "GMK SUSU", status: "in_box" },
   { id: 38, name: "GMK Grand Prix", status: "in_box" },
-  { id: 39, name: "GMK Divinapapaya", status: "gb" },
+  { id: 39, name: "GMK Prepress", status: "gb" },
   { id: 40, name: "GMK Masterpiece", status: "on_keyboard" },
   { id: 41, name: "GMK Metropolis", status: "on_keyboard" },
   { id: 42, name: "GMK ONI", status: "on_keyboard" },
