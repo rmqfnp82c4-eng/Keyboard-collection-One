@@ -139,6 +139,13 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 63, name: "GMK British Racing R2", status: "in_box" },
   { id: 64, name: "GMK Violet Alert", status: "on_keyboard" },
   { id: 65, name: "GMK Sumi", status: "on_keyboard" },
+  { id: 66, name: "GMK NTD", status: "in_box" },
+  { id: 67, name: "GMK Led Zeppelin", status: "gb" },
+  { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
+  { id: 69, name: "GMK Fundamentals", status: "gb" },
+  { id: 70, name: "GMK Awaken", status: "gb" },
+  { id: 71, name: "GMK Q:01", status: "gb" },
+  { id: 72, name: "GMK Cero1", status: "gb" },
 ];
 
 const switchesData: SwitchData[] = [
