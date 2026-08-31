@@ -146,6 +146,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 70, name: "GMK Awaken", status: "gb" },
   { id: 71, name: "GMK Q:01", status: "gb" },
   { id: 72, name: "GMK Cero1", status: "gb" },
+  { id: 73, name: "GMK Avanguardia", status: "in_box" },
 ];
 
 const switchesData: SwitchData[] = [

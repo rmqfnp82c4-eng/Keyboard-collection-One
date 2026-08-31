@@ -27,6 +27,7 @@ export function seed() {
         { id: 70, name: "GMK Awaken", status: "gb" },
         { id: 71, name: "GMK Q:01", status: "gb" },
         { id: 72, name: "GMK Cero1", status: "gb" },
+        { id: 73, name: "GMK Avanguardia", status: "in_box" },
         { id: 48, name: "GMK Fuji", status: "on_keyboard" },
         { id: 38, name: "GMK Grand Prix", status: "in_box" },
         { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
@@ -177,6 +178,7 @@ export function seed() {
     { id: 70, name: "GMK Awaken", status: "gb" },
     { id: 71, name: "GMK Q:01", status: "gb" },
     { id: 72, name: "GMK Cero1", status: "gb" },
+    { id: 73, name: "GMK Avanguardia", status: "in_box" },
   ];
 
   const switches: Switch[] = [
