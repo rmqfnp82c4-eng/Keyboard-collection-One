@@ -45,6 +45,7 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "Tofu Redux": ["Tofu-Redux"],
   "Sonic170 V2": ["Sonic170-v2-1", "Sonic170-v2-2"],
   "+84": ["84-1", "84-2"],
+  "Umbra I Moonbreaker": ["Umbra-I-Moonbreaker", "Umbra-I-Moonbreaker-2", "Umbra-I-Moonbreaker-3"],
 };
 
 function buildUrl(folder: string, filename: string): string {
