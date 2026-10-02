@@ -79,7 +79,7 @@ export function seed() {
         { id: 83, name: "SWK Jieum", brand: "SWK", inUse: 1 },
         { id: 41, name: "Invokeys × ALAS Red Bean", brand: "Invokeys", inUse: 0 },
       ],
-      [14], // Agar — gifted
+      [14, 33], // 14 Agar — gifted; 33 Antipode Logos Mk.1 — removed
     );
     return;
   }
@@ -116,7 +116,6 @@ export function seed() {
     { id: 30, name: "Neson Studio 810E", color: "Metallic", keycaps: "GMK Fuji", switchType: "HMX Firecracker (Tactile)", photoCount: 1, photoFolder: "Neson 810E", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
     { id: 31, name: "Glare65", color: "RAW", keycaps: "GMK Masterpiece", switchType: "Clackbits Linear R2", photoCount: 3, photoFolder: "Glare65", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 32, name: "Geonworks F1-8X V2 (2nd)", color: "Hyperbeige", keycaps: "GMK Black Snail (Red Cyrillic)", switchType: "Gateron Type-R", photoCount: 1, photoFolder: "Geonworks F1-8X V2", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
-    { id: 33, name: "Antipode Studio Logos Mk.1", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 34, name: "Sonic170 V2", color: "Mint", keycaps: "GMK Combobreaker", switchType: "SWK Jieum", photoCount: 2, photoFolder: "Sonic170 V2", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
     { id: 35, name: "Keyboy40", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "40%" },
     { id: 36, name: "TGR & SM Lin Shi Alice", color: "Silver", keycaps: "GMK ONI", switchType: "KNC Keys Red Jacket V1 Redux", photoCount: 1, photoFolder: "TGR & SM Lin Shi Alice", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
