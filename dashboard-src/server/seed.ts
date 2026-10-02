@@ -48,6 +48,9 @@ export function seed() {
         { id: 78, name: "GMK Taegeukgi", status: "on_keyboard" },
         { id: 66, name: "GMK NTD", status: "on_keyboard" },
         { id: 79, name: "GMK Agent 01", status: "on_keyboard" },
+        { id: 80, name: "GMK Striker R2 (2nd)", status: "in_box" },
+        { id: 20, name: "GMK Skeletor", status: "in_box" },
+        { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
         { id: 53, name: "GMK Combobreaker", status: "on_keyboard" },
         { id: 28, name: "GMK Higanbana", status: "in_box" },
         { id: 48, name: "GMK Fuji", status: "on_keyboard" },
@@ -55,7 +58,7 @@ export function seed() {
         { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
         { id: 55, name: "GMK King of the Seas", status: "gb" },
         { id: 56, name: "GMK Handarbeige R2", status: "on_keyboard" },
-        { id: 7, name: "GMK Striker R2 (×2)", status: "on_keyboard" },
+        { id: 7, name: "GMK Striker R2", status: "on_keyboard" },
         { id: 25, name: "GMK Kaiju R3", status: "on_keyboard" },
         { id: 36, name: "GMK Chaos Theory", status: "on_keyboard" },
         { id: 57, name: "GMK Prussian Alert", status: "gb" },
@@ -147,7 +150,7 @@ export function seed() {
     { id: 4, name: "GMK Cubed", status: "on_keyboard" },
     { id: 5, name: "GMK Kitsune", status: "in_box" },
     { id: 6, name: "GMK Honor Light Base", status: "on_keyboard" },
-    { id: 7, name: "GMK Striker R2 (×2)", status: "on_keyboard" },
+    { id: 7, name: "GMK Striker R2", status: "on_keyboard" },
     { id: 8, name: "GMK Dualshot R2", status: "on_keyboard" },
     { id: 9, name: "GMK WOB Katakana", status: "on_keyboard" },
     { id: 10, name: "GMK Panels", status: "on_keyboard" },
@@ -220,6 +223,7 @@ export function seed() {
     { id: 77, name: "GMK Blanc sur Noir", status: "on_keyboard" },
     { id: 78, name: "GMK Taegeukgi", status: "on_keyboard" },
     { id: 79, name: "GMK Agent 01", status: "on_keyboard" },
+    { id: 80, name: "GMK Striker R2 (2nd)", status: "in_box" },
   ];
 
   const switches: Switch[] = [

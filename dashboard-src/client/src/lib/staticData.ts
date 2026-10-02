@@ -85,7 +85,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 4, name: "GMK Cubed", status: "on_keyboard" },
   { id: 5, name: "GMK Kitsune", status: "in_box" },
   { id: 6, name: "GMK Honor Light Base", status: "on_keyboard" },
-  { id: 7, name: "GMK Striker R2 (×2)", status: "on_keyboard" },
+  { id: 7, name: "GMK Striker R2", status: "on_keyboard" },
   { id: 8, name: "GMK Dualshot R2", status: "on_keyboard" },
   { id: 9, name: "GMK WOB Katakana", status: "on_keyboard" },
   { id: 10, name: "GMK Panels", status: "on_keyboard" },
@@ -158,6 +158,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 77, name: "GMK Blanc sur Noir", status: "on_keyboard" },
   { id: 78, name: "GMK Taegeukgi", status: "on_keyboard" },
   { id: 79, name: "GMK Agent 01", status: "on_keyboard" },
+  { id: 80, name: "GMK Striker R2 (2nd)", status: "in_box" },
 ];
 
 const switchesData: SwitchData[] = [

@@ -211,6 +211,9 @@ export class JsonStorage {
       if (existing) {
         Object.assign(existing, upd);
         changed = true;
+      } else if (upd.id && upd.name) {
+        this.data.keycapSets.push(upd as KeycapSet);
+        changed = true;
       }
     }
 
@@ -218,6 +221,9 @@ export class JsonStorage {
       const existing = this.data.switches.find((s) => s.id === upd.id);
       if (existing) {
         Object.assign(existing, upd);
+        changed = true;
+      } else if (upd.id && upd.name) {
+        this.data.switches.push(upd as Switch);
         changed = true;
       }
     }
