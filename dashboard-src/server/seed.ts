@@ -32,7 +32,7 @@ export function seed() {
         { id: 66, name: "GMK NTD", status: "on_keyboard" },
         { id: 67, name: "GMK Led Zep R2", status: "on_keyboard" },
         { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
-        { id: 69, name: "GMK Fundamentals", status: "gb" },
+        { id: 69, name: "GMK Fundamentals", status: "in_box" },
         { id: 70, name: "GMK Awaken", status: "in_box" },
         { id: 71, name: "GMK Q:01", status: "in_box" },
         { id: 72, name: "GMK Cero1", status: "gb" },
@@ -70,7 +70,6 @@ export function seed() {
         { id: 63, name: "GMK British Racing R2", status: "in_box" },
         { id: 64, name: "GMK Violet Alert", status: "on_keyboard" },
         { id: 65, name: "GMK Sumi", status: "on_keyboard" },
-        { id: 39, name: "GMK Prepress", status: "gb" },
       ],
       [
         { id: 69, name: "Gateron Lanes", brand: "Gateron", inUse: 1 },
@@ -89,6 +88,7 @@ export function seed() {
         { id: 41, name: "Invokeys × ALAS Red Bean", brand: "Invokeys", inUse: 0 },
       ],
       [14, 33], // 14 Agar — gifted; 33 Antipode Logos Mk.1 — removed
+      [39], // keycaps: GMK Prepress — removed
     );
     return;
   }
@@ -182,7 +182,6 @@ export function seed() {
     { id: 36, name: "GMK Chaos Theory", status: "on_keyboard" },
     { id: 37, name: "GMK SUSU", status: "in_box" },
     { id: 38, name: "GMK Grand Prix", status: "in_box" },
-    { id: 39, name: "GMK Prepress", status: "gb" },
     { id: 40, name: "GMK Masterpiece", status: "on_keyboard" },
     { id: 41, name: "GMK Metropolis", status: "on_keyboard" },
     { id: 42, name: "GMK ONI", status: "on_keyboard" },
@@ -212,7 +211,7 @@ export function seed() {
     { id: 66, name: "GMK NTD", status: "on_keyboard" },
     { id: 67, name: "GMK Led Zep R2", status: "on_keyboard" },
     { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
-    { id: 69, name: "GMK Fundamentals", status: "gb" },
+    { id: 69, name: "GMK Fundamentals", status: "in_box" },
     { id: 70, name: "GMK Awaken", status: "in_box" },
     { id: 71, name: "GMK Q:01", status: "in_box" },
     { id: 72, name: "GMK Cero1", status: "gb" },
