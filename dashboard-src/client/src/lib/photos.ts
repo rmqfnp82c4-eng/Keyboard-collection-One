@@ -43,6 +43,7 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "W1-AT": ["W1-AT"],
   "F1-40": ["F1-40"],
   "Tofu Redux": ["Tofu-Redux"],
+  "Sonic170 V2": ["Sonic170-v2-1", "Sonic170-v2-2"],
 };
 
 function buildUrl(folder: string, filename: string): string {

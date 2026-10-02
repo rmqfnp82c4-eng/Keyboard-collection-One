@@ -61,7 +61,7 @@ const keyboardsData: KeyboardData[] = [
   { id: 31, name: "Glare65", color: "RAW", keycaps: "GMK Masterpiece", switchType: "Clackbits Linear R2", photoCount: 3, photoFolder: "Glare65", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
   { id: 32, name: "Geonworks F1-8X V2 (2nd)", color: "Hyperbeige", keycaps: "GMK Black Snail (Red Cyrillic)", switchType: "Gateron Type-R", photoCount: 1, photoFolder: "Geonworks F1-8X V2", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
   { id: 33, name: "Antipode Studio Logos Mk.1", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
-  { id: 34, name: "Sonic170 V2", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 34, name: "Sonic170 V2", color: "Mint", keycaps: "GMK Combobreaker", switchType: "SWK Jieum", photoCount: 2, photoFolder: "Sonic170 V2", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
   { id: 35, name: "Keyboy40", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "40%" },
   { id: 36, name: "TGR & SM Lin Shi Alice", color: "Silver", keycaps: "GMK ONI", switchType: "KNC Keys Red Jacket V1 Redux", photoCount: 1, photoFolder: "TGR & SM Lin Shi Alice", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
   { id: 37, name: "Owlab Jelly Evolv", color: "White", keycaps: "GMK Striker R2", switchType: "Keebfront Sinister", photoCount: 1, photoFolder: "Owlab Jelly Evolv", status: "built", lastUsedAt: null, useCount: 0, format: "75%" },
@@ -131,7 +131,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 50, name: "GMK Fleuriste", status: "in_box" },
   { id: 51, name: "GMK Nervewrecker", status: "in_box" },
   { id: 52, name: "GMK Redacted®", status: "in_box" },
-  { id: 53, name: "GMK Combobreaker", status: "gb" },
+  { id: 53, name: "GMK Combobreaker", status: "on_keyboard" },
   { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
   { id: 55, name: "GMK King of the Seas", status: "gb" },
   { id: 56, name: "GMK Handarbeige R2", status: "on_keyboard" },
@@ -242,6 +242,7 @@ const switchesData: SwitchData[] = [
   { id: 80, name: "HMX Firecracker (Tactile)", brand: "HMX", inUse: 1 },
   { id: 81, name: "Icey Ice Mango Berry", brand: "Icey Ice", inUse: 1 },
   { id: 82, name: "g3ms Voidstone", brand: "g3ms", inUse: 1 },
+  { id: 83, name: "SWK Jieum", brand: "SWK", inUse: 1 },
 ];
 
 // Keyboard of the day — deterministic by date (same logic as server)
