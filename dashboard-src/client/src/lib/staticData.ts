@@ -42,7 +42,6 @@ const keyboardsData: KeyboardData[] = [
   { id: 11, name: "Geonworks F2-84", color: "Cookie Cream", keycaps: "GMK Rubrehose", switchType: "Cherry MX2A Black", photoCount: 8, photoFolder: "F2-84", status: "built", lastUsedAt: null, useCount: 0, format: "75%" },
   { id: 12, name: "Geonworks F1-8X V2", color: "Hyperbeige", keycaps: "GMK Prussian Blue", switchType: "Cherry MX2A Purple", photoCount: 9, photoFolder: "F1-8X V2", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
   { id: 13, name: "Neo Ergo (Nebula)", color: "Nebula", keycaps: "GMK Fright Club", switchType: "Outemu Unity", photoCount: 1, photoFolder: "Neo Ergo Nebula", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
-  { id: 14, name: "KBDFans Agar", color: "Burgundy", keycaps: "GMK Higanbana", switchType: "Invokeys x ALAS Red Bean", photoCount: 7, photoFolder: "Agar", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
   { id: 15, name: "Mode Sonnet", color: "Green", keycaps: "GMK November Fog", switchType: "Akko Green Fog", photoCount: 1, photoFolder: "Mode Sonnet", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
   { id: 16, name: "Monokei & TGR Tomo", color: "Navy", keycaps: "GMK Hyperbeige", switchType: "SWK V Black", photoCount: 3, photoFolder: "Monokei & TGR TOMO", status: "built", lastUsedAt: null, useCount: 0, format: "75%" },
   { id: 17, name: "Linworks & TGR Dolice", color: "Dark Gray", keycaps: "GMK Terror Below", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "Linworks & TGR Dolice", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
@@ -74,6 +73,9 @@ const keyboardsData: KeyboardData[] = [
   { id: 43, name: "Tofu60 3.0", color: "RAW", keycaps: "GMK Skeletor R2", switchType: "Gateron INK V2 Black Baltic Edition", photoCount: 3, photoFolder: "Tofu60 3.0", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
   { id: 44, name: "IV Works Umbra V: Sacrifice", color: "Red", keycaps: "GMK Led Zep R2", switchType: "g3ms Voidstone", photoCount: 2, photoFolder: "Umbra V Sacrifice", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
   { id: 45, name: "Tofu60 3.0 ISO", color: "Purple", keycaps: "GMK Blanc sur Noir", switchType: "Keygeek × Brian Workshop B1", photoCount: 1, photoFolder: "Tofu60 3.0 ISO", status: "built", lastUsedAt: null, useCount: 0, format: "60% ISO" },
+  { id: 46, name: "Geonworks W1-AT", color: "Navy", keycaps: "GMK Blue Alert", switchType: "Cherry MX2A Brown", photoCount: 1, photoFolder: "W1-AT", status: "built", lastUsedAt: null, useCount: 0, format: "100%" },
+  { id: 47, name: "Geonworks F1-40", color: "Cream", keycaps: "GMK Taegeukgi", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "F1-40", status: "built", lastUsedAt: null, useCount: 0, format: "40%" },
+  { id: 48, name: "Tofu Redux", color: "Red", keycaps: "GMK WOB Katakana", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "Tofu Redux", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
 ];
 
 const keycapSetsData: KeycapSetData[] = [
@@ -85,7 +87,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 6, name: "GMK Honor Light Base", status: "on_keyboard" },
   { id: 7, name: "GMK Striker R2 (×2)", status: "on_keyboard" },
   { id: 8, name: "GMK Dualshot R2", status: "on_keyboard" },
-  { id: 9, name: "GMK WOB Katakana", status: "in_box" },
+  { id: 9, name: "GMK WOB Katakana", status: "on_keyboard" },
   { id: 10, name: "GMK Panels", status: "on_keyboard" },
   { id: 11, name: "GMK Terror Below", status: "on_keyboard" },
   { id: 12, name: "GMK Royal Cadet", status: "on_keyboard" },
@@ -102,7 +104,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 23, name: "GMK Baltic", status: "on_keyboard" },
   { id: 24, name: "GMK Gurokawa", status: "gb" },
   { id: 25, name: "GMK Kaiju R3", status: "on_keyboard" },
-  { id: 26, name: "GMK Blue Alert", status: "in_box" },
+  { id: 26, name: "GMK Blue Alert", status: "on_keyboard" },
   { id: 27, name: "GMK Prussian Blue", status: "on_keyboard" },
   { id: 28, name: "GMK Higanbana", status: "on_keyboard" },
   { id: 29, name: "GMK Evil Dolch", status: "in_box" },
@@ -154,6 +156,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 75, name: "GMK Shanshui", status: "in_box" },
   { id: 76, name: "GMK Cinder", status: "in_box" },
   { id: 77, name: "GMK Blanc sur Noir", status: "on_keyboard" },
+  { id: 78, name: "GMK Taegeukgi", status: "on_keyboard" },
 ];
 
 const switchesData: SwitchData[] = [

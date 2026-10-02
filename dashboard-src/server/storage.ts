@@ -180,9 +180,18 @@ export class JsonStorage {
     keyboardUpdates: Partial<Keyboard>[],
     keycapUpdates: Partial<KeycapSet>[] = [],
     switchUpdates: Partial<Switch>[] = [],
+    deleteKeyboardIds: number[] = [],
   ) {
     if (this.data.keyboards.length === 0) return;
     let changed = false;
+
+    for (const id of deleteKeyboardIds) {
+      const idx = this.data.keyboards.findIndex((k) => k.id === id);
+      if (idx !== -1) {
+        this.data.keyboards.splice(idx, 1);
+        changed = true;
+      }
+    }
 
     for (const upd of keyboardUpdates) {
       const existing = this.data.keyboards.find((k) => k.id === upd.id);
