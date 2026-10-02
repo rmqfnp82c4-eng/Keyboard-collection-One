@@ -15,7 +15,7 @@ export function seed() {
         { id: 40, name: "Pratoganist", color: "Silver", keycaps: "GMK Kaiju R3", switchType: "Keebfront Coley", photoCount: 1, photoFolder: "Pratoganist", status: "built", format: "60%" },
         { id: 41, name: "Minerva LX by Archetype", color: "Beige", keycaps: "GMK Handarbeige R2", switchType: "HMX Sand Storm", photoCount: 0, photoFolder: null, status: "built", format: "60%" },
         { id: 42, name: "Lucky65 v2", color: "White", keycaps: "GMK Sumi", switchType: "Gateron Oil King", photoCount: 1, photoFolder: "Lucky65 v2", status: "built", format: "65%" },
-        { id: 43, name: "Tofu60 3.0", color: null, keycaps: "GMK Skeletor R2", switchType: "Gateron INK V2 Black Baltic Edition", photoCount: 0, photoFolder: null, status: "built", format: "60%" },
+        { id: 43, name: "Tofu60 3.0", color: "RAW", keycaps: "GMK Skeletor R2", switchType: "Gateron INK V2 Black Baltic Edition", photoCount: 3, photoFolder: "Tofu60 3.0", status: "built", format: "60%" },
         { id: 44, name: "IV Works Umbra V: Sacrifice", color: "Red", keycaps: "GMK Led Zep R2", switchType: "g3ms Voidstone", photoCount: 2, photoFolder: "Umbra V Sacrifice", status: "built", format: "60%" },
         { id: 45, name: "Tofu60 3.0 ISO", color: "Purple", keycaps: "GMK Blanc sur Noir", switchType: "Keygeek × Brian Workshop B1", photoCount: 1, photoFolder: "Tofu60 3.0 ISO", status: "built", format: "60% ISO" },
         { id: 12, name: "Geonworks F1-8X V2", color: "Hyperbeige", keycaps: "GMK Prussian Blue", switchType: "Cherry MX2A Purple", photoCount: 9, photoFolder: "F1-8X V2", status: "built", format: "TKL" },
@@ -115,7 +115,7 @@ export function seed() {
     { id: 40, name: "Pratoganist", color: "Silver", keycaps: "GMK Kaiju R3", switchType: "Keebfront Coley", photoCount: 1, photoFolder: "Pratoganist", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 41, name: "Minerva LX by Archetype", color: "Beige", keycaps: "GMK Handarbeige R2", switchType: "HMX Sand Storm", photoCount: 0, photoFolder: null, status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 42, name: "Lucky65 v2", color: "White", keycaps: "GMK Sumi", switchType: "Gateron Oil King", photoCount: 1, photoFolder: "Lucky65 v2", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
-    { id: 43, name: "Tofu60 3.0", color: null, keycaps: "GMK Skeletor R2", switchType: "Gateron INK V2 Black Baltic Edition", photoCount: 0, photoFolder: null, status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+    { id: 43, name: "Tofu60 3.0", color: "RAW", keycaps: "GMK Skeletor R2", switchType: "Gateron INK V2 Black Baltic Edition", photoCount: 3, photoFolder: "Tofu60 3.0", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 44, name: "IV Works Umbra V: Sacrifice", color: "Red", keycaps: "GMK Led Zep R2", switchType: "g3ms Voidstone", photoCount: 2, photoFolder: "Umbra V Sacrifice", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 45, name: "Tofu60 3.0 ISO", color: "Purple", keycaps: "GMK Blanc sur Noir", switchType: "Keygeek × Brian Workshop B1", photoCount: 1, photoFolder: "Tofu60 3.0 ISO", status: "built", lastUsedAt: null, useCount: 0, format: "60% ISO" },
   ];

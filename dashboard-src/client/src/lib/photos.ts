@@ -38,6 +38,7 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "Pratoganist": ["Pratoganist-2"],
   "Lucky65 v2": ["Lucky65-V2-4"],
   "Umbra V Sacrifice": ["Umbra-V-Sacrifice", "Umbra-V-Sacrifice-2-2"],
+  "Tofu60 3.0": ["Tofu60-3.0", "Tofu60-3.0-2", "Tofu60-3.0-3"],
   "Tofu60 3.0 ISO": ["Tofu60-3.0-ISO-3"],
 };
 
