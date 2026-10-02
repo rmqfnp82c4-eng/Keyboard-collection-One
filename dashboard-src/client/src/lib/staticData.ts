@@ -71,6 +71,9 @@ const keyboardsData: KeyboardData[] = [
   { id: 40, name: "Pratoganist", color: "Silver", keycaps: "GMK Kaiju R3", switchType: "Keebfront Coley", photoCount: 1, photoFolder: "Pratoganist", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
   { id: 41, name: "Minerva LX by Archetype", color: "Beige", keycaps: "GMK Handarbeige R2", switchType: "HMX Sand Storm", photoCount: 0, photoFolder: null, status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
   { id: 42, name: "Lucky65 v2", color: "White", keycaps: "GMK Sumi", switchType: "Gateron Oil King", photoCount: 1, photoFolder: "Lucky65 v2", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 43, name: "Tofu60 3.0", color: null, keycaps: "GMK Skeletor R2", switchType: "Gateron INK V2 Black Baltic Edition", photoCount: 0, photoFolder: null, status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 44, name: "IV Works Umbra V: Sacrifice", color: "Red", keycaps: "GMK Led Zep R2", switchType: "g3ms Voidstone", photoCount: 2, photoFolder: "Umbra V Sacrifice", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 45, name: "Tofu60 3.0 ISO", color: "Purple", keycaps: "GMK Blanc sur Noir", switchType: "Keygeek × Brian Workshop B1", photoCount: 1, photoFolder: "Tofu60 3.0 ISO", status: "built", lastUsedAt: null, useCount: 0, format: "60% ISO" },
 ];
 
 const keycapSetsData: KeycapSetData[] = [
@@ -118,7 +121,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 42, name: "GMK ONI", status: "on_keyboard" },
   { id: 43, name: "GMK Deep Navy", status: "on_keyboard" },
   { id: 44, name: "GMK Oblivion 40s", status: "on_keyboard" },
-  { id: 45, name: "GMK Taiga R2", status: "gb" },
+  { id: 45, name: "GMK Taiga R2", status: "in_box" },
   { id: 46, name: "GMK Dracula V2 (2nd)", status: "in_box" },
   { id: 47, name: "GMK Nightlight", status: "in_box" },
   { id: 48, name: "GMK Fuji", status: "on_keyboard" },
@@ -131,7 +134,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 55, name: "GMK King of the Seas", status: "gb" },
   { id: 56, name: "GMK Handarbeige R2", status: "on_keyboard" },
   { id: 57, name: "GMK Prussian Alert", status: "gb" },
-  { id: 58, name: "GMK GREG R2", status: "gb" },
+  { id: 58, name: "GMK GREG R2", status: "in_box" },
   { id: 59, name: "GMK Masterpiece R2", status: "gb" },
   { id: 60, name: "GMK Retrowave", status: "in_box" },
   { id: 61, name: "GMK Red Samurai", status: "in_box" },
@@ -140,13 +143,17 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 64, name: "GMK Violet Alert", status: "on_keyboard" },
   { id: 65, name: "GMK Sumi", status: "on_keyboard" },
   { id: 66, name: "GMK NTD", status: "in_box" },
-  { id: 67, name: "GMK Led Zeppelin", status: "gb" },
+  { id: 67, name: "GMK Led Zep R2", status: "on_keyboard" },
   { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
   { id: 69, name: "GMK Fundamentals", status: "gb" },
-  { id: 70, name: "GMK Awaken", status: "gb" },
-  { id: 71, name: "GMK Q:01", status: "gb" },
+  { id: 70, name: "GMK Awaken", status: "in_box" },
+  { id: 71, name: "GMK Q:01", status: "in_box" },
   { id: 72, name: "GMK Cero1", status: "gb" },
   { id: 73, name: "GMK Avanguardia", status: "in_box" },
+  { id: 74, name: "GMK Foundation", status: "in_box" },
+  { id: 75, name: "GMK Shanshui", status: "in_box" },
+  { id: 76, name: "GMK Cinder", status: "in_box" },
+  { id: 77, name: "GMK Blanc sur Noir", status: "on_keyboard" },
 ];
 
 const switchesData: SwitchData[] = [
@@ -167,7 +174,7 @@ const switchesData: SwitchData[] = [
   { id: 15, name: "Gateron Melodic", brand: "Gateron", inUse: 0 },
   { id: 16, name: "Gateron Robin", brand: "Gateron", inUse: 0 },
   { id: 17, name: "Gateron Smoothie", brand: "Gateron", inUse: 0 },
-  { id: 18, name: "Gateron INK V2 Black Baltic Edition", brand: "Gateron", inUse: 0 },
+  { id: 18, name: "Gateron INK V2 Black Baltic Edition", brand: "Gateron", inUse: 1 },
   { id: 19, name: "Siliworks × HMX SONJA", brand: "Siliworks", inUse: 0 },
   { id: 20, name: "Siliworks × HMX SONJA HC", brand: "Siliworks", inUse: 0 },
   { id: 21, name: "Cherry MX2A Black", brand: "Cherry", inUse: 1 },
@@ -200,7 +207,7 @@ const switchesData: SwitchData[] = [
   { id: 48, name: "SW x CaptainSterling Ghost Dragon", brand: "Swagkeys", inUse: 1 },
   { id: 49, name: "Owlab London Fog", brand: "Owlab", inUse: 1 },
   { id: 50, name: "Keygeek Mirror Lake Linear", brand: "Keygeek", inUse: 0 },
-  { id: 51, name: "Keygeek × Brian Workshop B1", brand: "Keygeek", inUse: 0 },
+  { id: 51, name: "Keygeek × Brian Workshop B1", brand: "Keygeek", inUse: 1 },
   { id: 52, name: "Gateron Type-R", brand: "Gateron", inUse: 1 },
   { id: 53, name: "Gateron Quinn", brand: "Gateron", inUse: 1 },
   { id: 54, name: "Gateron Azure Dragon V4", brand: "Gateron", inUse: 1 },
@@ -231,6 +238,7 @@ const switchesData: SwitchData[] = [
   { id: 79, name: "KBDfans Roller V2", brand: "KBDfans", inUse: 0 },
   { id: 80, name: "HMX Firecracker (Tactile)", brand: "HMX", inUse: 1 },
   { id: 81, name: "Icey Ice Mango Berry", brand: "Icey Ice", inUse: 1 },
+  { id: 82, name: "g3ms Voidstone", brand: "g3ms", inUse: 1 },
 ];
 
 // Keyboard of the day — deterministic by date (same logic as server)

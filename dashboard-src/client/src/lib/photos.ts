@@ -37,6 +37,8 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "Bowl Pangea Mini": ["Bowl-Pangea-Mini-3"],
   "Pratoganist": ["Pratoganist-2"],
   "Lucky65 v2": ["Lucky65-V2-4"],
+  "Umbra V Sacrifice": ["Umbra-V-Sacrifice", "Umbra-V-Sacrifice-2-2"],
+  "Tofu60 3.0 ISO": ["Tofu60-3.0-ISO-3"],
 };
 
 function buildUrl(folder: string, filename: string): string {
