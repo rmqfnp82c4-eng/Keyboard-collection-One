@@ -45,6 +45,7 @@ export function seed() {
         { id: 9, name: "GMK WOB Katakana", status: "on_keyboard" },
         { id: 78, name: "GMK Taegeukgi", status: "on_keyboard" },
         { id: 53, name: "GMK Combobreaker", status: "on_keyboard" },
+        { id: 28, name: "GMK Higanbana", status: "in_box" },
         { id: 48, name: "GMK Fuji", status: "on_keyboard" },
         { id: 38, name: "GMK Grand Prix", status: "in_box" },
         { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
@@ -76,6 +77,7 @@ export function seed() {
         { id: 51, name: "Keygeek × Brian Workshop B1", brand: "Keygeek", inUse: 1 },
         { id: 82, name: "g3ms Voidstone", brand: "g3ms", inUse: 1 },
         { id: 83, name: "SWK Jieum", brand: "SWK", inUse: 1 },
+        { id: 41, name: "Invokeys × ALAS Red Bean", brand: "Invokeys", inUse: 0 },
       ],
       [14], // Agar — gifted
     );
@@ -160,7 +162,7 @@ export function seed() {
     { id: 25, name: "GMK Kaiju R3", status: "on_keyboard" },
     { id: 26, name: "GMK Blue Alert", status: "on_keyboard" },
     { id: 27, name: "GMK Prussian Blue", status: "on_keyboard" },
-    { id: 28, name: "GMK Higanbana", status: "on_keyboard" },
+    { id: 28, name: "GMK Higanbana", status: "in_box" },
     { id: 29, name: "GMK Evil Dolch", status: "in_box" },
     { id: 30, name: "GMK Black Snail", status: "in_box" },
     { id: 31, name: "GMK Rubrehose", status: "on_keyboard" },
@@ -254,7 +256,7 @@ export function seed() {
     { id: 38, name: "KNC Keys Green Jacket", brand: "KNC Keys", inUse: 0 },
     { id: 39, name: "Invokeys × ALAS Daydreamer", brand: "Invokeys", inUse: 1 },
     { id: 40, name: "Invokeys × ALAS Nightshade", brand: "Invokeys", inUse: 1 },
-    { id: 41, name: "Invokeys × ALAS Red Bean", brand: "Invokeys", inUse: 1 },
+    { id: 41, name: "Invokeys × ALAS Red Bean", brand: "Invokeys", inUse: 0 },
     { id: 42, name: "Moyu × XCJZ Snow Grape", brand: "Moyu", inUse: 0 },
     { id: 43, name: "Sarokeys Strawberry Wine", brand: "Sarokeys", inUse: 0 },
     { id: 44, name: "KeyByeLab Switch", brand: "KeyByeLab", inUse: 0 },
