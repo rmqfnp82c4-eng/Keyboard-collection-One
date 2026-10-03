@@ -76,6 +76,9 @@ const keyboardsData: KeyboardData[] = [
   { id: 47, name: "Geonworks F1-40", color: "Cream", keycaps: "GMK Taegeukgi", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "F1-40", status: "built", lastUsedAt: null, useCount: 0, format: "40%" },
   { id: 48, name: "Tofu Redux", color: "Red", keycaps: "GMK WOB Katakana", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "Tofu Redux", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
   { id: 49, name: "IV Works Umbra I: Moonbreaker", color: "Black", keycaps: "GMK Agent 01", switchType: "Keygeek Guns N Roses", photoCount: 3, photoFolder: "Umbra I Moonbreaker", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+  { id: 50, name: "Kraze65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 51, name: "Ophanim65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
+  { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
 ];
 
 const keycapSetsData: KeycapSetData[] = [

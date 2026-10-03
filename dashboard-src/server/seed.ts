@@ -24,6 +24,9 @@ export function seed() {
         { id: 48, name: "Tofu Redux", color: "Red", keycaps: "GMK WOB Katakana", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "Tofu Redux", status: "built", format: "60%" },
         { id: 23, name: "+84", color: "Purple", keycaps: "GMK NTD", switchType: "Wuque Studio WS BigLucky Tactile", photoCount: 2, photoFolder: "+84", status: "built", format: "TKL" },
         { id: 49, name: "IV Works Umbra I: Moonbreaker", color: "Black", keycaps: "GMK Agent 01", switchType: "Keygeek Guns N Roses", photoCount: 3, photoFolder: "Umbra I Moonbreaker", status: "built", format: "60%" },
+        { id: 50, name: "Kraze65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", format: "65%" },
+        { id: 51, name: "Ophanim65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", format: "65%" },
+        { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", format: "TKL" },
         { id: 12, name: "Geonworks F1-8X V2", color: "Hyperbeige", keycaps: "GMK Prussian Blue", switchType: "Cherry MX2A Purple", photoCount: 9, photoFolder: "F1-8X V2", status: "built", format: "TKL" },
         { id: 32, name: "Geonworks F1-8X V2 (2nd)", color: "Hyperbeige", keycaps: "GMK Black Snail (Red Cyrillic)", switchType: "Gateron Type-R", photoCount: 1, photoFolder: "Geonworks F1-8X V2", status: "built", format: "TKL" },
       ],
@@ -141,6 +144,9 @@ export function seed() {
     { id: 47, name: "Geonworks F1-40", color: "Cream", keycaps: "GMK Taegeukgi", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "F1-40", status: "built", lastUsedAt: null, useCount: 0, format: "40%" },
     { id: 48, name: "Tofu Redux", color: "Red", keycaps: "GMK WOB Katakana", switchType: "Cherry MX2A Black", photoCount: 1, photoFolder: "Tofu Redux", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 49, name: "IV Works Umbra I: Moonbreaker", color: "Black", keycaps: "GMK Agent 01", switchType: "Keygeek Guns N Roses", photoCount: 3, photoFolder: "Umbra I Moonbreaker", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
+    { id: 50, name: "Kraze65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
+    { id: 51, name: "Ophanim65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
+    { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
   ];
 
   const keycapSets: KeycapSet[] = [
