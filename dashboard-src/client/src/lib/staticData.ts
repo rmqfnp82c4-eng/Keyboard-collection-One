@@ -163,6 +163,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 78, name: "GMK Taegeukgi", status: "on_keyboard" },
   { id: 79, name: "GMK Agent 01", status: "on_keyboard" },
   { id: 80, name: "GMK Striker R2 (2nd)", status: "in_box" },
+  { id: 81, name: "GMK Analog Dreams R3", status: "gb" },
 ];
 
 const switchesData: SwitchData[] = [

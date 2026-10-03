@@ -54,6 +54,7 @@ export function seed() {
         { id: 66, name: "GMK NTD", status: "on_keyboard" },
         { id: 79, name: "GMK Agent 01", status: "on_keyboard" },
         { id: 80, name: "GMK Striker R2 (2nd)", status: "in_box" },
+        { id: 81, name: "GMK Analog Dreams R3", status: "gb" },
         { id: 20, name: "GMK Skeletor", status: "in_box" },
         { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
         { id: 53, name: "GMK Combobreaker", status: "on_keyboard" },
@@ -233,6 +234,7 @@ export function seed() {
     { id: 78, name: "GMK Taegeukgi", status: "on_keyboard" },
     { id: 79, name: "GMK Agent 01", status: "on_keyboard" },
     { id: 80, name: "GMK Striker R2 (2nd)", status: "in_box" },
+    { id: 81, name: "GMK Analog Dreams R3", status: "gb" },
   ];
 
   const switches: Switch[] = [
