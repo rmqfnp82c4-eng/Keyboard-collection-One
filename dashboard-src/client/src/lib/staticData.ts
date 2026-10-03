@@ -79,6 +79,8 @@ const keyboardsData: KeyboardData[] = [
   { id: 50, name: "Kraze65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
   { id: 51, name: "Ophanim65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
   { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 53, name: "Geonworks F1-8X 722", color: "RAW", keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
+  { id: 54, name: "Tengu Alice", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
 ];
 
 const keycapSetsData: KeycapSetData[] = [

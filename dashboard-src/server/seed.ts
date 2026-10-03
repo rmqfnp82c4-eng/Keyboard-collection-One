@@ -27,6 +27,8 @@ export function seed() {
         { id: 50, name: "Kraze65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", format: "65%" },
         { id: 51, name: "Ophanim65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", format: "65%" },
         { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", format: "TKL" },
+        { id: 53, name: "Geonworks F1-8X 722", color: "RAW", keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", format: "TKL" },
+        { id: 54, name: "Tengu Alice", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", format: "Ergo/Alice" },
         { id: 12, name: "Geonworks F1-8X V2", color: "Hyperbeige", keycaps: "GMK Prussian Blue", switchType: "Cherry MX2A Purple", photoCount: 9, photoFolder: "F1-8X V2", status: "built", format: "TKL" },
         { id: 32, name: "Geonworks F1-8X V2 (2nd)", color: "Hyperbeige", keycaps: "GMK Black Snail (Red Cyrillic)", switchType: "Gateron Type-R", photoCount: 1, photoFolder: "Geonworks F1-8X V2", status: "built", format: "TKL" },
       ],
@@ -147,6 +149,8 @@ export function seed() {
     { id: 50, name: "Kraze65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 51, name: "Ophanim65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
+    { id: 53, name: "Geonworks F1-8X 722", color: "RAW", keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
+    { id: 54, name: "Tengu Alice", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
   ];
 
   const keycapSets: KeycapSet[] = [
