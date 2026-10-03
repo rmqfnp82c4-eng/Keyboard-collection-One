@@ -46,7 +46,7 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "Sonic170 V2": ["Sonic170-v2-1", "Sonic170-v2-2"],
   "+84": ["84-1", "84-2"],
   "KBDFans Pluto": ["Pluto-1-3", "Pluto-2-2", "Pluto-3"],
-  "Archetype Minerva LX": ["Minerva-1-4", "Minerva-5"],
+  "Archetype Minerva LX": ["Minerva-5"],
   "Umbra I Moonbreaker": ["Umbra-I-Moonbreaker", "Umbra-I-Moonbreaker-2", "Umbra-I-Moonbreaker-3"],
 };
 
