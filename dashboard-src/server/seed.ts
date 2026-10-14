@@ -12,7 +12,6 @@ export function seed() {
         { id: 37, name: "Owlab Jelly Evolv", color: "White", keycaps: "GMK Striker R2", switchType: "Keebfront Sinister", photoCount: 1, photoFolder: "Owlab Jelly Evolv", status: "built", format: "75%" },
         { id: 38, name: "Bowl Pangea Mini", color: "PC / RGB", keycaps: "GMK Chaos Theory", switchType: "Icey Ice Mango Berry", photoCount: 1, photoFolder: "Bowl Pangea Mini", status: "built", format: "60%" },
         { id: 39, name: "KBDFans Pluto", color: "Burgundy", keycaps: "GMK Violet Alert", switchType: "Gateron Type-R", photoCount: 3, photoFolder: "KBDFans Pluto", status: "built", format: "FRL TKL" },
-        { id: 40, name: "Pratoganist", color: "Silver", keycaps: "GMK Kaiju R3", switchType: "Keebfront Coley", photoCount: 1, photoFolder: "Pratoganist", status: "built", format: "60%" },
         { id: 41, name: "Archetype Minerva LX", color: "Black", keycaps: "GMK Handarbeit R2", switchType: "HMX Sand Storm", photoCount: 1, photoFolder: "Archetype Minerva LX", status: "built", format: "60%" },
         { id: 42, name: "Lucky65 v2", color: "White", keycaps: "GMK Sumi", switchType: "Gateron Oil King", photoCount: 1, photoFolder: "Lucky65 v2", status: "built", format: "65%" },
         { id: 43, name: "Tofu60 3.0", color: "RAW", keycaps: "GMK Skeletor R2", switchType: "Gateron INK V2 Black Baltic Edition", photoCount: 3, photoFolder: "Tofu60 3.0", status: "built", format: "60%" },
@@ -65,7 +64,7 @@ export function seed() {
         { id: 55, name: "GMK King of the Seas", status: "gb" },
         { id: 56, name: "GMK Handarbeit R2", status: "on_keyboard" },
         { id: 7, name: "GMK Striker R2", status: "on_keyboard" },
-        { id: 25, name: "GMK Kaiju R3", status: "on_keyboard" },
+        { id: 25, name: "GMK Kaiju R3", status: "in_box" },
         { id: 36, name: "GMK Chaos Theory", status: "on_keyboard" },
         { id: 57, name: "GMK Prussian Alert", status: "gb" },
         { id: 58, name: "GMK GREG R2", status: "in_box" },
@@ -83,7 +82,7 @@ export function seed() {
         { id: 10, name: "Gateron Oil King", brand: "Gateron", inUse: 1 },
         { id: 64, name: "HMX Sand Storm", brand: "HMX", inUse: 1 },
         { id: 70, name: "Keebfront Sinister", brand: "Keebfront", inUse: 1 },
-        { id: 71, name: "Keebfront Coley", brand: "Keebfront", inUse: 1 },
+        { id: 71, name: "Keebfront Coley", brand: "Keebfront", inUse: 0 },
         { id: 81, name: "Icey Ice Mango Berry", brand: "Icey Ice", inUse: 1 },
         { id: 18, name: "Gateron INK V2 Black Baltic Edition", brand: "Gateron", inUse: 1 },
         { id: 51, name: "Keygeek × Brian Workshop B1", brand: "Keygeek", inUse: 1 },
@@ -93,7 +92,7 @@ export function seed() {
         { id: 85, name: "Keygeek Guns N Roses", brand: "Keygeek", inUse: 1 },
         { id: 41, name: "Invokeys × ALAS Red Bean", brand: "Invokeys", inUse: 0 },
       ],
-      [14, 33], // 14 Agar — gifted; 33 Antipode Logos Mk.1 — removed
+      [14, 33, 40], // 14 Agar — gifted; 33 Antipode Logos Mk.1 — removed; 40 Pratoganist — gifted
       [39], // keycaps: GMK Prepress — removed
     );
     return;
@@ -137,7 +136,6 @@ export function seed() {
     { id: 37, name: "Owlab Jelly Evolv", color: "White", keycaps: "GMK Striker R2", switchType: "Keebfront Sinister", photoCount: 1, photoFolder: "Owlab Jelly Evolv", status: "built", lastUsedAt: null, useCount: 0, format: "75%" },
     { id: 38, name: "Bowl Pangea Mini", color: "PC / RGB", keycaps: "GMK Chaos Theory", switchType: "Icey Ice Mango Berry", photoCount: 1, photoFolder: "Bowl Pangea Mini", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 39, name: "KBDFans Pluto", color: "Burgundy", keycaps: "GMK Violet Alert", switchType: "Gateron Type-R", photoCount: 3, photoFolder: "KBDFans Pluto", status: "built", lastUsedAt: null, useCount: 0, format: "FRL TKL" },
-    { id: 40, name: "Pratoganist", color: "Silver", keycaps: "GMK Kaiju R3", switchType: "Keebfront Coley", photoCount: 1, photoFolder: "Pratoganist", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 41, name: "Archetype Minerva LX", color: "Black", keycaps: "GMK Handarbeit R2", switchType: "HMX Sand Storm", photoCount: 1, photoFolder: "Archetype Minerva LX", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
     { id: 42, name: "Lucky65 v2", color: "White", keycaps: "GMK Sumi", switchType: "Gateron Oil King", photoCount: 1, photoFolder: "Lucky65 v2", status: "built", lastUsedAt: null, useCount: 0, format: "65%" },
     { id: 43, name: "Tofu60 3.0", color: "RAW", keycaps: "GMK Skeletor R2", switchType: "Gateron INK V2 Black Baltic Edition", photoCount: 3, photoFolder: "Tofu60 3.0", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
@@ -179,7 +177,7 @@ export function seed() {
     { id: 22, name: "GMK Dots R2 (Light)", status: "in_box" },
     { id: 23, name: "GMK Baltic", status: "on_keyboard" },
     { id: 24, name: "GMK Gurokawa", status: "gb" },
-    { id: 25, name: "GMK Kaiju R3", status: "on_keyboard" },
+    { id: 25, name: "GMK Kaiju R3", status: "in_box" },
     { id: 26, name: "GMK Blue Alert", status: "on_keyboard" },
     { id: 27, name: "GMK Prussian Blue", status: "on_keyboard" },
     { id: 28, name: "GMK Higanbana", status: "in_box" },
@@ -308,7 +306,7 @@ export function seed() {
     { id: 68, name: "Cherry MX Blossom", brand: "Cherry", inUse: 0 },
     { id: 69, name: "Gateron Lanes", brand: "Gateron", inUse: 1 },
     { id: 70, name: "Keebfront Sinister", brand: "Keebfront", inUse: 1 },
-    { id: 71, name: "Keebfront Coley", brand: "Keebfront", inUse: 1 },
+    { id: 71, name: "Keebfront Coley", brand: "Keebfront", inUse: 0 },
     { id: 72, name: "Keebfront DOOM", brand: "Keebfront", inUse: 1 },
     { id: 73, name: "Clackbits Linear", brand: "Clackbits", inUse: 0 },
     { id: 74, name: "KNC Keys Black Jacket (Tactile)", brand: "KNC Keys", inUse: 0 },
