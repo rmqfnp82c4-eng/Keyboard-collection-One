@@ -136,9 +136,9 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 52, name: "GMK Redacted®", status: "in_box" },
   { id: 53, name: "GMK Combobreaker", status: "on_keyboard" },
   { id: 54, name: "GMK Hyperbeige", status: "on_keyboard" },
-  { id: 55, name: "GMK King of the Seas", status: "gb" },
+  { id: 55, name: "GMK King of the Seas", status: "in_box" },
   { id: 56, name: "GMK Handarbeit R2", status: "on_keyboard" },
-  { id: 57, name: "GMK Prussian Alert", status: "gb" },
+  { id: 57, name: "GMK Prussian Alert", status: "in_box" },
   { id: 58, name: "GMK GREG R2", status: "in_box" },
   { id: 59, name: "GMK Masterpiece R2", status: "gb" },
   { id: 60, name: "GMK Retrowave", status: "in_box" },
@@ -163,6 +163,8 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 79, name: "GMK Agent 01", status: "on_keyboard" },
   { id: 80, name: "GMK Striker R2 (2nd)", status: "in_box" },
   { id: 81, name: "GMK Analog Dreams R3", status: "gb" },
+  { id: 82, name: "GMK Soware R2", status: "gb" },
+  { id: 83, name: "GMK Vaporwave W2", status: "gb" },
 ];
 
 const switchesData: SwitchData[] = [
