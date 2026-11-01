@@ -165,6 +165,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 81, name: "GMK Analog Dreams R3", status: "gb" },
   { id: 82, name: "GMK Soware R2", status: "gb" },
   { id: 83, name: "GMK Vaporwave W2", status: "gb" },
+  { id: 84, name: "GMK Spark", status: "gb" },
 ];
 
 const switchesData: SwitchData[] = [

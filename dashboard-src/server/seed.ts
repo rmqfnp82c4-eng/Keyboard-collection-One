@@ -58,6 +58,7 @@ export function seed() {
         { id: 81, name: "GMK Analog Dreams R3", status: "gb" },
         { id: 82, name: "GMK Soware R2", status: "gb" },
         { id: 83, name: "GMK Vaporwave W2", status: "gb" },
+        { id: 84, name: "GMK Spark", status: "gb" },
         { id: 20, name: "GMK Skeletor", status: "in_box" },
         { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
         { id: 53, name: "GMK Combobreaker", status: "on_keyboard" },
@@ -240,6 +241,7 @@ export function seed() {
     { id: 81, name: "GMK Analog Dreams R3", status: "gb" },
     { id: 82, name: "GMK Soware R2", status: "gb" },
     { id: 83, name: "GMK Vaporwave W2", status: "gb" },
+    { id: 84, name: "GMK Spark", status: "gb" },
   ];
 
   const switches: Switch[] = [
