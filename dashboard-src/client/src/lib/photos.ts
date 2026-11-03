@@ -44,6 +44,7 @@ const ALL_PHOTOS: Record<string, string[]> = {
   "Tofu Redux": ["Tofu-Redux"],
   "Sonic170 V2": ["Sonic170-v2-1", "Sonic170-v2-2"],
   "+84": ["84-1", "84-2"],
+  "Finder Works Tengu": ["Tengu-1", "Tengu-6", "Tengu-4", "Tengu-3", "Tengu-2", "Tengu-5"],
   "Geonworks F1-8X 722": ["722-2", "722-1", "722-3", "722-4"],
   "Keyboy40": ["Keyboy-111", "Keyboy-4-nj-gthdjq", "Keyboy-2", "Keyboy-1", "Keyboy-6-nj-gthdjq"],
   "KBDFans Pluto": ["Pluto-1-3", "Pluto-2-2", "Pluto-3"],

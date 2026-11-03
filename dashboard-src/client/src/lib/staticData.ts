@@ -79,7 +79,7 @@ const keyboardsData: KeyboardData[] = [
   { id: 51, name: "Ophanim65", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "65%" },
   { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
   { id: 53, name: "Geonworks F1-8X 722", color: "RAW", keycaps: "GMK Fundamentals", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Geonworks F1-8X 722", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
-  { id: 54, name: "Tengu Alice", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
+  { id: 54, name: "Finder Works Tengu", color: "Black", keycaps: "GMK Awaken", switchType: "Cherry MX2A", photoCount: 6, photoFolder: "Finder Works Tengu", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
 ];
 
 const keycapSetsData: KeycapSetData[] = [
@@ -151,7 +151,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 67, name: "GMK Led Zep R2", status: "on_keyboard" },
   { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
   { id: 69, name: "GMK Fundamentals", status: "on_keyboard" },
-  { id: 70, name: "GMK Awaken", status: "in_box" },
+  { id: 70, name: "GMK Awaken", status: "on_keyboard" },
   { id: 71, name: "GMK Q:01", status: "in_box" },
   { id: 72, name: "GMK Cero1", status: "gb" },
   { id: 73, name: "GMK Avanguardia", status: "in_box" },
@@ -254,6 +254,7 @@ const switchesData: SwitchData[] = [
   { id: 83, name: "SWK Jieum", brand: "SWK", inUse: 1 },
   { id: 84, name: "Wuque Studio WS BigLucky Tactile", brand: "Wuque Studio", inUse: 1 },
   { id: 85, name: "Keygeek Guns N Roses", brand: "Keygeek", inUse: 1 },
+  { id: 86, name: "Cherry MX2A", brand: "Cherry", inUse: 1 },
 ];
 
 // Keyboard of the day — deterministic by date (same logic as server)
