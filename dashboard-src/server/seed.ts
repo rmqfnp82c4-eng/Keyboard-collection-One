@@ -29,6 +29,7 @@ export function seed() {
         { id: 35, name: "Keyboy40", color: "Silver", keycaps: "GMK Windbreaker", switchType: "Keygeek Orange Boi", photoCount: 5, photoFolder: "Keyboy40", status: "built", format: "40%" },
         { id: 53, name: "Geonworks F1-8X 722", color: "RAW", keycaps: "GMK Fundamentals", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Geonworks F1-8X 722", status: "built", format: "TKL" },
         { id: 54, name: "Finder Works Tengu", color: "Black", keycaps: "GMK Awaken", switchType: "Cherry MX2A", photoCount: 6, photoFolder: "Finder Works Tengu", status: "built", format: "Ergo/Alice" },
+        { id: 55, name: "Pandora60", color: "Lavender", keycaps: "GMK Symbiote", switchType: "HMX Sandstorm", photoCount: 7, photoFolder: "Pandora60", status: "built", format: "60%" },
         { id: 12, name: "Geonworks F1-8X V2", color: "Hyperbeige", keycaps: "GMK Prussian Blue", switchType: "Cherry MX2A Purple", photoCount: 9, photoFolder: "F1-8X V2", status: "built", format: "TKL" },
         { id: 32, name: "Geonworks F1-8X V2 (2nd)", color: "Hyperbeige", keycaps: "GMK Black Snail (Red Cyrillic)", switchType: "Gateron Type-R", photoCount: 1, photoFolder: "Geonworks F1-8X V2", status: "built", format: "TKL" },
       ],
@@ -59,6 +60,7 @@ export function seed() {
         { id: 82, name: "GMK Soware R2", status: "gb" },
         { id: 83, name: "GMK Vaporwave W2", status: "gb" },
         { id: 84, name: "GMK Spark", status: "gb" },
+        { id: 85, name: "GMK Symbiote", status: "on_keyboard" },
         { id: 20, name: "GMK Skeletor", status: "in_box" },
         { id: 68, name: "GMK Skeletor (2nd)", status: "on_keyboard" },
         { id: 53, name: "GMK Combobreaker", status: "on_keyboard" },
@@ -97,6 +99,7 @@ export function seed() {
         { id: 84, name: "Wuque Studio WS BigLucky Tactile", brand: "Wuque Studio", inUse: 1 },
         { id: 85, name: "Keygeek Guns N Roses", brand: "Keygeek", inUse: 1 },
         { id: 86, name: "Cherry MX2A", brand: "Cherry", inUse: 1 },
+        { id: 87, name: "HMX Sandstorm", brand: "HMX", inUse: 1 },
         { id: 41, name: "Invokeys × ALAS Red Bean", brand: "Invokeys", inUse: 0 },
       ],
       [14, 33, 40], // 14 Agar — gifted; 33 Antipode Logos Mk.1 — removed; 40 Pratoganist — gifted
@@ -157,6 +160,7 @@ export function seed() {
     { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
     { id: 53, name: "Geonworks F1-8X 722", color: "RAW", keycaps: "GMK Fundamentals", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Geonworks F1-8X 722", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
     { id: 54, name: "Finder Works Tengu", color: "Black", keycaps: "GMK Awaken", switchType: "Cherry MX2A", photoCount: 6, photoFolder: "Finder Works Tengu", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
+    { id: 55, name: "Pandora60", color: "Lavender", keycaps: "GMK Symbiote", switchType: "HMX Sandstorm", photoCount: 7, photoFolder: "Pandora60", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
   ];
 
   const keycapSets: KeycapSet[] = [
@@ -243,6 +247,7 @@ export function seed() {
     { id: 82, name: "GMK Soware R2", status: "gb" },
     { id: 83, name: "GMK Vaporwave W2", status: "gb" },
     { id: 84, name: "GMK Spark", status: "gb" },
+    { id: 85, name: "GMK Symbiote", status: "on_keyboard" },
   ];
 
   const switches: Switch[] = [
@@ -332,6 +337,7 @@ export function seed() {
     { id: 84, name: "Wuque Studio WS BigLucky Tactile", brand: "Wuque Studio", inUse: 1 },
     { id: 85, name: "Keygeek Guns N Roses", brand: "Keygeek", inUse: 1 },
     { id: 86, name: "Cherry MX2A", brand: "Cherry", inUse: 1 },
+    { id: 87, name: "HMX Sandstorm", brand: "HMX", inUse: 1 },
   ];
 
   storage.seedData(keyboards, keycapSets, switches);

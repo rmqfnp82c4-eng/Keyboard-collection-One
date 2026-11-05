@@ -80,6 +80,7 @@ const keyboardsData: KeyboardData[] = [
   { id: 52, name: "Deacon TKL", color: null, keycaps: null, switchType: null, photoCount: 0, photoFolder: null, status: "gb", lastUsedAt: null, useCount: 0, format: "TKL" },
   { id: 53, name: "Geonworks F1-8X 722", color: "RAW", keycaps: "GMK Fundamentals", switchType: "Gateron Lanes", photoCount: 4, photoFolder: "Geonworks F1-8X 722", status: "built", lastUsedAt: null, useCount: 0, format: "TKL" },
   { id: 54, name: "Finder Works Tengu", color: "Black", keycaps: "GMK Awaken", switchType: "Cherry MX2A", photoCount: 6, photoFolder: "Finder Works Tengu", status: "built", lastUsedAt: null, useCount: 0, format: "Ergo/Alice" },
+  { id: 55, name: "Pandora60", color: "Lavender", keycaps: "GMK Symbiote", switchType: "HMX Sandstorm", photoCount: 7, photoFolder: "Pandora60", status: "built", lastUsedAt: null, useCount: 0, format: "60%" },
 ];
 
 const keycapSetsData: KeycapSetData[] = [
@@ -166,6 +167,7 @@ const keycapSetsData: KeycapSetData[] = [
   { id: 82, name: "GMK Soware R2", status: "gb" },
   { id: 83, name: "GMK Vaporwave W2", status: "gb" },
   { id: 84, name: "GMK Spark", status: "gb" },
+  { id: 85, name: "GMK Symbiote", status: "on_keyboard" },
 ];
 
 const switchesData: SwitchData[] = [
@@ -255,6 +257,7 @@ const switchesData: SwitchData[] = [
   { id: 84, name: "Wuque Studio WS BigLucky Tactile", brand: "Wuque Studio", inUse: 1 },
   { id: 85, name: "Keygeek Guns N Roses", brand: "Keygeek", inUse: 1 },
   { id: 86, name: "Cherry MX2A", brand: "Cherry", inUse: 1 },
+  { id: 87, name: "HMX Sandstorm", brand: "HMX", inUse: 1 },
 ];
 
 // Keyboard of the day — deterministic by date (same logic as server)
